@@ -3,3 +3,6 @@
 
 # Para que no versione los .class si se genera alguno por una prueba o algo
 *.class
+
+# Para que no versione los .class si se genera alguno por una prueba o algo
+target/

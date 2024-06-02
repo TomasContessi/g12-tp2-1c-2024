@@ -1,8 +1,6 @@
-package src.test;
+package com;
 
 import org.junit.jupiter.api.Test;
-
-import src.HolaMundo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
