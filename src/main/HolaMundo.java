@@ -1,4 +1,4 @@
-package src.main.java.com.example;
+package src.main;
 
 public class HolaMundo {
     public static void main(String[] args) {

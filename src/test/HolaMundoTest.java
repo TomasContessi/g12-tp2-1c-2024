@@ -1,10 +1,10 @@
-package src.test.java.com.example;
+package src.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import src.main.java.com.example.HolaMundo;
+import src.HolaMundo;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HolaMundoTest {
 
