@@ -1,1 +1,5 @@
+# Para que no versine lo que tira vscode en esa carpeta magica
 .vscode
+
+# Para que no versione los .class si se genera alguno por una prueba o algo
+*.class
