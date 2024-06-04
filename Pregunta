@@ -1,0 +1,43 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class Pregunta {
+    ArrayList<String> respuestasAcertadas = new ArrayList<>();
+    ArrayList<String> respuestas = new ArrayList<>();
+
+    public Pregunta(ArrayList<String> respuestasCorrectas) {
+        ArrayList<String> respuestasAcertadas = respuestasCorrectas;
+    }
+
+    public Pregunta() {
+    }
+
+
+    int verificarRespuesta(ArrayList<String> respuesta) {
+        int puntos = 0;
+        puntos = this.puntosObtenidos();
+
+        return puntos;
+    }
+
+    String respuestaCorrecta(int posicion) {
+        return this.respuestasAcertadas.get(posicion);
+    }
+
+    String respuestaElegida(int posicion) {
+        return this.respuestas.get(posicion);
+    }
+
+    int puntosObtenidos() {
+        int puntos = 0;
+        for (int i = 0; i < respuestasAcertadas.size(); i++) {
+            if (Objects.equals(this.respuestaCorrecta(i), this.respuestaElegida(i))) {
+                puntos += 1;
+            }
+        }
+        return 1;
+    }
+
+}
