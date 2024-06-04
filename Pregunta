@@ -8,7 +8,7 @@ public class Pregunta {
     ArrayList<String> respuestas = new ArrayList<>();
 
     public Pregunta(ArrayList<String> respuestasCorrectas) {
-        ArrayList<String> respuestasAcertadas = respuestasCorrectas;
+         respuestasAcertadas = respuestasCorrectas;
     }
 
     public Pregunta() {
