@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com</groupId>
-    <artifactId>holamundo</artifactId>
+    <artifactId>tp2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
