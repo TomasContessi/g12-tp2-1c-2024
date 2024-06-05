@@ -1,15 +1,20 @@
 package com;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PreguntaTest {
+
+
+public class PreguntaConPenalidadTest {
     @Test
-    public void test01PreguntaVerdaderoFalso() {
+    public void test05PreguntaVerdaderoFalsoConPenalidadRespondeCorrectamente() {
 
         // arrange
         ArrayList<String> respuestas = new ArrayList<String>();
+
         ArrayList<String> respuestasCorrectas = new ArrayList<String>();
 
         respuestas.add("V");
@@ -19,7 +24,7 @@ public class PreguntaTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        Pregunta preguntaVerdaderoFalso = new Pregunta(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -27,7 +32,7 @@ public class PreguntaTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
-    public void test02PreguntaVerdaderoFalso() {
+    public void test06PreguntaVerdaderoFalsoConPenalidadRespondeInconrrectamente() {
 
         // arrange
         ArrayList<String> respuestas = new ArrayList<String>();
@@ -39,9 +44,9 @@ public class PreguntaTest {
         respuestasCorrectas.add("V");
 
         int resultadoObtenido;
-        int resultadoEsperado = 0;
+        int resultadoEsperado = -1;
 
-        Pregunta preguntaVerdaderoFalso = new Pregunta(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -49,7 +54,7 @@ public class PreguntaTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
-    public void test03PreguntaMultipleChoiceAsignaPuntosCorrectamente() {
+    public void test07PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasBienConPenanilidad() {
 
         // arrange
         ArrayList<String> respuestas = new ArrayList<String>();
@@ -69,7 +74,7 @@ public class PreguntaTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        Pregunta preguntaVerdaderoFalso = new Pregunta(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -77,8 +82,7 @@ public class PreguntaTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
-
-    public void test04PreguntaMultipleChoiceAsignaPuntosCorrectamenteNoRespondeTodasBien() {
+    public void test08PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasMalConPenanilidad() {
 
         // arrange
         ArrayList<String> respuestas = new ArrayList<String>();
@@ -86,19 +90,19 @@ public class PreguntaTest {
         ArrayList<String> respuestasCorrectas = new ArrayList<String>();
 
         respuestas.add("V");
-        respuestas.add("F");
-        respuestas.add("F");
+        respuestas.add("V");
+        respuestas.add("V");
         respuestas.add("V");
 
-        respuestasCorrectas.add("V");
-        respuestasCorrectas.add("V");
-        respuestasCorrectas.add("V");
-        respuestasCorrectas.add("V");
+        respuestasCorrectas.add("F");
+        respuestasCorrectas.add("F");
+        respuestasCorrectas.add("F");
+        respuestasCorrectas.add("F");
 
         int resultadoObtenido;
-        int resultadoEsperado = 2;
+        int resultadoEsperado = -4;
 
-        Pregunta preguntaVerdaderoFalso = new Pregunta(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -107,4 +111,5 @@ public class PreguntaTest {
 
     }
 }
+
 
