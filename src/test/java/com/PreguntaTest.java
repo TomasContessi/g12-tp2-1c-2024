@@ -13,7 +13,36 @@ public class PreguntaTest {
 
     @Test
     public void test01PreguntaVerdaderoFalso() {
-        Pregunta pregunta = new Pregunta(new Respuesta("v"));
+
+        int respuestasAcertadas = 0;
+
+        ArrayList<Opcion<String>>opcionesCorrectas = new ArrayList<Opcion<String>>();
+
+        Opcion<String> opcion = new OpcionTipoString("V");
+
+        opcionesCorrectas.add(opcion);
+
+        opcion = new OpcionTipoString("F");
+
+        opcionesCorrectas.add(opcion);
+
+        Respuesta respuesta = new Respuesta(opcionesCorrectas);
+
+        ArrayList<Opcion<String>>opciones = new ArrayList<Opcion<String>>();
+
+        Opcion<String> opcion2 = new OpcionTipoString("V");
+
+        opciones.add(opcion2);
+
+        opcion2 = new OpcionTipoString("F");
+
+        opciones.add(opcion2);
+
+        Respuesta respuesta2 = new Respuesta(opcionesCorrectas);
+
+        respuestasAcertadas = respuesta.aciertosObtenidos(respuesta2);
+
+        /*
         //CalculoPuntaje calculoPuntaje = new AumentarPuntajeSimple();
         ArrayList<String> respuestas = new ArrayList<String>();
         respuestas.add("v");
@@ -24,8 +53,8 @@ public class PreguntaTest {
         Jugador jugador = new Jugador("Juan");
 
         jugador.responderPregunta(pregunta, respuestaMock);
-
-        assertEquals(1, jugador.getPuntaje());
+        */
+        assertEquals(2, respuesta.aciertosObtenidos(respuesta2));
     }
 
     // public void test02PreguntaVerdaderoFalso() {

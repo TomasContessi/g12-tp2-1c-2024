@@ -1,5 +1,5 @@
 package com;
-
+/*
 public interface IJugador {
     public void responderPregunta(Pregunta pregunta, IRespuesta respuesta);
 
@@ -7,3 +7,4 @@ public interface IJugador {
 
     void calcularPuntaje(CalculoPuntaje puntaje);
 }
+*/

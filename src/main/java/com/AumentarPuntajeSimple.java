@@ -1,5 +1,5 @@
 package com;
-
+/*
 public class AumentarPuntajeSimple implements CalculoPuntaje{
     @Override
     public int calcularPuntaje(Jugador jugador) {
@@ -8,3 +8,4 @@ public class AumentarPuntajeSimple implements CalculoPuntaje{
         return puntaje;
     }
 }
+*/

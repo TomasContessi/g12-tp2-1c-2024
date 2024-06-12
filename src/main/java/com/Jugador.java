@@ -1,5 +1,6 @@
 package com;
 
+/*
 public class Jugador implements IJugador{
     private final String nombre;
     private int puntaje;
@@ -25,3 +26,4 @@ public class Jugador implements IJugador{
     }
 
 }
+*/

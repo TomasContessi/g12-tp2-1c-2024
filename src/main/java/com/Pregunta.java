@@ -1,7 +1,7 @@
 package com;
 
 import java.util.Collections;
-
+/*
 public class Pregunta {
     Respuesta respuestaCorrecta;
     CalculoPuntaje calculoPuntaje;
@@ -22,3 +22,4 @@ public class Pregunta {
         return this.respuestaCorrecta;
     }
 }
+*/
