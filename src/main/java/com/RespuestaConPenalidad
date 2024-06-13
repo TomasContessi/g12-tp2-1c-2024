@@ -1,0 +1,31 @@
+package com;
+
+
+import java.util.ArrayList;
+
+public class RespuestaConPenalidad<T> extends Respuesta<T>{
+    // Constructor que llama al constructor de la clase base
+    public RespuestaConPenalidad(ArrayList<Opcion<T>> opciones) {
+        super(opciones);
+    }
+
+    // Sobrescribir el método verificarRespuesta
+    @Override
+
+    int aciertosObtenidos(Respuesta respuestaComparar) {
+        int aciertos = 0;
+        for (int i = 0; i < respuestaComparar.getTamanio() ; i++) {
+            for(int j = 0; j < opciones.size() ; j++) {
+                if (respuestaComparar.getOpcion(i).comparar(opciones.get(j))) {
+                    aciertos += 1;
+                    j = opciones.size();
+
+                } else if (j == opciones.size() - 1) {
+                    aciertos -= 1;
+                }
+            }
+        }
+        return  aciertos;
+    }
+
+}
