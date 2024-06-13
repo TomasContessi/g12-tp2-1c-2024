@@ -1,0 +1,25 @@
+package com;
+
+import java.util.ArrayList;
+
+public class RespuestaMultipleChoiceParcial<T> extends Respuesta<T> {
+    public RespuestaMultipleChoiceParcial(ArrayList<Opcion<T>> opciones) {
+        super(opciones);
+
+    }
+    @Override
+    int aciertosObtenidos(Respuesta respuestaComparar) {
+        int aciertos = 0;
+        for (int i = 0; i < respuestaComparar.getTamanio() ; i++) {
+            for(int j = 0; j < opciones.size() ; j++) {
+                if (respuestaComparar.getOpcion(i).comparar(opciones.get(j))) {
+                    aciertos += 1;
+                    j=opciones.size();
+                }else{
+                    return 0;
+                }
+            }
+        }
+        return  aciertos;
+    }
+}
