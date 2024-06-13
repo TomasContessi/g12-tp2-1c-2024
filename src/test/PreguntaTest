@@ -1,0 +1,148 @@
+package com;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
+
+public class PreguntaTest {
+
+    int puntosRespuesta = 0;
+    int puntosEsperados = 0;
+
+    ArrayList<Opcion<String>> opcionesCorrectas = new ArrayList<Opcion<String>>();
+
+    Opcion<String> opcion = new OpcionTipoString("1");
+    Opcion<String> opcion2 = new OpcionTipoString("2");
+    Opcion<String> opcion3 = new OpcionTipoString("3");
+    Opcion<String> opcion4 = new OpcionTipoString("4");
+
+    ArrayList<Opcion<String>> opcionesElijoJugador = new ArrayList<Opcion<String>>();
+    ArrayList<Opcion<String>> opcionesDesordenadas = new ArrayList<Opcion<String>>();
+    Respuesta respuesta2 = new Respuesta(opcionesCorrectas);
+
+    @Test
+    public void test01PreguntaVerdaderoFalso() {
+
+        //Arrange
+        Pregunta pregunta = new Pregunta(respuesta2);
+        puntosEsperados = 1;
+        opcionesCorrectas.add(opcion);
+        opcionesElijoJugador.add(opcion);
+        Respuesta respuesta = new Respuesta(opcionesElijoJugador);
+
+        //Act
+
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+
+    @Test
+    public void test02PreguntaMultipleChoiceDosOpciones() {
+        //Arrange
+        Pregunta pregunta = new Pregunta(respuesta2);
+        puntosEsperados = 2;
+        opcionesCorrectas.add(opcion);
+        opcionesCorrectas.add(opcion2);
+        opcionesElijoJugador.add(opcion);
+        opcionesElijoJugador.add(opcion2);
+        opcionesElijoJugador.add(opcion3);
+        Respuesta respuesta = new Respuesta(opcionesElijoJugador);
+
+
+        //Act
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+
+    @Test
+    public void test03PreguntaMultipleChoiceCuatroOpciones() {
+        //Arrange
+        Pregunta pregunta = new Pregunta(respuesta2);
+        puntosEsperados = 3;
+        opcionesCorrectas.add(opcion);
+        opcionesCorrectas.add(opcion2);
+        opcionesCorrectas.add(opcion3);
+        opcionesCorrectas.add(opcion4);
+        opcionesElijoJugador.add(opcion);
+        opcionesElijoJugador.add(opcion2);
+        opcionesElijoJugador.add(opcion3);
+        Respuesta respuesta = new Respuesta(opcionesElijoJugador);
+
+
+        //Act
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+    @Test
+    public void test04PreguntaMultipleChoiceCuatroOpciones() {
+        //Arrange
+
+
+        Pregunta pregunta = new Pregunta(respuesta2);
+        opcionesCorrectas.add(opcion);
+        opcionesCorrectas.add(opcion2);
+        opcionesElijoJugador.add(opcion);
+        opcionesElijoJugador.add(opcion2);
+        opcionesElijoJugador.add(opcion4);
+        Respuesta respuesta = new RespuestaMultipleChoiceParcial(opcionesElijoJugador);
+
+
+        //Act
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+    @Test
+    public void test05PreguntaMultipleChoiceConPenalidad() {
+        //Arrange
+        puntosEsperados = 1;
+        Pregunta pregunta = new Pregunta(respuesta2);
+        opcionesCorrectas.add(opcion);
+        opcionesCorrectas.add(opcion2);
+        opcionesCorrectas.add(opcion3);
+        opcionesElijoJugador.add(opcion);
+        opcionesElijoJugador.add(opcion2);
+        opcionesElijoJugador.add(opcion4);
+        Respuesta respuesta = new RespuestaConPenalidad(opcionesElijoJugador);
+
+
+        //Act
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+    @Test
+    public void test06OrderedChoice() {
+        //Arrange
+        puntosEsperados = 1;
+        Pregunta pregunta = new Pregunta(respuesta2);
+        opcionesCorrectas.add(opcion);
+        opcionesCorrectas.add(opcion3);
+        opcionesCorrectas.add(opcion4);
+        opcionesCorrectas.add(opcion2);
+        opcionesElijoJugador.add(opcion);
+        opcionesElijoJugador.add(opcion3);
+        opcionesElijoJugador.add(opcion4);
+        opcionesElijoJugador.add(opcion2);
+        Respuesta respuesta = new RespuestaOrderedChoice(opcionesElijoJugador);
+
+
+        //Act
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+}
