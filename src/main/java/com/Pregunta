@@ -1,0 +1,23 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class Pregunta {
+
+   // String enunciado;
+    Respuesta respuesta;
+    int puntos = 0;
+
+    public Pregunta(Respuesta respuesta){
+        this.respuesta = respuesta;
+        // this.enunciado = enunciado;
+    }
+
+     void asignarPuntos(Jugador jugador){
+        jugador.obtenerPuntos(this.puntos);
+     }
+
+    public int calcularPuntosRespuesta(Respuesta respuesta2) {
+        puntos = respuesta2.aciertosObtenidos(respuesta);
+     
