@@ -145,4 +145,38 @@ public class PreguntaTest {
         //Assert
         assertEquals(puntosEsperados, puntosRespuesta);
     }
+   @Test
+    public void test07PreguntaVerdaderoFalsoConPenalidadMalRespondida() {
+
+        //Arrange
+        Pregunta pregunta = new Pregunta(respuesta2);
+        puntosEsperados = -1;
+        opcionesCorrectas.add(opcion);
+        opcionesElijoJugador.add(opcion2);
+        Respuesta respuesta = new RespuestaConPenalidad(opcionesElijoJugador);
+
+        //Act
+
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+    @Test
+    public void test08PreguntaVerdaderoFalsoConPenalidadBienRespondida() {
+
+        //Arrange
+        Pregunta pregunta = new Pregunta(respuesta2);
+        puntosEsperados = 1;
+        opcionesCorrectas.add(opcion);
+        opcionesElijoJugador.add(opcion);
+        Respuesta respuesta = new RespuestaConPenalidad(opcionesElijoJugador);
+
+        //Act
+
+        puntosRespuesta = pregunta.calcularPuntosRespuesta(respuesta);
+
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
 }
