@@ -1,0 +1,19 @@
+package com;
+
+import java.util.ArrayList;
+
+public class RespuestaOrderedChoice<T> extends Respuesta<T> {
+    public RespuestaOrderedChoice(ArrayList<Opcion<T>> opciones) {
+
+        super(opciones);
+    }
+    int aciertosObtenidos(Respuesta respuestaComparar) {
+    int aciertos = 0;
+        for (int i = 0; i < respuestaComparar.getTamanio(); i++) {
+            if (!respuestaComparar.getOpcion(i).comparar(opciones.get(i))) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+}
