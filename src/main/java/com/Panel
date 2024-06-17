@@ -1,0 +1,22 @@
+package com;
+
+public class Panel {
+    Pregunta pregunta = new Pregunta();
+    Respuesta respuestas = new Respuesta();
+   // Jugador jugador = new Jugador();
+    public Panel(){
+    }
+    void guardarPregunta(Pregunta pregunta){
+        this.pregunta = pregunta;
+    }
+    void guardarRespuestas(Respuesta respuestas){
+        this.respuestas = respuestas;
+    }
+     void mostrarPregunta(Jugador jugador) {
+        jugador.responder(this.pregunta,respuestas,this);
+    }
+     void pasarRespuesta(Respuesta respuesta,Jugador jugador) {
+        pregunta.responder(respuesta,jugador);
+    }
+
+}
