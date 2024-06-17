@@ -1,0 +1,113 @@
+package com;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PanelTest {
+    Panel panel = new Panel();
+    Jugador jugador = new Jugador();
+    ArrayList<Opcion<String>> opcionesCorrectas = new ArrayList<Opcion<String>>();
+    Opcion<String> opcion = new OpcionTipoString("1");
+    Opcion<String> opcion2 = new OpcionTipoString("2");
+    Opcion<String> opcion3 = new OpcionTipoString("3");
+    Opcion<String> opcion4 = new OpcionTipoString("4");
+    ArrayList<Opcion<String>> opcionesElijoJugador = new ArrayList<Opcion<String>>();
+    ArrayList<Opcion<String>> opcionesAElejir = new ArrayList<Opcion<String>>();
+    int puntosEsperados = 0;
+    int puntosRespuesta = 0;
+    Respuesta respuestasPosibles = new Respuesta(opcionesAElejir);
+    Respuesta respuestasCorrectas = new Respuesta(opcionesCorrectas);
+    Respuesta respuestasConPenalidad = new RespuestaConPenalidad(opcionesCorrectas);
+
+
+    @Test
+    public void test01MostrarPreguntaJugadorRespondeBien() {
+
+        //Arrange
+        /*
+        Panel panel = new Panel();
+        Jugador jugador = new Jugador();
+        ArrayList<Opcion<String>> opcionesCorrectas = new ArrayList<Opcion<String>>();
+        Opcion<String> opcion = new OpcionTipoString("1");
+        ArrayList<Opcion<String>> opcionesElijoJugador = new ArrayList<Opcion<String>>();
+        int puntosEsperados = 1;
+        int puntosRespuesta = 0;
+        */
+        Pregunta pregunta = new Pregunta(respuestasCorrectas,respuestasPosibles);
+        puntosEsperados = 1;
+        opcionesCorrectas.add(opcion);
+        opcionesElijoJugador.add(opcion);
+       // Respuesta respuestasCorrectas = new Respuesta(opcionesCorrectas);
+        //Respuesta respuesta = new Respuesta(opcionesElijoJugador);
+       // Pregunta pregunta = new Pregunta(respuestasCorrectas,respuestasCorrectas);
+        panel.guardarPregunta(pregunta);
+        panel.guardarRespuestas(respuestasCorrectas);
+        //Act
+        jugador.setOpcionElegidas(opcionesElijoJugador);
+        panel.mostrarPregunta(jugador);
+
+        //jugador.elegirOpcion(opcionesElijoJugador);
+       // panel.pasarRespuesta();
+       // pregunta.responder(respuesta);
+        puntosRespuesta = jugador.obtenerPuntos();
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+
+    @Test
+    public void test02MostrarPreguntaJugadorResponde1Bieny1Mal() {
+
+        //Arrange
+        Pregunta pregunta = new Pregunta(respuestasCorrectas,respuestasPosibles);
+        puntosEsperados = 1;
+        opcionesCorrectas.add(opcion);
+        opcionesCorrectas.add(opcion2);
+        opcionesElijoJugador.add(opcion);
+        opcionesElijoJugador.add(opcion3);
+        opcionesAElejir.add(opcion);
+        opcionesAElejir.add(opcion2);
+        opcionesAElejir.add(opcion3);
+        opcionesAElejir.add(opcion4);
+        panel.guardarPregunta(pregunta);
+        panel.guardarRespuestas(respuestasPosibles);
+        //Act
+        jugador.setOpcionElegidas(opcionesElijoJugador);
+        panel.mostrarPregunta(jugador);
+        //jugador.elegirOpcion(opcionesElijoJugador);
+        // panel.pasarRespuesta();
+        // pregunta.responder(respuesta);
+        puntosRespuesta = jugador.obtenerPuntos();
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+
+    @Test
+    public void test03MostrarPreguntaJugadorRespondeBien2Y1MalConPenalizacion() {
+
+        //Arrange
+        Pregunta pregunta = new Pregunta(respuestasConPenalidad,respuestasPosibles);
+        puntosEsperados = 1;
+        opcionesCorrectas.add(opcion);
+        opcionesCorrectas.add(opcion2);
+        opcionesElijoJugador.add(opcion);
+        opcionesElijoJugador.add(opcion3);
+        opcionesAElejir.add(opcion);
+        opcionesAElejir.add(opcion2);
+        opcionesAElejir.add(opcion3);
+        opcionesAElejir.add(opcion4);
+        panel.guardarPregunta(pregunta);
+        panel.guardarRespuestas(respuestasPosibles);
+        //Act
+        jugador.setOpcionElegidas(opcionesElijoJugador);
+        panel.mostrarPregunta(jugador);
+        //jugador.elegirOpcion(opcionesElijoJugador);
+        // panel.pasarRespuesta();
+        // pregunta.responder(respuesta);
+        puntosRespuesta = jugador.obtenerPuntos();
+        //Assert
+        assertEquals(puntosEsperados, puntosRespuesta);
+    }
+}
