@@ -1,0 +1,34 @@
+package com;
+
+import java.util.ArrayList;
+
+public class Jugador<T> {
+    int puntos = 0;
+    Pregunta pregunta = new Pregunta();
+    Respuesta respuesta = new Respuesta();
+    Respuesta respuestasAElegir = new Respuesta();
+    ArrayList<Opcion<T>> opcionesElegidas;
+
+    public Jugador() {
+    }
+    public void asignarPuntos(int puntos){
+        this.puntos = puntos;
+    }
+    void responder(Pregunta pregunta,Respuesta respuestas,Panel panel){
+        elegirOpcion(respuestas.getOpciones());
+        panel.pasarRespuesta(this.respuesta,this);
+    }
+    public void elegirOpcion(ArrayList<Opcion<T>> opciones) {
+        for(int i =0; i < opcionesElegidas.size(); i++){
+            this.respuesta.agregarOpciones(opcionesElegidas.get(i));
+        }
+
+    }
+    void setOpcionElegidas(ArrayList<Opcion<T>> opcionesElegidas){
+        this.opcionesElegidas= opcionesElegidas;
+    }
+    int obtenerPuntos(){
+        return this.puntos;
+    }
+    
+}
