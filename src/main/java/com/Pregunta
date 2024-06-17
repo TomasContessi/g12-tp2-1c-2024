@@ -1,23 +1,28 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 public class Pregunta {
-
-   // String enunciado;
-    Respuesta respuesta;
+    
+    Respuesta respuestasCorrectas;
+    Respuesta respuestasAElejir;
     int puntos = 0;
+    public Pregunta(){
 
-    public Pregunta(Respuesta respuesta){
-        this.respuesta = respuesta;
-        // this.enunciado = enunciado;
+    }
+    public Pregunta(Respuesta respuestasCorrectas,Respuesta respuestasAElejir){
+        this.respuestasCorrectas = respuestasCorrectas;
+        this.respuestasAElejir = respuestasAElejir;
     }
 
      void asignarPuntos(Jugador jugador){
-        jugador.obtenerPuntos(this.puntos);
+        jugador.asignarPuntos(this.puntos);
      }
 
     public int calcularPuntosRespuesta(Respuesta respuesta2) {
-        puntos = respuesta2.aciertosObtenidos(respuesta);
-     
+        puntos = respuesta2.aciertosObtenidos(respuestasCorrectas);
+       return puntos;
+    }
+    void responder(Respuesta respuesta,Jugador jugador) {
+        calcularPuntosRespuesta(respuesta);
+        asignarPuntos(jugador);
+    }
+}
