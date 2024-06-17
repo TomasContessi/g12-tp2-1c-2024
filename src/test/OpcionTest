@@ -1,0 +1,37 @@
+package com;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class OpcionTest {
+
+    @Test
+    public void test01VerificarOpcionesIguales() {
+        Opcion<String> opcion1 = new OpcionTipoString("1");
+        Opcion<String> opcion2 = new OpcionTipoString("1");
+
+        boolean sonIguales= false;
+        boolean igualdadEsperada = true;
+        //Act
+        sonIguales = opcion1.comparar(opcion2);
+        //Assert
+        assertEquals(igualdadEsperada,sonIguales);
+
+    }
+    @Test
+    public void test02VerificarOpcionesDesiguales() {
+        Opcion<String> opcion1 = new OpcionTipoString("1");
+        Opcion<String> opcion2 = new OpcionTipoString("2");
+
+        boolean sonIguales= false;
+        boolean igualdadEsperada = false;
+        //Act
+        sonIguales = opcion1.comparar(opcion2);
+        //Assert
+        assertEquals(igualdadEsperada,sonIguales);
+
+    }
+
+
+}
