@@ -110,6 +110,35 @@ public class PreguntaConPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
+
+    public void test09PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeAlgunasMalConPenanilidad() {
+
+        // arrange
+        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
+
+        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+
+        respuestas.add(new OpcionString("uno"));
+        respuestas.add(new OpcionString("uno"));
+        respuestas.add(new OpcionString("dos"));
+        respuestas.add(new OpcionString("uno"));
+
+        respuestasCorrectas.add(new OpcionString("uno"));
+        respuestasCorrectas.add(new OpcionString("dos"));
+        respuestasCorrectas.add(new OpcionString("dos"));
+        respuestasCorrectas.add(new OpcionString("dos"));
+
+        int resultadoObtenido;
+        int resultadoEsperado = 0;
+
+        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+
+        // act
+        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        //assert
+        assertEquals(resultadoEsperado, resultadoObtenido);
+
+    }
 }
 
 

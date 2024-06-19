@@ -10,6 +10,7 @@ public class PreguntaSinPenalidad implements Pregunta {
         this.respuestasCorrectas = respuestasCorrectas;
     }
 
+    // Método verificarRespuesta
     @Override
     public int verificarRespuesta(ArrayList<Opcion> respuestasContestadas) {
         int puntaje = 0;

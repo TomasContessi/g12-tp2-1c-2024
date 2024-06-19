@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class PreguntaConPenalidad implements Pregunta{
     private ArrayList<Opcion> respuestasCorrectas;
 
-    // Constructor que llama al constructor de la clase base
+    // Constructor 
     public PreguntaConPenalidad(ArrayList<Opcion> respuestasCorrectas) {
         this.respuestasCorrectas = respuestasCorrectas;
     }
 
-    // Sobrescribir el método verificarRespuesta
+    // Método verificarRespuesta
     @Override
     public int verificarRespuesta(ArrayList<Opcion> respuestasContestadas) {
         int puntaje = 0;
