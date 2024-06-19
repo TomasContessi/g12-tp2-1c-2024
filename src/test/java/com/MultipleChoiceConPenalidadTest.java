@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MultipleChoiceConPenalidadTest {
 //----------------------------------------------------------------------------------------------------------------------------------------------
     @Test
-    public void test05PreguntaMultipleChoiceConPenalidadConPenalidadRespondeCorrectamente() {
+    public void test01PreguntaMultipleChoiceConPenalidadConPenalidadRespondeCorrectamente() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -36,7 +36,7 @@ public class MultipleChoiceConPenalidadTest {
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
-    public void test06PreguntaMultipleChoiceConPenalidadConPenalidadRespondeInconrrectamente() {
+    public void test02PreguntaMultipleChoiceConPenalidadConPenalidadRespondeInconrrectamente() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -61,7 +61,7 @@ public class MultipleChoiceConPenalidadTest {
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
-    public void test07PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasBienConPenanilidad() {
+    public void test03PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasBienConPenanilidad() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -93,7 +93,7 @@ public class MultipleChoiceConPenalidadTest {
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
-    public void test08PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasMalConPenanilidad() {
+    public void test04PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasMalConPenanilidad() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -125,7 +125,7 @@ public class MultipleChoiceConPenalidadTest {
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
-    public void test09PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeAlgunasMalConPenanilidad() {
+    public void test05PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeAlgunasMalConPenanilidad() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -157,7 +157,7 @@ public class MultipleChoiceConPenalidadTest {
     //----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
-    public void test10PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeAlgunasConPenalidad() {
+    public void test06PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeAlgunasConPenalidad() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
