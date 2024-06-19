@@ -1,20 +1,15 @@
 package com;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-
-public class PreguntaConPenalidadTest {
+public class PreguntaSinPenalidadTest {
     @Test
-    public void test05PreguntaVerdaderoFalsoConPenalidadRespondeCorrectamente() {
+    public void test01PreguntaVerdaderoFalso() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
 
         respuestas.add(new OpcionString("uno"));
@@ -24,7 +19,7 @@ public class PreguntaConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -32,7 +27,7 @@ public class PreguntaConPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
-    public void test06PreguntaVerdaderoFalsoConPenalidadRespondeInconrrectamente() {
+    public void test02PreguntaVerdaderoFalso() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -44,9 +39,9 @@ public class PreguntaConPenalidadTest {
         respuestasCorrectas.add(new OpcionString("uno"));
 
         int resultadoObtenido;
-        int resultadoEsperado = -1;
+        int resultadoEsperado = 0;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -54,7 +49,7 @@ public class PreguntaConPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
-    public void test07PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasBienConPenanilidad() {
+    public void test03PreguntaMultipleChoiceAsignaPuntosCorrectamente() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -74,7 +69,7 @@ public class PreguntaConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -82,7 +77,8 @@ public class PreguntaConPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
-    public void test08PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasMalConPenanilidad() {
+
+    public void test04PreguntaMultipleChoiceAsignaPuntosCorrectamenteNoRespondeTodasBien() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -90,19 +86,19 @@ public class PreguntaConPenalidadTest {
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
 
         respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("uno"));
+        respuestas.add(new OpcionString("dos"));
+        respuestas.add(new OpcionString("dos"));
         respuestas.add(new OpcionString("uno"));
 
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("dos"));
+        respuestasCorrectas.add(new OpcionString("uno"));
+        respuestasCorrectas.add(new OpcionString("uno"));
+        respuestasCorrectas.add(new OpcionString("uno"));
+        respuestasCorrectas.add(new OpcionString("uno"));
 
         int resultadoObtenido;
-        int resultadoEsperado = -4;
+        int resultadoEsperado = 2;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -111,5 +107,4 @@ public class PreguntaConPenalidadTest {
 
     }
 }
-
 
