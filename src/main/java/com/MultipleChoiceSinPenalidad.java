@@ -2,11 +2,11 @@ package com;
 
 import java.util.ArrayList;
 
-public class PreguntaSinPenalidad implements Pregunta {
+public class MultipleChoiceSinPenalidad implements Pregunta {
     private ArrayList<Opcion> respuestasCorrectas;
 
     // Contructor
-    public PreguntaSinPenalidad(ArrayList<Opcion> respuestasCorrectas) {
+    public MultipleChoiceSinPenalidad(ArrayList<Opcion> respuestasCorrectas) {
         this.respuestasCorrectas = respuestasCorrectas;
     }
 

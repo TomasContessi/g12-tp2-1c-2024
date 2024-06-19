@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 
-public class PreguntaConPenalidadTest {
+public class MultipleChoiceConPenalidadTest {
     @Test
     public void test05PreguntaVerdaderoFalsoConPenalidadRespondeCorrectamente() {
 
@@ -24,7 +24,7 @@ public class PreguntaConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -47,7 +47,7 @@ public class PreguntaConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = -1;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -76,7 +76,7 @@ public class PreguntaConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -106,7 +106,7 @@ public class PreguntaConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = -4;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -136,7 +136,7 @@ public class PreguntaConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        Pregunta preguntaVerdaderoFalso = new PreguntaConPenalidad(respuestasCorrectas);
+        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);

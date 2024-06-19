@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PreguntaSinPenalidadTest {
+public class MultipleChoiceSinPenalidadTest {
     @Test
     public void test01PreguntaVerdaderoFalso() {
 
@@ -19,7 +19,7 @@ public class PreguntaSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -42,7 +42,7 @@ public class PreguntaSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -71,7 +71,7 @@ public class PreguntaSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
@@ -101,7 +101,7 @@ public class PreguntaSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 2;
 
-        PreguntaSinPenalidad preguntaVerdaderoFalso = new PreguntaSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
         resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
