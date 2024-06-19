@@ -4,9 +4,13 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//----------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
 public class MultipleChoiceSinPenalidadTest {
+//----------------------------------------------------------------------------------------------------------------------------------------------
     @Test
-    public void test01PreguntaVerdaderoFalso() {
+    public void test01PreguntaMultipleChoiceSinPenalidad() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -19,16 +23,18 @@ public class MultipleChoiceSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaMultipleChoiceSinPenalidad = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceSinPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
     @Test
-    public void test02PreguntaVerdaderoFalso() {
+    public void test02PreguntaMultipleChoiceSinPenalidad() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -42,13 +48,15 @@ public class MultipleChoiceSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaMultipleChoiceSinPenalidad = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceSinPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
     public void test03PreguntaMultipleChoiceAsignaPuntosCorrectamente() {
@@ -71,14 +79,16 @@ public class MultipleChoiceSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaMultipleChoiceSinPenalidad = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceSinPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
     public void test04PreguntaMultipleChoiceAsignaPuntosCorrectamenteNoRespondeTodasBien() {
@@ -101,10 +111,10 @@ public class MultipleChoiceSinPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 2;
 
-        MultipleChoiceSinPenalidad preguntaVerdaderoFalso = new MultipleChoiceSinPenalidad(respuestasCorrectas);
+        MultipleChoiceSinPenalidad preguntaMultipleChoiceSinPenalidad = new MultipleChoiceSinPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceSinPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
