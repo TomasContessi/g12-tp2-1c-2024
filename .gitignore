@@ -6,3 +6,6 @@
 
 # Para que no versione los .class si se genera alguno por una prueba o algo
 target/
+
+# No se que es esa carpeta pero no tiene pinta de ir en el repo
+.idea
