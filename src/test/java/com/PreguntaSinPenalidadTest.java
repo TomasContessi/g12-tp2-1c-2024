@@ -27,6 +27,7 @@ public class PreguntaSinPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
+    @Test
     public void test02PreguntaVerdaderoFalso() {
 
         // arrange
@@ -49,6 +50,7 @@ public class PreguntaSinPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
+    @Test
     public void test03PreguntaMultipleChoiceAsignaPuntosCorrectamente() {
 
         // arrange
@@ -78,6 +80,7 @@ public class PreguntaSinPenalidadTest {
 
     }
 
+    @Test
     public void test04PreguntaMultipleChoiceAsignaPuntosCorrectamenteNoRespondeTodasBien() {
 
         // arrange

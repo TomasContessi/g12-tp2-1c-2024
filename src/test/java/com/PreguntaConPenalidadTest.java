@@ -31,7 +31,8 @@ public class PreguntaConPenalidadTest {
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
-
+    
+    @Test
     public void test06PreguntaVerdaderoFalsoConPenalidadRespondeInconrrectamente() {
 
         // arrange
@@ -54,6 +55,7 @@ public class PreguntaConPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
+    @Test
     public void test07PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasBienConPenanilidad() {
 
         // arrange
@@ -82,6 +84,8 @@ public class PreguntaConPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
+
+    @Test
     public void test08PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasMalConPenanilidad() {
 
         // arrange
@@ -111,6 +115,7 @@ public class PreguntaConPenalidadTest {
 
     }
 
+    @Test
     public void test09PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeAlgunasMalConPenanilidad() {
 
         // arrange

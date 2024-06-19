@@ -22,12 +22,13 @@ public class OpcionStringTest {
         //assert
         assertEquals(resultadoEspetado, resultadoObtenido);
     }
+    @Test
     public void test02comparacionOpcionesCorrecta(){
         // arrange
         String respuesta = "uno";
         String respuestaElegida = "rabano";
 
-        boolean resultadoEspetado = true;
+        boolean resultadoEspetado = false;
 
         Opcion opcionGuardada = new OpcionString(respuesta);
         Opcion opcionInglesada = new OpcionString(respuestaElegida);
