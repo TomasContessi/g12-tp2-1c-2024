@@ -1,16 +1,17 @@
 package com;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//----------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 public class MultipleChoiceConPenalidadTest {
+//----------------------------------------------------------------------------------------------------------------------------------------------
     @Test
-    public void test05PreguntaVerdaderoFalsoConPenalidadRespondeCorrectamente() {
+    public void test05PreguntaMultipleChoiceConPenalidadConPenalidadRespondeCorrectamente() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -24,16 +25,18 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
-    
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
     @Test
-    public void test06PreguntaVerdaderoFalsoConPenalidadRespondeInconrrectamente() {
+    public void test06PreguntaMultipleChoiceConPenalidadConPenalidadRespondeInconrrectamente() {
 
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
@@ -47,13 +50,15 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = -1;
 
-        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
     public void test07PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasBienConPenanilidad() {
@@ -76,14 +81,16 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
     public void test08PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeTodasMalConPenanilidad() {
@@ -106,14 +113,16 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = -4;
 
-        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
     public void test09PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeAlgunasMalConPenanilidad() {
@@ -136,10 +145,10 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        Pregunta preguntaVerdaderoFalso = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
