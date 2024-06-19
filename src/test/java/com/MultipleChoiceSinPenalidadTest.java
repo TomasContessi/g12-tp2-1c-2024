@@ -67,14 +67,14 @@ public class MultipleChoiceSinPenalidadTest {
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
 
         respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("uno"));
+        respuestas.add(new OpcionString("dos"));
+        respuestas.add(new OpcionString("tres"));
+        respuestas.add(new OpcionString("cuatro"));
 
         respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("uno"));
+        respuestasCorrectas.add(new OpcionString("dos"));
+        respuestasCorrectas.add(new OpcionString("tres"));
+        respuestasCorrectas.add(new OpcionString("cuatro"));
 
         int resultadoObtenido;
         int resultadoEsperado = 4;
@@ -100,13 +100,13 @@ public class MultipleChoiceSinPenalidadTest {
 
         respuestas.add(new OpcionString("uno"));
         respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("uno"));
+        respuestas.add(new OpcionString("tres"));
+        respuestas.add(new OpcionString("cuatro"));
 
         respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("uno"));
+        respuestasCorrectas.add(new OpcionString("dos"));
+        respuestasCorrectas.add(new OpcionString("dsa"));
+        respuestasCorrectas.add(new OpcionString("dads"));
 
         int resultadoObtenido;
         int resultadoEsperado = 2;
@@ -119,5 +119,35 @@ public class MultipleChoiceSinPenalidadTest {
         assertEquals(resultadoEsperado, resultadoObtenido);
 
     }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+@Test
+public void test05PreguntaMultipleChoiceAsignaPuntosCorrectamenteNoRespondeTodas() {
+
+    // arrange
+    ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
+
+    ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+
+    respuestas.add(new OpcionString("uno"));
+    respuestas.add(new OpcionString("dos"));
+    respuestas.add(new OpcionString("tres"));
+    respuestas.add(new OpcionString("cuatro"));
+
+    respuestasCorrectas.add(new OpcionString("uno"));
+    respuestasCorrectas.add(new OpcionString("dos"));
+
+    int resultadoObtenido;
+    int resultadoEsperado = 2;
+
+    MultipleChoiceSinPenalidad preguntaMultipleChoiceSinPenalidad = new MultipleChoiceSinPenalidad(respuestasCorrectas);
+
+    // act
+    resultadoObtenido = preguntaMultipleChoiceSinPenalidad.verificarRespuesta(respuestas);
+    //assert
+    assertEquals(resultadoEsperado, resultadoObtenido);
+
+}
 }
 

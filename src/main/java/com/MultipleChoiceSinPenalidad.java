@@ -14,12 +14,13 @@ public class MultipleChoiceSinPenalidad implements Pregunta {
     @Override
     public int verificarRespuesta(ArrayList<Opcion> respuestasContestadas) {
         int puntaje = 0;
-        for (int i = 0; i < respuestasContestadas.size(); i++){
-            if (this.respuestasCorrectas.get(i).verificar(respuestasContestadas.get(i))){
-                puntaje = puntaje + 1;
+        for (int i = 0; i < this.respuestasCorrectas.size(); i++){
+            for (int j = 0; j < respuestasContestadas.size(); j++){
+                if (this.respuestasCorrectas.get(i).verificar(respuestasContestadas.get(j))){
+                    puntaje = puntaje + 1;
+                }
             }
         }
         return puntaje;
-    }
-
+    } 
 }
