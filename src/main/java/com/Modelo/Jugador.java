@@ -1,4 +1,4 @@
-package com;
+package com.Modelo;
 
 public class Jugador implements IJugador{
     private final String nombre;
@@ -10,7 +10,7 @@ public class Jugador implements IJugador{
     }
 
     @Override
-    public void responderPregunta(Pregunta pregunta, IRespuesta respuesta) {
+    public void responderPregunta(Pregunta pregunta, Respuesta respuesta) {
         pregunta.verificarRespuesta(respuesta, this);
     }
 
@@ -19,9 +19,13 @@ public class Jugador implements IJugador{
         return this.puntaje;
     }
 
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
     @Override
     public void calcularPuntaje(CalculoPuntaje calculoPuntaje) {
-        this.puntaje = calculoPuntaje.calcularPuntaje(this);
+        calculoPuntaje.calcularPuntaje(this);
     }
 
 }

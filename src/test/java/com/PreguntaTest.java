@@ -1,10 +1,17 @@
 package com;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.stubbing.Answer;
+
+import com.Modelo.Jugador;
+import com.Modelo.Pregunta;
+import com.Modelo.PreguntaFactory;
+import com.Modelo.PreguntaSimple;
+import com.Modelo.PreguntaVerdaderoFalsoFactory;
+import com.Modelo.Respuesta;
+import com.Modelo.RespuestaMultiple;
+import com.Modelo.RespuestaVerdaderoFalso;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -12,42 +19,83 @@ import java.util.ArrayList;
 public class PreguntaTest {
 
     @Test
-    public void test01PreguntaVerdaderoFalso() {
-        Pregunta pregunta = new Pregunta(new Respuesta("v"));
-        //CalculoPuntaje calculoPuntaje = new AumentarPuntajeSimple();
-        ArrayList<String> respuestas = new ArrayList<String>();
-        respuestas.add("v");
+    public void test01PreguntaVerdaderoFalsoSimpleRespondidaCorrectamente() {
+        // ArrayList<Integer> opcionesCorrectas = new ArrayList<>();
+        // opcionesCorrectas.add(1);
+        Respuesta respuestaCorrecta = new RespuestaVerdaderoFalso(1);
 
-        IRespuesta respuestaMock = mock(IRespuesta.class);
-        when(respuestaMock.getValor()).thenReturn("v");
+        PreguntaFactory preguntaFactory;
+        preguntaFactory = new PreguntaVerdaderoFalsoFactory();
+        Pregunta pregunta = preguntaFactory.crearPregunta(respuestaCorrecta);
+
+
+        // ArrayList<Integer> opcionesElegidas = new ArrayList<>();
+        // opcionesElegidas.add(1);
+        // Respuesta respuestaMock = mock(Respuesta.class);
+        // when(respuestaMock.getOpciones()).thenReturn(opcionesElegidas);
+
+        Respuesta respuestaJugador = new RespuestaVerdaderoFalso(1);
 
         Jugador jugador = new Jugador("Juan");
 
-        jugador.responderPregunta(pregunta, respuestaMock);
+        jugador.responderPregunta(pregunta, respuestaJugador);
 
         assertEquals(1, jugador.getPuntaje());
     }
 
-    // public void test02PreguntaVerdaderoFalso() {
+    // @Test
+    // public void test02PreguntaVerdaderoFalsoSimpleRespondidaIncorrectamente() {
+    //     Pregunta pregunta = new Pregunta(new RespuestaVerdaderoFalso("V"));
+        
+    //     Respuesta respuestaMock = mock(Respuesta.class);
+    //     when(respuestaMock.getRespuesta()).thenReturn(new RespuestaVerdaderoFalso("F"));
 
-    //     // arrange
-    //     ArrayList<String> respuestas = new ArrayList<String>();
+    //     Jugador jugador = new Jugador("Juan");
 
-    //     ArrayList<String> respuestasCorrectas = new ArrayList<String>();
+    //     jugador.responderPregunta(pregunta, respuestaMock);
 
-    //     respuestas.add("F");
+    //     assertEquals(0, jugador.getPuntaje());
+    // }
 
-    //     respuestasCorrectas.add("V");
+    @Test
+    public void test03PreguntaMultipleChoiseSimpleRespondidaCorrectamente() {
+        ArrayList<Integer> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(2);
+        opcionesCorrectas.add(5);
+        Pregunta pregunta = new PreguntaSimple(new RespuestaMultiple(opcionesCorrectas));
+        
+        ArrayList<Integer> opcionesJugador = new ArrayList<>();
+        //opcionesJugador.add(2);
+        opcionesJugador.add(5);
+        // Respuesta respuestaMock = mock(Respuesta.class);
+        // when(respuestaMock.getRespuesta()).thenReturn(new RespuestaMultipleChoise(opcionesJugador));
 
-    //     int resultadoObtenido;
-    //     int resultadoEsperado = 0;
+       Respuesta respuestaJugador = new RespuestaMultiple(opcionesJugador);
 
-    //     Pregunta preguntaVerdaderoFalso = new Pregunta(respuestasCorrectas);
+        Jugador jugador = new Jugador("Juan");
 
-    //     // act
-    //     resultadoObtenido = preguntaVerdaderoFalso.verificarRespuesta(respuestas);
-    //     //assert
-    //     assertEquals(resultadoEsperado, resultadoObtenido);
+        jugador.responderPregunta(pregunta, respuestaJugador);
+
+        assertEquals(0, jugador.getPuntaje());
+    }
+
+    // @Test
+    // public void test04PreguntaMultipleChoiseSimpleRespondidaIncorrectamente() {
+    //     ArrayList<Integer> opcionesCorrectas = new ArrayList<>();
+    //     opcionesCorrectas.add(2);
+    //     opcionesCorrectas.add(5);
+    //     Pregunta pregunta = new Pregunta(new RespuestaMultipleChoise(opcionesCorrectas));
+        
+    //     ArrayList<Integer> opcionesJugador = new ArrayList<>();
+    //     opcionesJugador.add(5);
+    //     Respuesta respuestaMock = mock(Respuesta.class);
+    //     when(respuestaMock.getRespuesta()).thenReturn(new RespuestaMultipleChoise(opcionesJugador));
+
+    //     Jugador jugador = new Jugador("Juan");
+
+    //     jugador.responderPregunta(pregunta, respuestaMock);
+
+    //     assertEquals(0, jugador.getPuntaje());
     // }
 
     // public void test03PreguntaMultipleChoiceAsignaPuntosCorrectamente() {

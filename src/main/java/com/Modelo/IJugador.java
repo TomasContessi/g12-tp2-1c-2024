@@ -1,7 +1,7 @@
-package com;
+package com.Modelo;
 
 public interface IJugador {
-    public void responderPregunta(Pregunta pregunta, IRespuesta respuesta);
+    public void responderPregunta(Pregunta pregunta, Respuesta respuesta);
 
     int getPuntaje();
 
