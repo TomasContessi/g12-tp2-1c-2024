@@ -29,10 +29,10 @@ public class OrderedChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        OrderedChoice preguntaOrderedChoice = new OrderedChoice(respuestasCorrectas);
+        Tipo preguntaOrderedChoice = new OrderedChoice();
 
         // act
-        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -60,10 +60,10 @@ public class OrderedChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        OrderedChoice preguntaOrderedChoice = new OrderedChoice(respuestasCorrectas);
+        Tipo preguntaOrderedChoice = new OrderedChoice();
 
         // act
-        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -90,10 +90,10 @@ public class OrderedChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        OrderedChoice preguntaOrderedChoice = new OrderedChoice(respuestasCorrectas);
+        Tipo preguntaOrderedChoice = new OrderedChoice();
 
         // act
-        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -118,10 +118,10 @@ public void test04OrderedChoiceNoCompleta(){
     int resultadoObtenido;
     int resultadoEsperado = 0;
 
-    OrderedChoice preguntaOrderedChoice = new OrderedChoice(respuestasCorrectas);
+    Tipo preguntaOrderedChoice = new OrderedChoice();
 
     // act
-    resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
+    resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestasCorrectas, respuestas);
     //assert
     assertEquals(resultadoEsperado, resultadoObtenido);
 }
