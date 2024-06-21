@@ -23,4 +23,9 @@ class OpcionString implements Opcion {
         return this.respuesta.equals(opcion.respuesta);
     }
 
+    @Override
+    public String obtenerRespuesta(){
+        return this.respuesta;
+    }
+
 }

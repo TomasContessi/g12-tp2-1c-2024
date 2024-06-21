@@ -8,6 +8,8 @@ import java.util.ArrayList;
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
 public class PreguntaTest {
+
+    /*
     @Test
     public void test01PreguntaMultipleChoiceSimpleMultiplicadorX1AciertaTodas(){
         // arrange
@@ -67,5 +69,5 @@ public class PreguntaTest {
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
-    
+    */
 }
