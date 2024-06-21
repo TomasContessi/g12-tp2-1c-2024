@@ -29,10 +29,10 @@ public class MultipleChoiceConPuntajeParcialTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        MultipleChoiceConPuntajeParcial preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -57,10 +57,10 @@ public class MultipleChoiceConPuntajeParcialTest {
         int resultadoObtenido;
         int resultadoEsperado = 2;
 
-        MultipleChoiceConPuntajeParcial preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -87,10 +87,10 @@ public class MultipleChoiceConPuntajeParcialTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        MultipleChoiceConPuntajeParcial preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }

@@ -2,23 +2,16 @@ package com;
 
 import java.util.ArrayList;
 
-public class OrderedChoice implements Pregunta {
-    private ArrayList<Opcion> respuestasCorrectas;
-
-    // Contructor
-    public OrderedChoice(ArrayList<Opcion> respuestasCorrectas) {
-        this.respuestasCorrectas = respuestasCorrectas;
-    }
-
+public class OrderedChoice implements Tipo {
     // Método verificarRespuesta
     @Override
-    public int verificarRespuesta(ArrayList<Opcion> respuestasContestadas) {
+    public int verificarRespuesta(ArrayList<Opcion> respuestasCorrectas, ArrayList<Opcion> respuestasContestadas) {
         int puntaje = 1;
-        if (this.respuestasCorrectas.size() != respuestasContestadas.size()){
+        if (respuestasCorrectas.size() != respuestasContestadas.size()){
             return 0;
         }
-        for (int i = 0; i < this.respuestasCorrectas.size(); i++){
-            if (this.respuestasCorrectas.get(i).verificar(respuestasContestadas.get(i)) == false){
+        for (int i = 0; i < respuestasCorrectas.size(); i++){
+            if (respuestasCorrectas.get(i).verificar(respuestasContestadas.get(i)) == false){
                 puntaje = 0;
             }
         }

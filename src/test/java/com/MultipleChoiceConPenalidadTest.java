@@ -25,10 +25,10 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -50,10 +50,10 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = -1;
 
-        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -80,11 +80,11 @@ public class MultipleChoiceConPenalidadTest {
 
         int resultadoObtenido;
         int resultadoEsperado = 4;
-
-        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        
+        Tipo preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
@@ -113,10 +113,10 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = -4;
 
-        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
@@ -145,10 +145,10 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 
@@ -175,10 +175,10 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoObtenido;
         int resultadoEsperado = 2;
 
-        Pregunta preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(respuestasCorrectas);
+        Tipo preguntaMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad();
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestasCorrectas, respuestas);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
 

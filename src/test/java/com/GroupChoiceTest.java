@@ -33,10 +33,10 @@ public class GroupChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        GroupChoice preguntaGroupChoice = new GroupChoice(grupo1Correcto);
+        Tipo preguntaGroupChoice = new GroupChoice();
 
         // act
-        resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1);
+        resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1Correcto, grupo1);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -68,10 +68,10 @@ public class GroupChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        GroupChoice preguntaGroupChoice = new GroupChoice(grupo1Correcto);
+        Tipo preguntaGroupChoice = new GroupChoice();
 
         // act
-        resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1);
+        resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1Correcto, grupo1);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -102,10 +102,10 @@ public class GroupChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        GroupChoice preguntaGroupChoice = new GroupChoice(grupo1Correcto);
+        Tipo preguntaGroupChoice = new GroupChoice();
 
         // act
-        resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1);
+        resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1Correcto, grupo1);
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
