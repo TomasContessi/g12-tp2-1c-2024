@@ -11,7 +11,7 @@ public class PreguntaFactoryTest {
 
     @Test
     public void test01ObtenerCorrectamenteElEnunciadoAUnaPregunta() {
-        // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
+        // arrange
         String enunciadoEsperado = "Ordene de MAYOR A MENOR los siguientes objetos hogareños según su nivel de radiación electromagnética emitido (el máximo recomendado es 100 microTeslas)";
 
         int ID = 0; // Los índices en los arrays empiezan desde 0
@@ -22,14 +22,15 @@ public class PreguntaFactoryTest {
 
         Pregunta pregunta = lector.loadPregunta(new PreguntaFactory());
 
+        // act
+        //assert
         assertEquals(enunciadoEsperado, pregunta.getEnunciado());
     }
 
     @Test
     public void test02ObtenerCorrectamenteElEnunciadoAUnaPregunta() {
 
-        // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
-
+        // arrange
         ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
         opcionesCorrectas.add(new OpcionString("Televisor de tubo CRT"));
         opcionesCorrectas.add(new OpcionString("Microondas"));
@@ -48,6 +49,8 @@ public class PreguntaFactoryTest {
         PreguntaFactory nuevaPregunta = new PreguntaFactory();
         Pregunta pregunta = nuevaPregunta.crearPregunta("Ordered Choice", "CIENCIAS", "Ordene de MAYOR A MENOR los siguientes objetos hogareños según su nivel de radiación electromagnética emitido (el máximo recomendado es 100 microTeslas)",  opcionesCorrectas, opciones);
 
+        // act
+        //assert
         assertEquals(temaEsperado, pregunta.getTema());
     }
 
