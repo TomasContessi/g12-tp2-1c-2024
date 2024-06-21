@@ -12,6 +12,7 @@ import com.google.gson.JsonParser;
 
 public class JsonLoader {
     int ID;
+    PreguntaFactory factory;
     String temaPregunta;
     String tipoPregunta;
     String enunciadoPregunta;
@@ -57,8 +58,13 @@ public class JsonLoader {
         return this.enunciadoPregunta;
     }
 
-    public Pregunta loadPregunta(PreguntaFactory factory){
-        return factory.crearPregunta(tipoPregunta, temaPregunta, enunciadoPregunta, opcionesCorrectas, opciones);
+    public Pregunta loadPregunta(int ID, String path){
+        this.leerAtributos(ID, path);
+        return this.factory.crearPregunta(tipoPregunta, temaPregunta, enunciadoPregunta, opcionesCorrectas, opciones);
+    }
+
+    public void setFactory(PreguntaFactory factory){
+        this.factory = factory;
     }
 
     public ArrayList<Opcion> opcionesCorrectas() {
