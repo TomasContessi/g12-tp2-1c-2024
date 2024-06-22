@@ -11,17 +11,38 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class JsonLoader {
-    int ID;
-    PreguntaFactory factory;
+    int totalPreguntas;
+    PreguntaFactory factory = new PreguntaFactory();
+    int id;
     String temaPregunta;
     String tipoPregunta;
     String enunciadoPregunta;
-    ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
-    ArrayList<Opcion> opciones = new ArrayList<>();
+    ArrayList<Opcion> opcionesCorrectas;
+    ArrayList<Opcion> opciones;
     String textoRespuesta;
     String opcionKey;
-    public void leerAtributos(int ID, String filePath) {
+
+    public void JsonLoader(String filePath){
+
         try(FileReader reader = new FileReader(filePath)) {
+
+            JsonElement jsonElement = JsonParser.parseReader(reader);
+            JsonArray jsonArray = jsonElement.getAsJsonArray();
+
+            this.totalPreguntas = jsonArray.size();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void leerAtributos(int ID, String filePath) {
+
+        opcionesCorrectas = new ArrayList<>();
+        opciones = new ArrayList<>();
+
+        try(FileReader reader = new FileReader(filePath)) {
+
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonElement.getAsJsonArray();
 
@@ -30,7 +51,13 @@ public class JsonLoader {
 
             this.tipoPregunta = jsonObject.get("Tipo").getAsString();
 
+            this.temaPregunta = jsonObject.get("Tema").getAsString();
+
             this.enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
+
+            this.textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
+
+            this.id = jsonObject.get("ID").getAsInt();
 
             String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
             for(String s :  respuestasCorrectas.split(",")) {
@@ -44,14 +71,22 @@ public class JsonLoader {
                     this.opciones.add(new OpcionString(jsonObject.get(key).getAsString()));
                 }
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.err.println("Error: ID no es un número entero válido.");
+        } catch (NullPointerException e) {
+            System.err.println("Error: Algún campo está ausente en la pregunta " + ID);
         }
     }
 
     public String tipoPregunta() {
         return this.tipoPregunta;
+    }
+
+    public String temaPregunta() {
+        return this.temaPregunta;
     }
 
     public String enunciadoPregunta() {
@@ -60,7 +95,7 @@ public class JsonLoader {
 
     public Pregunta loadPregunta(int ID, String path){
         this.leerAtributos(ID, path);
-        return this.factory.crearPregunta(tipoPregunta, temaPregunta, enunciadoPregunta, opcionesCorrectas, opciones);
+        return (this.factory.crearPregunta(tipoPregunta, temaPregunta, enunciadoPregunta, opcionesCorrectas, opciones));
     }
 
     public void setFactory(PreguntaFactory factory){
@@ -73,5 +108,9 @@ public class JsonLoader {
 
     public ArrayList<Opcion> opciones() {
         return this.opciones;
+    }
+
+    public int totalPreguntas() {
+        return this.totalPreguntas;
     }
 }

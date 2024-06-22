@@ -31,6 +31,10 @@ public class Pregunta {
         return this.enunciado;
     }
 
+    public String getTipo(){
+        return this.tipo.toString();
+    }
+
     public String getTema() {
         return this.tema;
     }

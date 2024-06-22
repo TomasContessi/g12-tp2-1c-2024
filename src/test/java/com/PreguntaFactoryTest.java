@@ -18,9 +18,10 @@ public class PreguntaFactoryTest {
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
 
         JsonLoader lector = new JsonLoader();
-        lector.leerAtributos(ID, filePath);
 
-        Pregunta pregunta = lector.loadPregunta(new PreguntaFactory());
+       // lector.setFactory(new PreguntaFactory());
+
+        Pregunta pregunta = lector.loadPregunta(ID, filePath);
 
         // act
         //assert
@@ -53,7 +54,5 @@ public class PreguntaFactoryTest {
         //assert
         assertEquals(temaEsperado, pregunta.getTema());
     }
-
-
 
 }
