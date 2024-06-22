@@ -15,8 +15,13 @@ public class Jugador {
 
     public ArrayList<Opcion> responderPregunta(Pregunta pregunta){
         ArrayList<Opcion> respuesta = new ArrayList<Opcion>();
-        pregunta.setMultiplicador(multiplicadores.get(0));
+        //this.elegirOpcion(pregunta);
+      //  pregunta.setMultiplicador(multiplicadores.get(0));
         return respuesta;
+    }
+
+    void elegirOpcion(ArrayList<Opcion> opcionesAElegir,ArrayList<Opcion> opcionesElegidas){
+        opcionesElegidas.add(opcionesAElegir.get(0));
     }
 
     public void asignarPuntos(int puntos){
