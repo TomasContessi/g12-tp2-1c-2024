@@ -48,10 +48,10 @@ public class ExclusividadTest {
     }
 
     @Test
-    public void test04DosJugadoresUsanExclusividadYTresAciertan(){
+    public void test04DosJugadoresUsanExclusividadYCuatroAciertan(){
         //Arrange
         Exclusividad exclusividad = new Exclusividad();
-        int cantidadJugadoresAciertan = 3;
+        int cantidadJugadoresAciertan = 4;
         int jugadoresUsaronExclusividad = 2;
         int multiplicadorPuntosEsperados = 0;
         int multiplicadorPuntosObtenidos = 0;
