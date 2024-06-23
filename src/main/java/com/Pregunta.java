@@ -10,12 +10,12 @@ public class Pregunta {
     Multiplicador multiplicador;
     ArrayList<Opcion> opciones;
     
-    public Pregunta(Tipo tipo, ArrayList<Opcion> respuestaCorrecta, String enunciado, ArrayList<Opcion> Opciones, String tema) {
+    public Pregunta(Tipo tipo, ArrayList<Opcion> respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema) {
         this.tipo = tipo;
         this.respuestaCorrecta = respuestaCorrecta;
         this.multiplicador = new MultiplicadorX1();
         this.enunciado = enunciado;
-        this.opciones = Opciones;
+        this.opciones = opciones;
         this.tema = tema;
     }
     /*  yo lo sacaria
@@ -25,6 +25,10 @@ public class Pregunta {
     */
     public void setMultiplicador(Multiplicador multiplicador) {
         this.multiplicador = multiplicador;
+    }
+
+    public Opcion getOpcion(int numero) {
+        return opciones.get(numero);
     }
 
     public String getEnunciado() {
