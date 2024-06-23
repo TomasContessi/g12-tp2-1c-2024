@@ -8,6 +8,7 @@ public class Exclusividad {
         if(jugadoresContestaronBien > 1){
             return 0;
         }
+
         return 2*vecesActivadasEnEstaRonda;
     }
 }
