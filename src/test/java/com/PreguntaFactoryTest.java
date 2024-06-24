@@ -17,7 +17,7 @@ public class PreguntaFactoryTest {
         int ID = 0; // Los índices en los arrays empiezan desde 0
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
 
-        JsonLoader lector = new JsonLoader();
+        JsonLoader lector = new JsonLoader(filePath);
 
        // lector.setFactory(new PreguntaFactory());
 
