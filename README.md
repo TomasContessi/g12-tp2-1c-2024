@@ -9,19 +9,11 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 3** - [integrante3](https://github.com/Gonza2508)
 * **Integrante 4** - [integrante4](https://github.com/JoaniPran)
 
-Corrector: **{Corrector}**
-
+Corrector: Pablo Suárez
+ 
 ## Aplicación
 
-La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/fiuba/algo3_proyecto_base_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
-
-```bash
-$ java -jar <archivo.jar>
-```
-
-## Desarrollo
-
-Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desarrollo](./docs/Desarrollo.md).
+La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/TomasContessi/g12-tp2-1c-2024/tree/main)
 
 ## Licencia
 
