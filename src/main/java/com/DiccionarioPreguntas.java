@@ -3,6 +3,7 @@ package com;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class DiccionarioPreguntas {
     Map<String, ArrayList<Pregunta>> preguntasGuardadas = new HashMap<>();
@@ -30,6 +31,15 @@ public class DiccionarioPreguntas {
 
         Pregunta pregunta = preguntasDelTema.get(numeroDePregunta);
         preguntasDelTema.remove(numeroDePregunta);
+
+        return pregunta;
+    }
+
+    public Pregunta obtenerPregunta(String tema) {
+        Random rand = new Random();
+        int numeroDePreguntas = this.obtenerTema(tema).size();
+        int numeroRandom = rand.nextInt(numeroDePreguntas) + 1;
+        Pregunta pregunta = this.obtenerPregunta(tema, numeroRandom);
 
         return pregunta;
     }
