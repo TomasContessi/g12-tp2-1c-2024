@@ -16,7 +16,7 @@ public class JsonLoaderTest {
         int ID = 0; // Los índices en los arrays empiezan desde 0
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
 
-        JsonLoader lector = new JsonLoader();
+        JsonLoader lector = new JsonLoader(filePath);
         lector.leerAtributos(ID, filePath);
 
         assertEquals(enunciadoEsperado, lector.enunciadoPregunta());
@@ -30,7 +30,7 @@ public class JsonLoaderTest {
         int ID = 0; // Los índices en los arrays empiezan desde 0
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
 
-        JsonLoader lector = new JsonLoader();
+        JsonLoader lector = new JsonLoader(filePath);
         lector.leerAtributos(ID, filePath);
 
         assertEquals(tipoPreguntaEsperado, lector.tipoPregunta());
@@ -44,7 +44,7 @@ public class JsonLoaderTest {
         int ID = 0; // Los índices en los arrays empiezan desde 0
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
 
-        JsonLoader lector = new JsonLoader();
+        JsonLoader lector = new JsonLoader(filePath);
         lector.leerAtributos(ID, filePath);
 
         assertEquals(cantidadDeOpcionesEsperadas, lector.opcionesCorrectas().size());
@@ -58,7 +58,7 @@ public class JsonLoaderTest {
         int ID = 0; // Los índices en los arrays empiezan desde 0
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
 
-        JsonLoader lector = new JsonLoader();
+        JsonLoader lector = new JsonLoader(filePath);
         lector.leerAtributos(ID, filePath);
 
         assertEquals(enunciadoEsperadoOpcion, lector.opciones().getFirst().obtenerRespuesta());
