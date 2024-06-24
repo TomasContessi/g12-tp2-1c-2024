@@ -8,9 +8,7 @@ public class DiccionarioPreguntas {
     Map<String, ArrayList<Pregunta>> preguntasGuardadas = new HashMap<>();
 
     public void asignarPreguntasPorTema(String filePath) {
-        JsonLoader nuevoLector = new JsonLoader();
-
-        nuevoLector.JsonLoader(filePath);
+        JsonLoader nuevoLector = new JsonLoader(filePath);
 
         for (int i = 0; i < nuevoLector.totalPreguntas(); i++) {
 
