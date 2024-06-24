@@ -10,6 +10,7 @@ public class PreguntaFactory{
         switch (tipoPregunta) {
             case "Group Choice":
                 return new Pregunta(new GroupChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            case "Ordered choice":
             case "Ordered Choice":
                 return new Pregunta(new OrderedChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
             case "Multiple Choice Simple":
