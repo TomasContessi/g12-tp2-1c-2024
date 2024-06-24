@@ -22,7 +22,7 @@ public class JsonLoader {
     String textoRespuesta;
     String opcionKey;
 
-    public void JsonLoader(String filePath){
+    JsonLoader(String filePath){
 
         try(FileReader reader = new FileReader(filePath)) {
 
