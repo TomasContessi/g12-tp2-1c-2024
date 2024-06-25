@@ -78,4 +78,45 @@ public class DiccionarioPreguntasTest {
         assertEquals(PreguntasEsperadaRestante, preguntasRestantes.getFirst().getEnunciado());
     }
 
+    @Test
+    void test04ObtenerTemas() {
+
+        ArrayList<String> temasEsperados =  new ArrayList<String>();
+        ArrayList<String> temasObtenidos;
+
+        temasEsperados.add("DEPORTES");
+        temasEsperados.add("MISCELANEAS");
+        temasEsperados.add("CIENCIAS");
+        temasEsperados.add("NATURALEZA");
+        temasEsperados.add("ARTE");
+        temasEsperados.add("COMPUTACION");
+        temasEsperados.add("SALUD");
+        temasEsperados.add("HISTORIA");
+
+        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
+
+        DiccionarioPreguntas diccionarioPreguntas = new DiccionarioPreguntas();
+
+        diccionarioPreguntas.asignarPreguntasPorTema(filePath);
+        temasObtenidos =  diccionarioPreguntas.obtenerTemas();
+        assertEquals(temasObtenidos, temasEsperados);
+    }
+
+    @Test
+    void test05ObtenerPreguntaRandomDeUnTema() {
+        String TemaEsperado = "ARTE";
+        String TemaObtenido;
+
+        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
+
+        DiccionarioPreguntas diccionarioPreguntas = new DiccionarioPreguntas();
+
+        diccionarioPreguntas.asignarPreguntasPorTema(filePath);
+
+        Pregunta preguntaObtenida = diccionarioPreguntas.obtenerPregunta(TemaEsperado);
+
+        TemaObtenido = preguntaObtenida.getTema();
+
+        assertEquals(TemaEsperado, TemaObtenido);
+    }
 }
