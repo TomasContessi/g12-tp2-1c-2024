@@ -9,12 +9,13 @@ public class Juego {
     private ArrayList<Jugador> jugadores;
     private String preguntasPath;
     private DiccionarioPreguntas diccionarioPreguntas;
+    private ArrayList<String> temas;
     private String ultimaTematica;
     private Pregunta preguntaTurno;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void cargarPregunta(){
+    public void cargarSiguientePregunta(){
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
@@ -33,5 +34,6 @@ public class Juego {
     public void cargarPreguntas(DiccionarioPreguntas diccionarioPreguntas){
         this.diccionarioPreguntas = diccionarioPreguntas;
         this.diccionarioPreguntas.asignarPreguntasPorTema(this.preguntasPath);
+        this.ultimaTematica = this.diccionarioPreguntas.obtenerTemas().getLast();
     }
 }
