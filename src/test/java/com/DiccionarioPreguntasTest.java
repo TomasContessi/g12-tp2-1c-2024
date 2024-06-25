@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import static org.junit.jupiter.api.Assertions.assertNull;
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -118,5 +118,58 @@ public class DiccionarioPreguntasTest {
         TemaObtenido = preguntaObtenida.getTema();
 
         assertEquals(TemaEsperado, TemaObtenido);
+    }
+
+    @Test
+    void test06ObtenerPreguntasHastaVaciarTema() {
+
+        ArrayList<Pregunta> preguntasRestantes;
+        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
+
+        DiccionarioPreguntas diccionarioPreguntas = new DiccionarioPreguntas();
+
+        diccionarioPreguntas.asignarPreguntasPorTema(filePath);
+
+        preguntasRestantes = diccionarioPreguntas.obtenerTema("CIENCIAS");
+        assertNotNull(preguntasRestantes);
+
+        while (preguntasRestantes != null) {
+            diccionarioPreguntas.obtenerPregunta("CIENCIAS", 0);
+            preguntasRestantes = diccionarioPreguntas.obtenerTema("CIENCIAS");
+        }
+
+        assertNull(preguntasRestantes);
+    }
+
+    @Test
+    void test07ObtenerPreguntasHastaVaciarTemaRemoveKey() {
+
+        ArrayList<String> temasEsperados =  new ArrayList<String>();
+        ArrayList<String> temasObtenidos;
+
+        temasEsperados.add("DEPORTES");
+        temasEsperados.add("MISCELANEAS");
+        temasEsperados.add("NATURALEZA");
+        temasEsperados.add("ARTE");
+        temasEsperados.add("COMPUTACION");
+        temasEsperados.add("SALUD");
+        temasEsperados.add("HISTORIA");
+
+        ArrayList<Pregunta> preguntasRestantes;
+        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
+
+        DiccionarioPreguntas diccionarioPreguntas = new DiccionarioPreguntas();
+
+        diccionarioPreguntas.asignarPreguntasPorTema(filePath);
+
+        preguntasRestantes = diccionarioPreguntas.obtenerTema("CIENCIAS");
+
+        while (preguntasRestantes != null) {
+            diccionarioPreguntas.obtenerPregunta("CIENCIAS", 0);
+            preguntasRestantes = diccionarioPreguntas.obtenerTema("CIENCIAS");
+        }
+
+        temasObtenidos = diccionarioPreguntas.obtenerTemas();
+        assertEquals(temasObtenidos, temasEsperados);
     }
 }
