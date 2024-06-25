@@ -38,10 +38,17 @@ public class DiccionarioPreguntas {
     public Pregunta obtenerPregunta(String tema) {
         Random rand = new Random();
         int numeroDePreguntas = this.obtenerTema(tema).size();
-        int numeroRandom = rand.nextInt(numeroDePreguntas) + 1;
+        int numeroRandom = rand.nextInt(numeroDePreguntas);
         Pregunta pregunta = this.obtenerPregunta(tema, numeroRandom);
 
         return pregunta;
+    }
+
+    public ArrayList<String> obtenerTemas() {
+        ArrayList<String> temas = new ArrayList<String>();
+        temas.addAll(this.preguntasGuardadas.keySet());
+
+        return temas;
     }
 }
 
