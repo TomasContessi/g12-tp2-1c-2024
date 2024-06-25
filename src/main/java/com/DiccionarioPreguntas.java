@@ -32,6 +32,10 @@ public class DiccionarioPreguntas {
         Pregunta pregunta = preguntasDelTema.get(numeroDePregunta);
         preguntasDelTema.remove(numeroDePregunta);
 
+        if (this.obtenerTema(tema).size() == 0){
+            this.preguntasGuardadas.remove(tema);
+        }
+
         return pregunta;
     }
 
