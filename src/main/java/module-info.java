@@ -1,7 +1,7 @@
 module com {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.google.gson;
 
-    opens com to javafx.fxml;
-    exports com;
+    exports com; // Ajusta el paquete a tu estructura de paquetes real
 }
