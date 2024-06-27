@@ -8,7 +8,7 @@ public class VerdaderoFalso implements Tipo{
 
         int puntaje = 0;
 
-        if(respuestaCorrecta.getFirst().equals(respuestaJugador.getFirst())){
+        if(respuestaCorrecta.get(0).equals(respuestaJugador.get(0))){
             puntaje = puntaje + 1;
         }
         return puntaje;
