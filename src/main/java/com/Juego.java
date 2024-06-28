@@ -12,10 +12,11 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Juego extends Application {
-    private ArrayList<Jugador> jugadores = new ArrayList<>();
+    private ArrayList<Jugador> jugadores;
     private String preguntasPath;
     private DiccionarioPreguntas diccionarioPreguntas;
     private String ultimaTematica;
+    private Pregunta preguntaTurno;
 
     public boolean cargarSiguientePregunta(){
         ArrayList<String> temasRestantes;
@@ -72,9 +73,40 @@ public class Juego extends Application {
         quedanTurnos = this.cargarSiguientePregunta();
         if (quedanTurnos) {
             for(int i = 0; i < this.jugadores.size(); i++){
-                this.jugadores.get(i).responderPregunta(preguntaTurno);
+                this.jugadores.get(i).responderPregunta();
             }
         }
         return quedanTurnos;
+    }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void iniciar(String args[]) {
+        launch(args);
+    }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void cargarPregunta(){
+        Random random = new Random();
+        int id = random.nextInt(24);
+    }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    @Override
+    public void start(Stage stage) {
+        stage.setTitle("Juego Preguntas");
+        stage.setWidth(500);
+        stage.setHeight(500);
+        crearVentanaInicio(stage);
+        stage.show();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void crearVentanaInicio(Stage stage) {
+        VentanaInicio ventanaInicio = new VentanaInicio(stage);
+        ventanaInicio.crearVentanaInicio(jugadores);
     }
 }
