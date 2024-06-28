@@ -75,7 +75,7 @@ public class DiccionarioPreguntasTest {
 
         assertNotNull(preguntasRestantes);
         assertEquals(PreguntasRestantesEsperadas, preguntasRestantes.size());
-        assertEquals(PreguntasEsperadaRestante, preguntasRestantes.getFirst().getEnunciado());
+        assertEquals(PreguntasEsperadaRestante, preguntasRestantes.get(0).getEnunciado());
     }
 
     @Test

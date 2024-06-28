@@ -61,7 +61,7 @@ public class JsonLoaderTest {
         JsonLoader lector = new JsonLoader(filePath);
         lector.leerAtributos(ID, filePath);
 
-        assertEquals(enunciadoEsperadoOpcion, lector.opciones().getFirst().obtenerRespuesta());
+        assertEquals(enunciadoEsperadoOpcion, lector.opciones().get(0).obtenerRespuesta());
     }
 
 
