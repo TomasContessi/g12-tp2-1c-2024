@@ -1,7 +1,12 @@
-package com;
+package com.model.juego;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.model.jugador.Jugador;
+import com.model.pregunta.DiccionarioPreguntas;
+import com.model.pregunta.Pregunta;
+import com.view.VentanaInicio;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,11 @@
-package com;
+package com.model.pregunta;
 
 import java.util.ArrayList;
+
+import com.model.modificador.Multiplicador;
+import com.model.modificador.MultiplicadorX1;
+import com.model.opcion.Opcion;
+import com.model.tipo.Tipo;
 
 public class Pregunta {
     Tipo tipo;

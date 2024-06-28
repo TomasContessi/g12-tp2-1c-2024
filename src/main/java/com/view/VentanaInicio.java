@@ -1,6 +1,8 @@
-package com;
+package com.view;
 
 import java.util.ArrayList;
+
+import com.model.jugador.Jugador;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 public class VentanaInicio {
     Stage stage;
 

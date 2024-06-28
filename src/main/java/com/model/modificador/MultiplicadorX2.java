@@ -1,4 +1,4 @@
-package com;
+package com.model.modificador;
 
 public class MultiplicadorX2 implements Multiplicador{
     @Override

@@ -1,6 +1,9 @@
 package com;
 
 import org.junit.jupiter.api.Test;
+
+import com.model.modificador.MultiplicadorX1;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------

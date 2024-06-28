@@ -1,6 +1,11 @@
-package com;
+package com.model.jugador;
 
 import java.util.ArrayList;
+
+import com.model.modificador.Exclusividad;
+import com.model.modificador.Multiplicador;
+import com.model.opcion.Opcion;
+import com.model.pregunta.Pregunta;
 
 public class Jugador {
     private String name;
@@ -8,10 +13,10 @@ public class Jugador {
     private ArrayList<Multiplicador> multiplicadores;
     //private Anulador anulador;
     private Exclusividad exclusividad;
-    int opcionElegida;
-    ArrayList<Opcion> respuesta = new ArrayList<Opcion>();
+    private int opcionElegida;
+    private ArrayList<Opcion> respuesta = new ArrayList<Opcion>();
 
-    Jugador(String nombre){
+    public Jugador(String nombre){
         this.name = nombre;
         this.puntos = 0;
         this.multiplicadores = new ArrayList<>();
@@ -23,19 +28,19 @@ public class Jugador {
     public ArrayList<Opcion> responderPregunta(){
         return respuesta;
     }
-    void eliminarOpciones(){
+    public void eliminarOpciones(){
         this.respuesta.clear();
     }
-    void eliminarOpcion(){
+    public void eliminarOpcion(){
         this.respuesta.remove(opcionElegida);
     }
-    void agregarOpcion(Pregunta pregunta){
+    public void agregarOpcion(Pregunta pregunta){
         this.respuesta.add(pregunta.getOpcion(opcionElegida));
     }
-    void elegirOpcion(int opcionElegida){
+    public void elegirOpcion(int opcionElegida){
         this.opcionElegida = (opcionElegida-1);
     }
-    int opcionesElegidas(){
+    public int opcionesElegidas(){
         return respuesta.size();
     }
     public void asignarPuntos(int puntos){

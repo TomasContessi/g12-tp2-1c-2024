@@ -2,6 +2,9 @@ package com;
 
 import org.junit.jupiter.api.Test;
 
+import com.model.pregunta.DiccionarioPreguntas;
+import com.model.pregunta.Pregunta;
+
 import java.io.File;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;

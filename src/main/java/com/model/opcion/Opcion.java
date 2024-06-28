@@ -1,6 +1,6 @@
-package com;
+package com.model.opcion;
 
 public interface Opcion {
-    String obtenerRespuesta();
+    public String obtenerRespuesta();
     public boolean verificar(Opcion opcion2);
 }

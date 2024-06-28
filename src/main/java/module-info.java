@@ -3,5 +3,13 @@ module com {
     requires javafx.fxml;
     requires com.google.gson;
 
-    exports com; // Ajusta el paquete a tu estructura de paquetes real
+    exports com;
+    exports com.model.juego;
+    exports com.model.jugador;
+    exports com.model.loader;
+    exports com.model.modificador;
+    exports com.model.opcion;
+    exports com.model.pregunta;
+    exports com.model.tipo;
+    exports com.view; 
 }

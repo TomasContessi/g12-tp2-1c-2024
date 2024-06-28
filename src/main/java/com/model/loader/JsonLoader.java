@@ -1,5 +1,5 @@
 
-package com;
+package com.model.loader;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,20 +10,24 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.model.opcion.Opcion;
+import com.model.opcion.OpcionString;
+import com.model.pregunta.Pregunta;
+import com.model.pregunta.PreguntaFactory;
 
 public class JsonLoader {
-    int totalPreguntas;
-    PreguntaFactory factory = new PreguntaFactory();
-    int id;
-    String temaPregunta;
-    String tipoPregunta;
-    String enunciadoPregunta;
-    ArrayList<Opcion> opcionesCorrectas;
-    ArrayList<Opcion> opciones;
-    String textoRespuesta;
-    String opcionKey;
+    private int totalPreguntas;
+    private PreguntaFactory factory = new PreguntaFactory();
+    private int id;
+    private String temaPregunta;
+    private String tipoPregunta;
+    private String enunciadoPregunta;
+    private ArrayList<Opcion> opcionesCorrectas;
+    private ArrayList<Opcion> opciones;
+    private String textoRespuesta;
+    private String opcionKey;
 
-    JsonLoader(String filePath) {
+    public JsonLoader(String filePath) {
 
         try (FileReader reader = new FileReader(filePath)) {
 

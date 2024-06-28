@@ -1,6 +1,12 @@
 package com;
 
 import org.junit.jupiter.api.Test;
+
+import com.model.opcion.Opcion;
+import com.model.opcion.OpcionString;
+import com.model.tipo.MultipleChoiceConPuntajeParcial;
+import com.model.tipo.Tipo;
+
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
