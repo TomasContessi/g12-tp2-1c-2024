@@ -1,3 +1,4 @@
+
 package com;
 
 import java.io.FileReader;
@@ -22,9 +23,9 @@ public class JsonLoader {
     String textoRespuesta;
     String opcionKey;
 
-    JsonLoader(String filePath){
+    JsonLoader(String filePath) {
 
-        try(FileReader reader = new FileReader(filePath)) {
+        try (FileReader reader = new FileReader(filePath)) {
 
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonElement.getAsJsonArray();
@@ -41,7 +42,7 @@ public class JsonLoader {
         opcionesCorrectas = new ArrayList<>();
         opciones = new ArrayList<>();
 
-        try(FileReader reader = new FileReader(filePath)) {
+        try (FileReader reader = new FileReader(filePath)) {
 
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonElement.getAsJsonArray();
@@ -59,10 +60,23 @@ public class JsonLoader {
 
             this.id = jsonObject.get("ID").getAsInt();
 
-            String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
-            for(String s :  respuestasCorrectas.split(",")) {
-                opcionKey = "Opcion " + s.trim();
-                this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+            if (this.tipoPregunta.equals("Group Choice")) {
+                String[] grupos = jsonObject.get("Respuesta").getAsString().split(";");
+                for (String grupo : grupos) {
+                    String[] partes = grupo.split(":");
+                    String grupoNombre = partes[0].trim();
+                    String[] opcionesGrupo = partes[1].split(",");
+                    for (String s : opcionesGrupo) {
+                        opcionKey = "Opcion " + s.trim();
+                        this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+                    }
+                }
+            } else {
+                String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
+                for (String s : respuestasCorrectas.split(",")) {
+                    opcionKey = "Opcion " + s.trim();
+                    this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+                }
             }
 
             Set<String> keys = jsonObject.keySet();
@@ -93,12 +107,12 @@ public class JsonLoader {
         return this.enunciadoPregunta;
     }
 
-    public Pregunta loadPregunta(int ID, String path){
+    public Pregunta loadPregunta(int ID, String path) {
         this.leerAtributos(ID, path);
         return (this.factory.crearPregunta(tipoPregunta, temaPregunta, enunciadoPregunta, opcionesCorrectas, opciones));
     }
 
-    public void setFactory(PreguntaFactory factory){
+    public void setFactory(PreguntaFactory factory) {
         this.factory = factory;
     }
 
