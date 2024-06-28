@@ -2,6 +2,12 @@ package com;
 
 import org.junit.jupiter.api.Test;
 
+import com.model.loader.JsonLoader;
+import com.model.opcion.Opcion;
+import com.model.opcion.OpcionString;
+import com.model.pregunta.Pregunta;
+import com.model.pregunta.PreguntaFactory;
+
 import java.io.File;
 import java.util.ArrayList;
 

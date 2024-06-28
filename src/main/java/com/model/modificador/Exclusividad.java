@@ -1,10 +1,10 @@
-package com;
+package com.model.modificador;
 
 public class Exclusividad {
 
     public Exclusividad(){}
 
-    int calcularExclusividad(int vecesActivadasEnEstaRonda,int jugadoresContestaronBien){
+    public int calcularExclusividad(int vecesActivadasEnEstaRonda,int jugadoresContestaronBien){
         if(jugadoresContestaronBien > 1){
             return 0;
         }

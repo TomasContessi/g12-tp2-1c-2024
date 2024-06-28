@@ -1,8 +1,13 @@
-package com;
+package com.model.tipo;
 
 import java.util.ArrayList;
 
-public class MultipleChoiceConPuntajeParcial implements Tipo{
+import com.model.opcion.Opcion;
+
+// Para no tener que cambiar las otras clases se verifica un grupo solo entendiendose que el otro grupo va a ser lo que queda, asi que si se hace bien uno, se hacen bien los dos y viceversa
+
+public class GroupChoice implements Tipo {
+
     // Método verificarRespuesta
     @Override
     public int verificarRespuesta(ArrayList<Opcion> respuestasCorrectas, ArrayList<Opcion> respuestasContestadas) {
@@ -13,7 +18,6 @@ public class MultipleChoiceConPuntajeParcial implements Tipo{
             respuestaEstaEnLaLista = false;
             for (int j = 0; j < respuestasCorrectas.size(); j++){
                 if (respuestasCorrectas.get(j).verificar(respuestasContestadas.get(i))){
-                    puntaje = puntaje + 1;
                     respuestaEstaEnLaLista = true;
                 }
             }
@@ -23,6 +27,8 @@ public class MultipleChoiceConPuntajeParcial implements Tipo{
         }
         if (erroUna == true){
             puntaje = 0;
+        }else{
+            puntaje = 1;
         }
         return puntaje;
     } 

@@ -1,6 +1,14 @@
 package com;
 
 import org.junit.jupiter.api.Test;
+
+import com.model.jugador.Jugador;
+import com.model.opcion.Opcion;
+import com.model.opcion.OpcionString;
+import com.model.pregunta.Pregunta;
+import com.model.tipo.MultipleChoiceConPenalidad;
+import com.model.tipo.Tipo;
+
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;

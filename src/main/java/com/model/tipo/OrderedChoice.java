@@ -1,6 +1,8 @@
-package com;
+package com.model.tipo;
 
 import java.util.ArrayList;
+
+import com.model.opcion.Opcion;
 
 public class OrderedChoice implements Tipo {
     // Método verificarRespuesta

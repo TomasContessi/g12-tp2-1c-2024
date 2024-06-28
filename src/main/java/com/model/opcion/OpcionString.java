@@ -1,8 +1,8 @@
-package com;
+package com.model.opcion;
 
-class OpcionString implements Opcion {
+public class OpcionString implements Opcion {
     String respuesta;
-    OpcionString(String respuesta){
+    public OpcionString(String respuesta){
         this.respuesta = respuesta;
     }
 

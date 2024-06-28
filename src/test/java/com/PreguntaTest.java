@@ -1,6 +1,15 @@
 package com;
 
 import org.junit.jupiter.api.Test;
+
+import com.model.modificador.Multiplicador;
+import com.model.modificador.MultiplicadorX2;
+import com.model.opcion.Opcion;
+import com.model.opcion.OpcionString;
+import com.model.pregunta.Pregunta;
+import com.model.tipo.MultipleChoiceConPenalidad;
+import com.model.tipo.Tipo;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;

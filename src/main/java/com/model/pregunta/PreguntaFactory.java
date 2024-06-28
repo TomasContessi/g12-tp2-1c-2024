@@ -1,6 +1,16 @@
-package com;
+package com.model.pregunta;
 
 import java.util.ArrayList;
+
+import com.model.opcion.Opcion;
+import com.model.tipo.GroupChoice;
+import com.model.tipo.MultipleChoiceConPenalidad;
+import com.model.tipo.MultipleChoiceConPuntajeParcial;
+import com.model.tipo.MultipleChoiceSinPenalidad;
+import com.model.tipo.OrderedChoice;
+import com.model.tipo.Tipo;
+import com.model.tipo.VerdaderoFalso;
+import com.model.tipo.VerdaderoFalsoConPenalidad;
 
 public class PreguntaFactory{
     Tipo tipo;

@@ -6,6 +6,8 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
+import com.model.loader.JsonLoader;
+
 public class JsonLoaderTest {
 
     @Test

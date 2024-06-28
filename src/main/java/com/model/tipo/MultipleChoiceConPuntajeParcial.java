@@ -1,25 +1,30 @@
-package com;
+package com.model.tipo;
 
 import java.util.ArrayList;
 
-public class MultipleChoiceConPenalidad implements Tipo{
+import com.model.opcion.Opcion;
 
+public class MultipleChoiceConPuntajeParcial implements Tipo{
     // Método verificarRespuesta
     @Override
     public int verificarRespuesta(ArrayList<Opcion> respuestasCorrectas, ArrayList<Opcion> respuestasContestadas) {
         int puntaje = 0;
         boolean respuestaEstaEnLaLista = false;
-        for (int i = 0; i < respuestasCorrectas.size(); i++){
+        boolean erroUna = false;
+        for (int i = 0; i < respuestasContestadas.size(); i++){
             respuestaEstaEnLaLista = false;
-            for (int j = 0; j < respuestasContestadas.size(); j++){
-                if (respuestasCorrectas.get(i).verificar(respuestasContestadas.get(j))){
+            for (int j = 0; j < respuestasCorrectas.size(); j++){
+                if (respuestasCorrectas.get(j).verificar(respuestasContestadas.get(i))){
                     puntaje = puntaje + 1;
                     respuestaEstaEnLaLista = true;
                 }
             }
             if (respuestaEstaEnLaLista == false){
-                puntaje = puntaje - 1;
+                erroUna = true;
             }
+        }
+        if (erroUna == true){
+            puntaje = 0;
         }
         return puntaje;
     } 

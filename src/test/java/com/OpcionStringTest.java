@@ -2,6 +2,9 @@ package com;
 
 import org.junit.jupiter.api.Test;
 
+import com.model.opcion.Opcion;
+import com.model.opcion.OpcionString;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

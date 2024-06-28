@@ -2,6 +2,8 @@ package com;
 
 import org.junit.jupiter.api.Test;
 
+import com.model.modificador.Exclusividad;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExclusividadTest {

@@ -1,5 +1,7 @@
 package com;
 
+import com.model.juego.Juego;
+
 public class App {
 
     public static void main(String[] args) {

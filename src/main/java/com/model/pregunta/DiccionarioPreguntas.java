@@ -1,9 +1,11 @@
-package com;
+package com.model.pregunta;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import com.model.loader.JsonLoader;
 
 public class DiccionarioPreguntas {
     Map<String, ArrayList<Pregunta>> preguntasGuardadas = new HashMap<>();
