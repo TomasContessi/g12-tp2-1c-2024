@@ -2,6 +2,7 @@ package com.model.pregunta;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
 import com.model.opcion.Opcion;
 import com.model.tipo.GroupChoice;
 import com.model.tipo.MultipleChoiceConPenalidad;
@@ -13,13 +14,16 @@ import com.model.tipo.VerdaderoFalso;
 import com.model.tipo.VerdaderoFalsoConPenalidad;
 
 public class PreguntaFactory{
-    Tipo tipo;
-    Pregunta pregunta;
 
-    public Pregunta crearPregunta(String tipoPregunta, String temaPregunta, String enunciadoPregunta, ArrayList<Opcion> opcionesCorrectas, ArrayList<Opcion> opciones) {
+    public Pregunta crearPregunta(JsonObject datosEnunciado, ArrayList<Opcion> opcionesCorrectas, ArrayList<Opcion> opciones) {
+
+        String tipoPregunta = datosEnunciado.get("Tipo").getAsString();
+        String temaPregunta = datosEnunciado.get("Tema").getAsString();
+        String enunciadoPregunta = datosEnunciado.get("Pregunta").getAsString();
+
         switch (tipoPregunta) {
             case "Group Choice":
-                return new Pregunta(new GroupChoice("grupo A", "Grupo B"), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+                return new Pregunta(new GroupChoice(datosEnunciado.get("Grupo A").getAsString(), datosEnunciado.get("Grupo B").getAsString()), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
             case "Ordered choice":
             case "Ordered Choice":
                 return new Pregunta(new OrderedChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
