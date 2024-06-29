@@ -39,7 +39,7 @@ public class GroupChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 1;
 
-        Tipo preguntaGroupChoice = new GroupChoice();
+        Tipo preguntaGroupChoice = new GroupChoice("grupo A", "Grupo B");
 
         // act
         resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1Correcto, grupo1);
@@ -74,7 +74,7 @@ public class GroupChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        Tipo preguntaGroupChoice = new GroupChoice();
+        Tipo preguntaGroupChoice = new GroupChoice("grupo A", "Grupo B");
 
         // act
         resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1Correcto, grupo1);
@@ -108,7 +108,7 @@ public class GroupChoiceTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        Tipo preguntaGroupChoice = new GroupChoice();
+        Tipo preguntaGroupChoice = new GroupChoice("grupo A", "Grupo B");
 
         // act
         resultadoObtenido = preguntaGroupChoice.verificarRespuesta(grupo1Correcto, grupo1);
