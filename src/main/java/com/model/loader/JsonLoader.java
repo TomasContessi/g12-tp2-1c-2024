@@ -1,4 +1,3 @@
-
 package com.model.loader;
 
 import java.io.FileReader;
@@ -41,46 +40,29 @@ public class JsonLoader {
         }
     }
 
-    public void leerAtributos(int ID, String filePath) {
+    public JsonObject leerAtributos(int ID, String filePath) {
 
         opcionesCorrectas = new ArrayList<>();
         opciones = new ArrayList<>();
 
-        try (FileReader reader = new FileReader(filePath)) {
+        JsonObject jsonObject = null;
+
+        try(FileReader reader = new FileReader(filePath)) {
 
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonElement.getAsJsonArray();
 
             JsonElement element = jsonArray.get(ID);
-            JsonObject jsonObject = element.getAsJsonObject();
-
-            this.tipoPregunta = jsonObject.get("Tipo").getAsString();
-
-            this.temaPregunta = jsonObject.get("Tema").getAsString();
-
-            this.enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
+            jsonObject = element.getAsJsonObject();
 
             this.textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
 
             this.id = jsonObject.get("ID").getAsInt();
 
-            if (this.tipoPregunta.equals("Group Choice")) {
-                String[] grupos = jsonObject.get("Respuesta").getAsString().split(";");
-                for (String grupo : grupos) {
-                    String[] partes = grupo.split(":");
-                    String grupoNombre = partes[0].trim();
-                    String[] opcionesGrupo = partes[1].split(",");
-                    for (String s : opcionesGrupo) {
-                        opcionKey = "Opcion " + s.trim();
-                        this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
-                    }
-                }
-            } else {
-                String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
-                for (String s : respuestasCorrectas.split(",")) {
-                    opcionKey = "Opcion " + s.trim();
-                    this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
-                }
+            String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
+            for(String s :  respuestasCorrectas.split(",")) {
+                opcionKey = "Opcion " + s.trim();
+                this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
             }
 
             Set<String> keys = jsonObject.keySet();
@@ -97,6 +79,7 @@ public class JsonLoader {
         } catch (NullPointerException e) {
             System.err.println("Error: Algún campo está ausente en la pregunta " + ID);
         }
+        return jsonObject;
     }
 
     public String tipoPregunta() {
@@ -112,8 +95,8 @@ public class JsonLoader {
     }
 
     public Pregunta loadPregunta(int ID, String path) {
-        this.leerAtributos(ID, path);
-        return (this.factory.crearPregunta(tipoPregunta, temaPregunta, enunciadoPregunta, opcionesCorrectas, opciones));
+        JsonObject datosEnunciado = this.leerAtributos(ID, path);
+        return (this.factory.crearPregunta(datosEnunciado, opcionesCorrectas, opciones));
     }
 
     public void setFactory(PreguntaFactory factory) {
