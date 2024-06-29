@@ -5,25 +5,21 @@ import org.junit.jupiter.api.Test;
 import com.model.jugador.Jugador;
 import com.model.opcion.Opcion;
 import com.model.opcion.OpcionString;
-import com.model.pregunta.Pregunta;
-import com.model.tipo.MultipleChoiceConPenalidad;
-import com.model.tipo.Tipo;
+import com.model.pregunta.PreguntaSimple;
+import com.model.tipo.MultipleChoice;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-
 public class JugadorTest {
     @Test
     public void test01AgregaTresOpciones(){
-
         //Arrange
-        Tipo tipo = new MultipleChoiceConPenalidad();
+        MultipleChoice tipo = new MultipleChoice();
         ArrayList<Opcion> opciones = new ArrayList<>();
         ArrayList<Opcion> respuestaCorrecta = new ArrayList<>();
         opciones.add(new OpcionString("Messi"));
@@ -36,7 +32,8 @@ public class JugadorTest {
         String tema = "Futbol";
 
         Jugador jugador = new Jugador("Joel");
-        Pregunta pregunta = new Pregunta(tipo,respuestaCorrecta,enunciado,opciones,tema);
+        PreguntaSimple pregunta = new PreguntaSimple(tipo,respuestaCorrecta,enunciado,opciones,tema);
+
         //Act
         jugador.elegirOpcion(1);
         jugador.agregarOpcion(pregunta);
@@ -45,15 +42,15 @@ public class JugadorTest {
         jugador.elegirOpcion(3);
         jugador.agregarOpcion(pregunta);
         opcionesElegidas = jugador.opcionesElegidas();
+
         //Assert
         assertEquals(opcionesElegidasEsperadas,opcionesElegidas);
     }
 
     @Test
     public void test02AgregaTresOpcionesYEliminaUna(){
-
         //Arrange
-        Tipo tipo = new MultipleChoiceConPenalidad();
+        MultipleChoice tipo = new MultipleChoice();
         ArrayList<Opcion> opciones = new ArrayList<>();
         ArrayList<Opcion> respuestaCorrecta = new ArrayList<>();
         opciones.add(new OpcionString("Messi"));
@@ -67,7 +64,8 @@ public class JugadorTest {
         String tema = "Futbol";
 
         Jugador jugador = new Jugador("Joel");
-        Pregunta pregunta = new Pregunta(tipo,respuestaCorrecta,enunciado,opciones,tema);
+        PreguntaSimple pregunta = new PreguntaSimple(tipo,respuestaCorrecta,enunciado,opciones,tema);
+
         //Act
         jugador.elegirOpcion(1);
         jugador.agregarOpcion(pregunta);
@@ -77,15 +75,15 @@ public class JugadorTest {
         jugador.agregarOpcion(pregunta);
         jugador.eliminarOpcion();
         opcionesElegidas = jugador.opcionesElegidas();
+
         //Assert
        assertEquals(opcionesElegidasEsperadas,opcionesElegidas);
-
     }
+
     @Test
     public void test03AgregaTresOpcionesEliminaUnaYBorraTodasLasOpciones(){
-
         //Arrange
-        Tipo tipo = new MultipleChoiceConPenalidad();
+        MultipleChoice tipo = new MultipleChoice();
         ArrayList<Opcion> opciones = new ArrayList<>();
         ArrayList<Opcion> respuestaCorrecta = new ArrayList<>();
         opciones.add(new OpcionString("Messi"));
@@ -99,7 +97,8 @@ public class JugadorTest {
         String tema = "Futbol";
 
         Jugador jugador = new Jugador("Joel");
-        Pregunta pregunta = new Pregunta(tipo,respuestaCorrecta,enunciado,opciones,tema);
+        PreguntaSimple pregunta = new PreguntaSimple(tipo,respuestaCorrecta,enunciado,opciones,tema);
+
         //Act
         jugador.elegirOpcion(1);
         jugador.agregarOpcion(pregunta);
@@ -110,9 +109,8 @@ public class JugadorTest {
         jugador.eliminarOpcion();
         jugador.eliminarOpciones();
         opcionesElegidas = jugador.opcionesElegidas();
+
         //Assert
         assertEquals(opcionesElegidasEsperadas,opcionesElegidas);
-
     }
-
 }

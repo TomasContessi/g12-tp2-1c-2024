@@ -7,13 +7,19 @@ import com.model.modificador.MultiplicadorX1;
 import com.model.opcion.Opcion;
 import com.model.tipo.Tipo;
 
-public class Pregunta {
-    Tipo tipo;
-    ArrayList<Opcion> respuestaCorrecta;
-    String tema;
-    String enunciado;
-    Multiplicador multiplicador;
-    ArrayList<Opcion> opciones;
+public abstract class Pregunta {
+    protected Tipo tipo;
+    protected ArrayList<Opcion> respuestaCorrecta;
+    protected String tema;
+    protected String enunciado;
+    protected Multiplicador multiplicador;
+    protected ArrayList<Opcion> opciones;
+
+    public Pregunta(Tipo tipo, ArrayList<Opcion> respuestaCorrecta) {
+        this.tipo = tipo;
+        this.respuestaCorrecta = respuestaCorrecta;
+        this.multiplicador = new MultiplicadorX1();
+    }
     
     public Pregunta(Tipo tipo, ArrayList<Opcion> respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema) {
         this.tipo = tipo;
@@ -23,11 +29,7 @@ public class Pregunta {
         this.opciones = opciones;
         this.tema = tema;
     }
-    /*  yo lo sacaria
-    public void setEnunciado(String enunciado) {
-        this.enunciado = enunciado;
-    }
-    */
+    
     public void setMultiplicador(Multiplicador multiplicador) {
         this.multiplicador = multiplicador;
     }
@@ -48,7 +50,5 @@ public class Pregunta {
         return this.tema;
     }
 
-    public int verificarRespuesta(ArrayList<Opcion> respuesta){
-        return multiplicador.multiplicar(tipo.verificarRespuesta(respuestaCorrecta, respuesta));
-    }
+    public abstract int verificarRespuesta(ArrayList<Opcion> respuestaContestada);
 }

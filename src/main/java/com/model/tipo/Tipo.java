@@ -4,6 +4,17 @@ import java.util.ArrayList;
 
 import com.model.opcion.Opcion;
 
-public interface Tipo {
-    public int verificarRespuesta(ArrayList<Opcion> respuestasCorrectas, ArrayList<Opcion> respuestasContestadas);
-}
+public abstract class Tipo {
+    protected int opcionesAcertadas;
+    protected int opcionesErradas;
+
+    public abstract boolean respondidoCorrectamente(ArrayList<Opcion> respuestasCorrectas, ArrayList<Opcion> respuestasContestadas);
+
+    public int opcionesAcertadas() {
+        return opcionesAcertadas;
+    }
+
+    public int opcionesErradas() {
+        return opcionesErradas;
+    }
+} 

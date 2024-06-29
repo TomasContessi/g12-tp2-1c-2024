@@ -3,13 +3,9 @@ package com;
 import org.junit.jupiter.api.Test;
 
 import com.model.loader.JsonLoader;
-import com.model.opcion.Opcion;
-import com.model.opcion.OpcionString;
 import com.model.pregunta.Pregunta;
-import com.model.pregunta.PreguntaFactory;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,8 +20,6 @@ public class PreguntaFactoryTest {
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
 
         JsonLoader lector = new JsonLoader(filePath);
-
-       // lector.setFactory(new PreguntaFactory());
 
         Pregunta pregunta = lector.loadPregunta(ID, filePath);
 

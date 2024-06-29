@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import com.model.opcion.Opcion;
 import com.model.opcion.OpcionString;
-import com.model.tipo.MultipleChoiceConPuntajeParcial;
-import com.model.tipo.Tipo;
+import com.model.pregunta.PreguntaParcial;
+import com.model.tipo.MultipleChoice;
 
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,12 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
 public class MultipleChoiceConPuntajeParcialTest {
-//----------------------------------------------------------------------------------------------------------------------------------------------
     @Test
     public void test01MultipleChoiceConPuntajeParcialAciertaTodas(){
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
 
         respuestas.add(new OpcionString("uno"));
@@ -35,49 +33,47 @@ public class MultipleChoiceConPuntajeParcialTest {
         int resultadoObtenido;
         int resultadoEsperado = 4;
 
-        Tipo preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial();
+        MultipleChoice tipoPregunta = new MultipleChoice();
+        PreguntaParcial preguntaMultipleChoiceConPuntajeParcial = new PreguntaParcial(tipoPregunta, respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestasCorrectas, respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestas);
+
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
     @Test
-    public void test02MultipleChoiceConPuntajeParcialAciertaAlgunas(){
+    public void test02MultipleChoiceConPuntajeParcialAciertaAlgunas() {
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+
+        respuestas.add(new OpcionString("uno"));
+        respuestas.add(new OpcionString("cuatro"));
 
         respuestasCorrectas.add(new OpcionString("uno"));
         respuestasCorrectas.add(new OpcionString("dos"));
         respuestasCorrectas.add(new OpcionString("tres"));
         respuestasCorrectas.add(new OpcionString("cuatro"));
 
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("cuatro"));
-
         int resultadoObtenido;
         int resultadoEsperado = 2;
 
-        Tipo preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial();
+        MultipleChoice tipoPregunta = new MultipleChoice();
+        PreguntaParcial preguntaMultipleChoiceConPuntajeParcial = new PreguntaParcial(tipoPregunta, respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestasCorrectas, respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestas);
+
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Test
     public void test03MultipleChoiceConPuntajeParcialAciertaErraUna(){
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
 
         respuestasCorrectas.add(new OpcionString("uno"));
@@ -93,10 +89,12 @@ public class MultipleChoiceConPuntajeParcialTest {
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
-        Tipo preguntaMultipleChoiceConPuntajeParcial = new MultipleChoiceConPuntajeParcial();
+        MultipleChoice tipoPregunta = new MultipleChoice();
+        PreguntaParcial preguntaMultipleChoiceConPuntajeParcial = new PreguntaParcial(tipoPregunta, respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestasCorrectas, respuestas);
+        resultadoObtenido = preguntaMultipleChoiceConPuntajeParcial.verificarRespuesta(respuestas);
+
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
