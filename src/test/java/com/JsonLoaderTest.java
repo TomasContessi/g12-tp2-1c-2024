@@ -11,35 +11,7 @@ import com.model.loader.JsonLoader;
 public class JsonLoaderTest {
 
     @Test
-    public void test01ObtenerCorrectamenteElEnunciadoAUnaPregunta() {
-        // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
-        String enunciadoEsperado = "Ordene de MAYOR A MENOR los siguientes objetos hogareños según su nivel de radiación electromagnética emitido (el máximo recomendado es 100 microTeslas)";
-
-        int ID = 0; // Los índices en los arrays empiezan desde 0
-        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
-
-        JsonLoader lector = new JsonLoader(filePath);
-        lector.leerAtributos(ID, filePath);
-
-        assertEquals(enunciadoEsperado, lector.enunciadoPregunta());
-    }
-
-    @Test
-    public void test02ObtenerCorrectamenteTipoPreguntaAUnaPregunta() {
-        // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
-        String tipoPreguntaEsperado = "Ordered Choice";
-
-        int ID = 0; // Los índices en los arrays empiezan desde 0
-        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
-
-        JsonLoader lector = new JsonLoader(filePath);
-        lector.leerAtributos(ID, filePath);
-
-        assertEquals(tipoPreguntaEsperado, lector.tipoPregunta());
-    }
-
-    @Test
-    public void test03ObtenerCorrectamenteCanitdadDeOpcionesDePregunta() {
+    public void test01ObtenerCorrectamenteCanitdadDeOpcionesDePregunta() {
         // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
         int cantidadDeOpcionesEsperadas = 4;
 
@@ -49,13 +21,16 @@ public class JsonLoaderTest {
         JsonLoader lector = new JsonLoader(filePath);
         lector.leerAtributos(ID, filePath);
 
-        assertEquals(cantidadDeOpcionesEsperadas, lector.opcionesCorrectas().size());
+        int cantidadDeOpcionesObtenidas = lector.opcionesCorrectas().size();
+
+        assertEquals(cantidadDeOpcionesEsperadas, cantidadDeOpcionesObtenidas);
     }
 
     @Test
-    public void test04ObtenerCorrectamenteUnaOpcionDePregunta() {
+    public void test02ObtenerCorrectamenteUnaOpcionDePregunta() {
         // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
         String enunciadoEsperadoOpcion = "Televisor de tubo CRT";
+        String enunciadoObtenido;
 
         int ID = 0; // Los índices en los arrays empiezan desde 0
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
@@ -63,7 +38,9 @@ public class JsonLoaderTest {
         JsonLoader lector = new JsonLoader(filePath);
         lector.leerAtributos(ID, filePath);
 
-        assertEquals(enunciadoEsperadoOpcion, lector.opciones().get(0).obtenerRespuesta());
+        enunciadoObtenido = lector.opciones().get(0).obtenerRespuesta();
+
+        assertEquals(enunciadoEsperadoOpcion, enunciadoObtenido);
     }
 
 

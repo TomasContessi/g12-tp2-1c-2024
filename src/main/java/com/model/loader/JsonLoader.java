@@ -18,9 +18,6 @@ public class JsonLoader {
     private int totalPreguntas;
     private PreguntaFactory factory = new PreguntaFactory();
     private int id;
-    private String temaPregunta;
-    private String tipoPregunta;
-    private String enunciadoPregunta;
     private ArrayList<Opcion> opcionesCorrectas;
     private ArrayList<Opcion> opciones;
     private String textoRespuesta;
@@ -98,18 +95,6 @@ public class JsonLoader {
             System.err.println("Error: Algún campo está ausente en la pregunta " + ID);
         }
         return jsonObject;
-    }
-
-    public String tipoPregunta() {
-        return this.tipoPregunta;
-    }
-
-    public String temaPregunta() {
-        return this.temaPregunta;
-    }
-
-    public String enunciadoPregunta() {
-        return this.enunciadoPregunta;
     }
 
     public Pregunta loadPregunta(int ID, String path) {
