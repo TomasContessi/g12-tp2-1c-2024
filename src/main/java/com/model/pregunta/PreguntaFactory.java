@@ -19,7 +19,7 @@ public class PreguntaFactory{
     public Pregunta crearPregunta(String tipoPregunta, String temaPregunta, String enunciadoPregunta, ArrayList<Opcion> opcionesCorrectas, ArrayList<Opcion> opciones) {
         switch (tipoPregunta) {
             case "Group Choice":
-                return new Pregunta(new GroupChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+                return new Pregunta(new GroupChoice("grupo A", "Grupo B"), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
             case "Ordered choice":
             case "Ordered Choice":
                 return new Pregunta(new OrderedChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
