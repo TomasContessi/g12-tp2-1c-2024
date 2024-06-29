@@ -60,9 +60,27 @@ public class JsonLoader {
             this.id = jsonObject.get("ID").getAsInt();
 
             String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
-            for(String s :  respuestasCorrectas.split(",")) {
-                opcionKey = "Opcion " + s.trim();
-                this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+
+            if (respuestasCorrectas.contains("A:") && respuestasCorrectas.contains("B:")) {
+
+                String[] grupos = respuestasCorrectas.split(";");
+                for (String grupo : grupos) {
+                    String[] partesGrupo = grupo.split(":");
+                    if (partesGrupo[0].trim().equals("A")) {
+
+                        for (String s : partesGrupo[1].split(",")) {
+                            opcionKey = "Opcion " + s.trim();
+                            this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+                        }
+                        break;
+                    }
+                }
+            } else {
+                // Procesar todas las respuestas como antes
+                for (String s : respuestasCorrectas.split(",")) {
+                    opcionKey = "Opcion " + s.trim();
+                    this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+                }
             }
 
             Set<String> keys = jsonObject.keySet();
