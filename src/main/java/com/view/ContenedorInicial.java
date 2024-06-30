@@ -13,7 +13,8 @@ public class ContenedorInicial extends VBox {
         this.stage = stage;
         Button boton = new Button();
         boton.setText("Comenzar juego");
-        //boton.setOnAction();
+        CambiarEscenaEventHandler botonComenzar = new CambiarEscenaEventHandler(stage,porximaEscena);
+        boton.setOnAction(botonComenzar);
 
     }
 
