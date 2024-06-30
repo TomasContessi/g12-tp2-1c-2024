@@ -16,6 +16,7 @@ public class ContenedorInicial extends VBox {
         CambiarEscenaEventHandler botonComenzar = new CambiarEscenaEventHandler(stage, proximaEscena);
         boton.setOnAction(botonComenzar);
 
+
     }
 
 }
