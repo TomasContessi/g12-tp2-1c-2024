@@ -3,7 +3,7 @@ module com {
     requires javafx.fxml;
     requires com.google.gson;
 
-    exports com;
+
     exports com.model.juego;
     exports com.model.jugador;
     exports com.model.loader;
