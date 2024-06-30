@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Juego extends Application {
+public class Juego  {
     private ArrayList<Jugador> jugadores;
     private String preguntasPath;
     private DiccionarioPreguntas diccionarioPreguntas;
@@ -84,11 +84,7 @@ public class Juego extends Application {
         return quedanTurnos;
     }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void iniciar(String args[]) {
-        launch(args);
-    }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -97,21 +93,4 @@ public class Juego extends Application {
         int id = random.nextInt(24);
     }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("Juego Preguntas");
-        stage.setWidth(500);
-        stage.setHeight(500);
-        crearVentanaInicio(stage);
-        stage.show();
-    }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void crearVentanaInicio(Stage stage) {
-        VentanaInicio ventanaInicio = new VentanaInicio(stage);
-        ventanaInicio.crearVentanaInicio(jugadores);
-    }
 }
