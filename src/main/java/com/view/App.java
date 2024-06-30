@@ -20,7 +20,8 @@ public class App extends Application {
         stage.setWidth(500);
         stage.setHeight(500);
         ContenedorInicial contenedorInicial = new ContenedorInicial(stage,crearVentanaInicio());
-
+        Scene escena = new Scene(contenedorInicial,500,500);
+        stage.setScene(escena);
         stage.show();
     }
 
