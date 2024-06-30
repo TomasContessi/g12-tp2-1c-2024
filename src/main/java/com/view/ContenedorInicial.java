@@ -1,5 +1,7 @@
 package com.view;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -11,6 +13,10 @@ public class ContenedorInicial extends VBox {
 
         super();
         this.stage = stage;
+
+        this.setAlignment(Pos.CENTER);
+        this.setSpacing(20);
+        this.setPadding(new Insets(20));
         Button boton = new Button();
         boton.setText("Comenzar juego");
         CambiarEscenaEventHandler botonComenzar = new CambiarEscenaEventHandler(stage, proximaEscena);
