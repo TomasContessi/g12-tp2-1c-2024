@@ -12,13 +12,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 public class VentanaInicio {
-    Stage stage;
 
-    public VentanaInicio(Stage stage) {
-        this.stage = stage;
+    public VentanaInicio() {
     }
 
-    public void crearVentanaInicio(ArrayList<Jugador> jugadores) {
+    public Scene crearVentanaInicio(ArrayList<Jugador> jugadores) {
         VBox layout = new VBox();
         layout.setSpacing(10);
         Label titulo = new Label();
@@ -43,6 +41,8 @@ public class VentanaInicio {
         layout.getChildren().add(guardarButton);
 
         Scene scene = new Scene(layout);
-        stage.setScene(scene);
+
+        return scene;
+
     }
 }
