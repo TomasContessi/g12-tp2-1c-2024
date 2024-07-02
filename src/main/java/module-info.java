@@ -2,6 +2,7 @@ module com {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires transitive javafx.graphics;
 
 
     exports com.model.juego;
