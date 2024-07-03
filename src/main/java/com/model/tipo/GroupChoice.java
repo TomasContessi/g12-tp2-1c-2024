@@ -6,38 +6,36 @@ import com.model.opcion.Opcion;
 
 // Para no tener que cambiar las otras clases se verifica un grupo solo entendiendose que el otro grupo va a ser lo que queda, asi que si se hace bien uno, se hacen bien los dos y viceversa
 
-public class GroupChoice implements Tipo {
+public class GroupChoice extends Tipo {
     private String grupoATitulo;
     private String grupoBTitulo;
     
-    public  GroupChoice(String grupoa, String grupob){
-        this.grupoATitulo = grupoa;
-        this.grupoBTitulo = grupob;
+    public  GroupChoice(String grupoA, String grupoB){
+        this.grupoATitulo = grupoA;
+        this.grupoBTitulo = grupoB;
     };
 
-    // Método verificarRespuesta
     @Override
-    public int verificarRespuesta(ArrayList<Opcion> respuestasCorrectas, ArrayList<Opcion> respuestasContestadas) {
-        int puntaje = 0;
+    public boolean respondidoCorrectamente(ArrayList<Opcion> respuestasCorrectas, ArrayList<Opcion> respuestasContestadas) {
         boolean respuestaEstaEnLaLista = false;
-        boolean erroUna = false;
+        boolean erroAlguna = false;
         for (int i = 0; i < respuestasContestadas.size(); i++){
             respuestaEstaEnLaLista = false;
             for (int j = 0; j < respuestasCorrectas.size(); j++){
                 if (respuestasCorrectas.get(j).verificar(respuestasContestadas.get(i))){
+                    this.opcionesAcertadas++;
                     respuestaEstaEnLaLista = true;
                 }
             }
             if (respuestaEstaEnLaLista == false){
-                erroUna = true;
+                this.opcionesErradas++;
+                erroAlguna = true;
             }
         }
-        if (erroUna == true){
-            puntaje = 0;
-        }else{
-            puntaje = 1;
+        if (erroAlguna == true){
+            return false;
         }
-        return puntaje;
+        else return true;
     } 
 
     public String getTituloGrupoA(){

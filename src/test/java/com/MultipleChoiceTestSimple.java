@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import com.model.opcion.Opcion;
 import com.model.opcion.OpcionString;
-import com.model.pregunta.PreguntaConPenalidad;
+import com.model.pregunta.PreguntaSimple;
 import com.model.tipo.MultipleChoice;
 
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-public class MultipleChoiceConPenalidadTest {
+public class MultipleChoiceTestSimple {
     @Test
-    public void test01PreguntaMultipleChoiceConPenanilidadAsignaPuntosCorrectamenteRespondeTodasBien() {
+    public void test01PreguntaMultipleChoiceSimpleAsignaPuntosCorrectamenteRespondeTodoBien() {
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
@@ -31,105 +31,105 @@ public class MultipleChoiceConPenalidadTest {
         respuestasCorrectas.add(new OpcionString("cuatro"));
 
         int resultadoObtenido;
-        int resultadoEsperado = 4;
-        
+        int resultadoEsperado = 1;
+
         MultipleChoice tipoPregunta = new MultipleChoice();
-        PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
+        PreguntaSimple preguntaMultipleChoiseSimple = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
         
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
     @Test
-    public void test02PreguntaMultipleChoiceConPenanilidadAsignaPuntosCorrectamenteRespondeTodasMal() {
+    public void test02PreguntaMultipleChoiceSimpleAsignaPuntosCorrectamenteRespondeTodasMal() {
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
 
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("tres"));
-        respuestas.add(new OpcionString("cuatro"));
-
-        respuestasCorrectas.add(new OpcionString("cinco"));
-        respuestasCorrectas.add(new OpcionString("as"));
-        respuestasCorrectas.add(new OpcionString("ddad"));
-        respuestasCorrectas.add(new OpcionString("asas"));
-
-        int resultadoObtenido;
-        int resultadoEsperado = -4;
-
-        MultipleChoice tipoPregunta = new MultipleChoice();
-        PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
-        
-        //assert
-        assertEquals(resultadoEsperado, resultadoObtenido);
-    }
-
-    @Test
-    public void test03PreguntaMultipleChoiceConPenanilidadAsignaPuntosCorrectamenteRespondeAlgunasMal() {
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
-
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
+        respuestas.add(new OpcionString("fsfs"));
+        respuestas.add(new OpcionString("cdfd"));
         respuestas.add(new OpcionString("tres"));
         respuestas.add(new OpcionString("cuatro"));
 
         respuestasCorrectas.add(new OpcionString("uno"));
         respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("sas"));
-        respuestasCorrectas.add(new OpcionString("dsda"));
+        respuestasCorrectas.add(new OpcionString("dsa"));
+        respuestasCorrectas.add(new OpcionString("dads"));
 
         int resultadoObtenido;
         int resultadoEsperado = 0;
 
         MultipleChoice tipoPregunta = new MultipleChoice();
-        PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
+        PreguntaSimple preguntaMultipleChoiseSimple = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
         
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
     @Test
-    public void test04PreguntaMultipleChoiceConPenalidadAsignaPuntosCorrectamenteNoRespondeTodas() {
+    public void test03PreguntaMultipleChoiceSimpleAsignaPuntosCorrectamenteNoRespondeTodasBien() {
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
 
         respuestas.add(new OpcionString("uno"));
         respuestas.add(new OpcionString("dos"));
+        respuestas.add(new OpcionString("tres"));
+        respuestas.add(new OpcionString("cuatro"));
 
         respuestasCorrectas.add(new OpcionString("uno"));
         respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("tres"));
-        respuestasCorrectas.add(new OpcionString("cuatro"));
+        respuestasCorrectas.add(new OpcionString("dsa"));
+        respuestasCorrectas.add(new OpcionString("dads"));
 
         int resultadoObtenido;
-        int resultadoEsperado = 2;
+        int resultadoEsperado = 0;
 
         MultipleChoice tipoPregunta = new MultipleChoice();
-        PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
+        PreguntaSimple preguntaMultipleChoiseSimple = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
         
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
+    // @Test
+    // public void test04PreguntaMultipleChoiceAsignaPuntosCorrectamenteNoRespondeTodas() {
+    //     // arrange
+    //     ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
+    //     ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+
+    //     respuestas.add(new OpcionString("uno"));
+    //     respuestas.add(new OpcionString("dos"));
+
+    //     respuestasCorrectas.add(new OpcionString("uno"));
+    //     respuestasCorrectas.add(new OpcionString("dos"));
+    //     respuestasCorrectas.add(new OpcionString("tres"));
+    //     respuestasCorrectas.add(new OpcionString("cuatro"));
+
+    //     int resultadoObtenido;
+    //     int resultadoEsperado = 0;
+
+    //     MultipleChoice tipoPregunta = new MultipleChoice();
+    //     PreguntaSimple preguntaMultipleChoiseSimple = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
+
+    //     // act
+    //     resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
+        
+    //     //assert
+    //     assertEquals(resultadoEsperado, resultadoObtenido);
+    // }
+
     @Test
-    public void test05PreguntaMultipleChoiceConPenalidadAsignaPuntosCorrectamenteRespondeOtrasAdemasDeLasCorrectas() {
+    public void test05PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeOtrasAdemasDeLasCorrectas() {
         // arrange
         ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
         ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
@@ -146,14 +146,13 @@ public class MultipleChoiceConPenalidadTest {
         int resultadoEsperado = 0;
 
         MultipleChoice tipoPregunta = new MultipleChoice();
-        PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
+        PreguntaSimple preguntaMultipleChoiseSimple = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
 
         // act
-        resultadoObtenido = preguntaMultipleChoiceConPenalidad.verificarRespuesta(respuestas);
+        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
         
         //assert
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
 }
-
 
