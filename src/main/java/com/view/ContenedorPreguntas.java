@@ -12,10 +12,14 @@ import javafx.stage.Stage;
 
 public class ContenedorPreguntas extends VBox {
     Stage stage;
+    Scene scene;
+    int preguntasRestantes = 0;
     public ContenedorPreguntas(Stage stage, Scene proximaEscena) {
 
         super();
+      //  this.preguntasRestantes = preguntasRestantes;
         this.stage = stage;
+     //   this.scene = proximaEscena;
         Juego juego = new Juego();
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
@@ -52,12 +56,24 @@ public class ContenedorPreguntas extends VBox {
         boton2.setText("2");
         boton3.setText("3");
 
+        CambiarEscenaEventHandler botonContinuar;
+
         this.getChildren().addAll(titulo,pregunta,boton,boton2,boton3);
-        CambiarEscenaEventHandler botonContinuar = new CambiarEscenaEventHandler(stage, proximaEscena);
+
+        if(this.preguntasRestantes == 0 ){
+           this.scene = proximaEscena;
+        }
+            //this.preguntasRestantes -=1;
+
+        botonContinuar = new CambiarEscenaEventHandler(stage,this.scene);
         boton.setOnAction(botonContinuar);
         boton2.setOnAction(botonContinuar);
         boton3.setOnAction(botonContinuar);
 
+    }
+
+    void agregarEscena(Scene escena){
+        this.scene = escena;
     }
 
 }
