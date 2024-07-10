@@ -14,12 +14,12 @@ public class ContenedorPreguntas extends VBox {
     Stage stage;
     Scene scene;
     int preguntasRestantes = 0;
-    public ContenedorPreguntas(Stage stage, Scene proximaEscena,int preguntasRestantes) {
+    public ContenedorPreguntas(Stage stage, Scene proximaEscena) {
 
         super();
-        this.preguntasRestantes = preguntasRestantes;
+      //  this.preguntasRestantes = preguntasRestantes;
         this.stage = stage;
-        this.scene = proximaEscena;
+     //   this.scene = proximaEscena;
         Juego juego = new Juego();
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);

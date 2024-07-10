@@ -13,24 +13,31 @@ public class App extends Application {
         launch(args);
     }
 //----------------------------------------------------------------------------------------------------------------------------------------------
+    Stage stage;
+    Scene scene;
 
     @Override
     public void start(Stage stage) throws Exception {
+        this.stage = stage;
         stage.setTitle("Juego Preguntas");
         stage.setWidth(500);
         stage.setHeight(500);
-        ContenedorInicial contenedorInicial = new ContenedorInicial(stage,crearVentanaInicio());
-        Scene escena = new Scene(contenedorInicial,500,500);
-        stage.setScene(escena);
+        ContenedorPreguntas contenedorPregunta = new ContenedorPreguntas(stage,this.scene);
+        this.scene =new Scene(contenedorPregunta,500,500);
+        this.scene = new Scene(this.crearVentanaInicio(),500,500);
+        ContenedorInicial contenedorInicial = new ContenedorInicial(stage,this.scene);
+        this.scene = new Scene(contenedorInicial,500,500);
+        stage.setScene(this.scene);
+
         stage.show();
+
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-    public Scene crearVentanaInicio( ) {
+    public VentanaInicio crearVentanaInicio() {
         ArrayList <Jugador> jugadores = new ArrayList<>();
-        VentanaInicio ventanaInicio = new VentanaInicio();
-        return ventanaInicio.crearVentanaInicio(jugadores);
+        return new VentanaInicio(jugadores,this.stage,this.scene);
     }
 
 }

@@ -11,38 +11,32 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-public class VentanaInicio {
+public class VentanaInicio extends VBox{
 
-    public VentanaInicio() {
-    }
 
-    public Scene crearVentanaInicio(ArrayList<Jugador> jugadores) {
-        VBox layout = new VBox();
-        layout.setSpacing(10);
+    public VentanaInicio(ArrayList<Jugador> jugadores,Stage stage,Scene scene) {
+
+        this.setSpacing(10);
         Label titulo = new Label();
         Label jugador = new Label();
         TextField textField = new TextField();
 
         titulo.setText("Inicio Juego");
-        layout.getChildren().add(titulo);
 
         jugador.setText("Ingresar nombres Jugadores");
-        layout.getChildren().add(jugador);
-
-        layout.getChildren().add(textField);
 
         Button guardarButton = new Button("Guardar jugador");
-        guardarButton.setOnAction(e -> {
+        textField.setOnAction(e -> {
             String texto = textField.getText();
             Jugador jugadorNuevo = new Jugador(texto);
             jugadores.add(jugadorNuevo);
         });
 
-        layout.getChildren().add(guardarButton);
 
-        Scene scene = new Scene(layout);
+        CambiarEscenaEventHandler botonCambiar = new CambiarEscenaEventHandler(stage,scene);
+        guardarButton.setOnAction(botonCambiar);
+        this.getChildren().addAll(titulo,jugador,textField,guardarButton);
 
-        return scene;
 
     }
 }
