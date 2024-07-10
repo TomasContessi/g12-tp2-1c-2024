@@ -1,6 +1,7 @@
 package com.view;
 
 import com.model.jugador.Jugador;
+import com.view.Contenedores.CambioContenedores;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,25 +20,23 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+
         stage.setTitle("Juego Preguntas");
         stage.setWidth(500);
         stage.setHeight(500);
-        ContenedorPreguntas contenedorPregunta = new ContenedorPreguntas(stage,this.scene);
-        this.scene =new Scene(contenedorPregunta,500,500);
-        this.scene = new Scene(this.crearVentanaInicio(),500,500);
-        ContenedorInicial contenedorInicial = new ContenedorInicial(stage,this.scene);
-        this.scene = new Scene(contenedorInicial,500,500);
-        stage.setScene(this.scene);
 
+        this.scene =usarContenedores();
+        stage.setScene(this.scene);
         stage.show();
 
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-    public VentanaInicio crearVentanaInicio() {
+    public Scene usarContenedores() {
         ArrayList <Jugador> jugadores = new ArrayList<>();
-        return new VentanaInicio(jugadores,this.stage,this.scene);
+        CambioContenedores contenedores = new CambioContenedores(this.stage,this.scene,jugadores,"inicio");
+        return contenedores.pedirEscena();
     }
 
 }
