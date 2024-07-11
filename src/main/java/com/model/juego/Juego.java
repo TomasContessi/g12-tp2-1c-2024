@@ -6,15 +6,10 @@ import java.util.Random;
 import com.model.jugador.Jugador;
 import com.model.pregunta.DiccionarioPreguntas;
 import com.model.pregunta.Pregunta;
-import com.view.VentanaInicio;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 public class Juego  {
     private ArrayList<Jugador> jugadores;

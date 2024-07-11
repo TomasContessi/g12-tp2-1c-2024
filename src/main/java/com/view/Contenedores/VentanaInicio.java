@@ -1,48 +1,41 @@
-package com.view;
+package com.view.Contenedores;
 
 import java.util.ArrayList;
 
 import com.model.jugador.Jugador;
 
+import com.view.CambiarEscenaEventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-public class VentanaInicio {
+public class VentanaInicio extends VBox{
 
-    public VentanaInicio() {
-    }
+    public VentanaInicio(ArrayList<Jugador> jugadores,Stage stage,Scene scene) {
 
-    public Scene crearVentanaInicio(ArrayList<Jugador> jugadores) {
-        VBox layout = new VBox();
-        layout.setSpacing(10);
+        this.setSpacing(10);
         Label titulo = new Label();
         Label jugador = new Label();
         TextField textField = new TextField();
 
         titulo.setText("Inicio Juego");
-        layout.getChildren().add(titulo);
 
         jugador.setText("Ingresar nombres Jugadores");
-        layout.getChildren().add(jugador);
 
-        layout.getChildren().add(textField);
-
-        Button guardarButton = new Button("Guardar jugador");
-        guardarButton.setOnAction(e -> {
+        Button guardarButton = new Button("Continuar");
+        textField.setOnAction(e -> {
             String texto = textField.getText();
             Jugador jugadorNuevo = new Jugador(texto);
             jugadores.add(jugadorNuevo);
         });
 
-        layout.getChildren().add(guardarButton);
 
-        Scene scene = new Scene(layout);
+        CambiarEscenaEventHandler botonCambiar = new CambiarEscenaEventHandler(stage,scene);
+        guardarButton.setOnAction(botonCambiar);
+        this.getChildren().addAll(titulo,jugador,textField,guardarButton);
 
-        return scene;
 
     }
 }
