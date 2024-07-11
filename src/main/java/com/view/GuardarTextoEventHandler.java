@@ -18,10 +18,7 @@ public class GuardarTextoEventHandler implements EventHandler<ActionEvent> {
         this.stage = stage;
         this.proximaEscena = proximaEscena;
     }
-    /*
-    public Jugador guardarJugador(){
-        handle();
-    }*/
+
     @Override
     public void handle(ActionEvent actionEvent) {
          texto = textField.getText();

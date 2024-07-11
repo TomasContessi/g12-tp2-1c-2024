@@ -9,7 +9,7 @@ public class CambiarEscenaEventHandler implements EventHandler<ActionEvent> {
     Stage stage;
     Scene proximaEscena;
 
-    CambiarEscenaEventHandler(Stage stage, Scene proximaEscena){
+    public CambiarEscenaEventHandler(Stage stage, Scene proximaEscena){
         this.stage = stage;
         this.proximaEscena = proximaEscena;
     }

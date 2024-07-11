@@ -12,5 +12,6 @@ module com {
     exports com.model.opcion;
     exports com.model.pregunta;
     exports com.model.tipo;
-    exports com.view; 
+    exports com.view;
+    exports com.view.Contenedores;
 }
