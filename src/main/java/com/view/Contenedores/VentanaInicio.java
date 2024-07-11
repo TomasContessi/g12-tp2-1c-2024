@@ -1,18 +1,17 @@
-package com.view;
+package com.view.Contenedores;
 
 import java.util.ArrayList;
 
 import com.model.jugador.Jugador;
 
+import com.view.CambiarEscenaEventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 public class VentanaInicio extends VBox{
-
 
     public VentanaInicio(ArrayList<Jugador> jugadores,Stage stage,Scene scene) {
 
@@ -25,7 +24,7 @@ public class VentanaInicio extends VBox{
 
         jugador.setText("Ingresar nombres Jugadores");
 
-        Button guardarButton = new Button("Guardar jugador");
+        Button guardarButton = new Button("Continuar");
         textField.setOnAction(e -> {
             String texto = textField.getText();
             Jugador jugadorNuevo = new Jugador(texto);
