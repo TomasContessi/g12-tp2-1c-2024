@@ -1,5 +1,7 @@
 package com;
 
+import com.model.modificador.MultiplicadorX1;
+import com.model.modificador.Puntaje;
 import org.junit.jupiter.api.Test;
 
 import com.model.modificador.MultiplicadorX2;
@@ -14,9 +16,9 @@ public class MultiplicadorX2Test {
     @Test
     public void test01MultiplicadorX2(){
         // arrange
-        int puntajeInicial = 0;
-        int puntajeEsperado = 0;
-        int puntajeObtenido;
+        Puntaje puntajeInicial = new Puntaje(0);
+        Puntaje puntajeEsperado = new Puntaje(0);
+        Puntaje puntajeObtenido;
 
         MultiplicadorX2 multiplicadorX2 = new MultiplicadorX2();
 
@@ -31,9 +33,9 @@ public class MultiplicadorX2Test {
 @Test
 public void test02MultiplicadorX2(){
     // arrange
-    int puntajeInicial = 1;
-    int puntajeEsperado = 2;
-    int puntajeObtenido;
+    Puntaje puntajeInicial = new Puntaje(1);
+    Puntaje puntajeEsperado = new Puntaje(2);
+    Puntaje puntajeObtenido;
 
     MultiplicadorX2 multiplicadorX2 = new MultiplicadorX2();
 
@@ -48,9 +50,9 @@ public void test02MultiplicadorX2(){
 @Test
 public void test03MultiplicadorX2(){
     // arrange
-    int puntajeInicial = 12;
-    int puntajeEsperado = 24;
-    int puntajeObtenido;
+    Puntaje puntajeInicial = new Puntaje(12);
+    Puntaje puntajeEsperado = new Puntaje(24);
+    Puntaje puntajeObtenido;
 
     MultiplicadorX2 multiplicadorX2 = new MultiplicadorX2();
 

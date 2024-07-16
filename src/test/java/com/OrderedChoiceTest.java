@@ -1,5 +1,6 @@
 package com;
 
+import com.model.modificador.Puntaje;
 import org.junit.jupiter.api.Test;
 
 import com.model.opcion.Opcion;
@@ -30,8 +31,8 @@ public class OrderedChoiceTest {
         respuestasCorrectas.add(new OpcionString("tres"));
         respuestasCorrectas.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 1;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(1);
 
         OrderedChoice tipoPregunta = new OrderedChoice();
         PreguntaSimple preguntaOrderedChoice = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
@@ -59,8 +60,8 @@ public class OrderedChoiceTest {
         respuestas.add(new OpcionString("cuatro"));
         respuestas.add(new OpcionString("tres"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         OrderedChoice tipoPregunta = new OrderedChoice();
         PreguntaSimple preguntaOrderedChoice = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
@@ -88,8 +89,8 @@ public class OrderedChoiceTest {
         respuestas.add(new OpcionString("uno"));
         respuestas.add(new OpcionString("dos"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         OrderedChoice tipoPregunta = new OrderedChoice();
         PreguntaSimple preguntaOrderedChoice = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
@@ -115,8 +116,8 @@ public class OrderedChoiceTest {
         respuestas.add(new OpcionString("uno"));
         respuestas.add(new OpcionString("dos"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         OrderedChoice tipoPregunta = new OrderedChoice();
         PreguntaSimple preguntaOrderedChoice = new PreguntaSimple(tipoPregunta, respuestasCorrectas);

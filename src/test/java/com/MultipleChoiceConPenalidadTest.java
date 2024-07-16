@@ -1,5 +1,6 @@
 package com;
 
+import com.model.modificador.Puntaje;
 import org.junit.jupiter.api.Test;
 
 import com.model.opcion.Opcion;
@@ -30,8 +31,8 @@ public class MultipleChoiceConPenalidadTest {
         respuestasCorrectas.add(new OpcionString("tres"));
         respuestasCorrectas.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 4;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(4);
         
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
@@ -59,8 +60,8 @@ public class MultipleChoiceConPenalidadTest {
         respuestasCorrectas.add(new OpcionString("ddad"));
         respuestasCorrectas.add(new OpcionString("asas"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = -4;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(-4);
 
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
@@ -88,8 +89,8 @@ public class MultipleChoiceConPenalidadTest {
         respuestasCorrectas.add(new OpcionString("sas"));
         respuestasCorrectas.add(new OpcionString("dsda"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
@@ -115,8 +116,8 @@ public class MultipleChoiceConPenalidadTest {
         respuestasCorrectas.add(new OpcionString("tres"));
         respuestasCorrectas.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 2;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(2);
 
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);
@@ -142,8 +143,8 @@ public class MultipleChoiceConPenalidadTest {
         respuestasCorrectas.add(new OpcionString("uno"));
         respuestasCorrectas.add(new OpcionString("dos"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaConPenalidad(tipoPregunta, respuestasCorrectas);

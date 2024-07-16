@@ -6,6 +6,7 @@ import com.model.modificador.Multiplicador;
 import com.model.modificador.MultiplicadorX1;
 import com.model.opcion.Opcion;
 import com.model.tipo.Tipo;
+import com.model.modificador.Puntaje;
 
 public abstract class Pregunta {
     protected Tipo tipo;
@@ -50,5 +51,5 @@ public abstract class Pregunta {
         return this.tema;
     }
 
-    public abstract int verificarRespuesta(ArrayList<Opcion> respuestaContestada);
+    public abstract Puntaje verificarRespuesta(ArrayList<Opcion> respuestaContestada);
 }

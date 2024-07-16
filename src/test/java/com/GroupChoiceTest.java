@@ -1,5 +1,6 @@
 package com;
 
+import com.model.modificador.Puntaje;
 import org.junit.jupiter.api.Test;
 
 import com.model.opcion.Opcion;
@@ -34,8 +35,8 @@ public class GroupChoiceTest {
         grupo2.add(new OpcionString("tres"));
         grupo2.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 1;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(1);
 
         GroupChoice tipoPregunta = new GroupChoice("Grupo A", "Grupo B");
         PreguntaSimple preguntaGroupChoice = new PreguntaSimple(tipoPregunta, grupo1Correcto);
@@ -67,8 +68,8 @@ public class GroupChoiceTest {
         grupo2.add(new OpcionString("dos"));
         grupo2.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         GroupChoice tipoPregunta = new GroupChoice("Grupo A", "Grupo B");
         PreguntaSimple preguntaGroupChoice = new PreguntaSimple(tipoPregunta, grupo1Correcto);
@@ -100,8 +101,8 @@ public class GroupChoiceTest {
         grupo1.add(new OpcionString("tres"));
         grupo1.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         GroupChoice tipoPregunta = new GroupChoice("Grupo A", "Grupo B");
         PreguntaSimple preguntaGroupChoice = new PreguntaSimple(tipoPregunta, grupo1Correcto);

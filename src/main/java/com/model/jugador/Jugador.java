@@ -9,12 +9,12 @@ import com.model.pregunta.Pregunta;
 
 public class Jugador {
     private String name;
-    private int puntos;
+    private int puntos; //transformarlo en una clase
     private ArrayList<Multiplicador> multiplicadores;
     //private Anulador anulador;
     private Exclusividad exclusividad;
     private int opcionElegida;
-    private ArrayList<Opcion> respuesta = new ArrayList<Opcion>();
+    private ArrayList<Opcion> respuesta = new ArrayList<Opcion>(); //transformarlo en una clase
 
     public Jugador(String nombre){
         this.name = nombre;
