@@ -2,6 +2,7 @@ package com.model.pregunta;
 
 import java.util.ArrayList;
 
+import com.model.modificador.Puntaje;
 import com.model.opcion.Opcion;
 import com.model.tipo.Tipo;
 
@@ -15,10 +16,10 @@ public class PreguntaSimple extends Pregunta {
     }
 
     @Override
-    public int verificarRespuesta(ArrayList<Opcion> respuestaContestada) {
-        int puntaje = 0;
-        if(tipo.respondidoCorrectamente(this.respuestaCorrecta, respuestaContestada)) {
-            puntaje += 1;
+    public Puntaje verificarRespuesta(ArrayList<Opcion> respuestaContestada) {
+        Puntaje puntaje = new Puntaje(0);
+        if (tipo.respondidoCorrectamente(this.respuestaCorrecta, respuestaContestada)) {
+            puntaje = puntaje.sumarseCon(new Puntaje(1));
         }
         return this.multiplicador.multiplicar(puntaje);
     }

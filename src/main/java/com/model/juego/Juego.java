@@ -65,7 +65,7 @@ public class Juego  {
         this.diccionarioPreguntas.asignarPreguntasPorTema(this.preguntasPath);
         this.ultimaTematica = this.diccionarioPreguntas.obtenerTemas().getLast();
     }
-
+//cambiar 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
     public boolean siguienteTurno(){
@@ -79,13 +79,13 @@ public class Juego  {
         return quedanTurnos;
     }
 
-
+// tomar la pregunta del turno, agarrar el jugador del momento
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void cargarPregunta(){
-        Random random = new Random();
-        int id = random.nextInt(24);
-    }
+    // public void cargarPregunta(){
+    //     Random random = new Random();
+    //     int id = random.nextInt(24);
+    // }
 
 }

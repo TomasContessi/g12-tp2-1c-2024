@@ -2,7 +2,7 @@ package com.model.modificador;
 
 public class MultiplicadorX2 implements Multiplicador{
     @Override
-    public int multiplicar(int puntaje){
-        return puntaje * 2;
+    public Puntaje multiplicar(Puntaje puntaje){
+            return puntaje.multiplicarseCon(new Puntaje(2));
+        }
     }
-}

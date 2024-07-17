@@ -1,5 +1,6 @@
 package com;
 
+import com.model.modificador.Puntaje;
 import org.junit.jupiter.api.Test;
 
 import com.model.opcion.Opcion;
@@ -30,8 +31,8 @@ public class MultipleChoiceConPuntajeParcialTest {
         respuestasCorrectas.add(new OpcionString("tres"));
         respuestasCorrectas.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 4;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(4);
 
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaParcial preguntaMultipleChoiceConPuntajeParcial = new PreguntaParcial(tipoPregunta, respuestasCorrectas);
@@ -57,8 +58,8 @@ public class MultipleChoiceConPuntajeParcialTest {
         respuestasCorrectas.add(new OpcionString("tres"));
         respuestasCorrectas.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 2;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(2);
 
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaParcial preguntaMultipleChoiceConPuntajeParcial = new PreguntaParcial(tipoPregunta, respuestasCorrectas);
@@ -86,8 +87,8 @@ public class MultipleChoiceConPuntajeParcialTest {
         respuestas.add(new OpcionString("tres"));
         respuestas.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 0;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(0);
 
         MultipleChoice tipoPregunta = new MultipleChoice();
         PreguntaParcial preguntaMultipleChoiceConPuntajeParcial = new PreguntaParcial(tipoPregunta, respuestasCorrectas);

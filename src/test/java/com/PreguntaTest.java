@@ -1,5 +1,6 @@
 package com;
 
+import com.model.modificador.Puntaje;
 import org.junit.jupiter.api.Test;
 
 import com.model.modificador.Multiplicador;
@@ -41,8 +42,8 @@ public class PreguntaTest {
         opciones.add(new OpcionString("tres"));
         opciones.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 4;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(4);
         
         MultipleChoice preguntaMultipleChoice = new MultipleChoice();
         PreguntaConPenalidad pregunta = new PreguntaConPenalidad(preguntaMultipleChoice, respuestasCorrectas, enunciado, opciones, tema);
@@ -79,8 +80,8 @@ public class PreguntaTest {
         opciones.add(new OpcionString("tres"));
         opciones.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 4*2;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(4).multiplicarseCon(new Puntaje(2));
         
         Multiplicador multiplicador = new MultiplicadorX2();
         MultipleChoice preguntaMultipleChoice = new MultipleChoice();
@@ -119,8 +120,8 @@ public class PreguntaTest {
         opciones.add(new OpcionString("tres"));
         opciones.add(new OpcionString("cuatro"));
 
-        int resultadoObtenido;
-        int resultadoEsperado = 4*3;
+        Puntaje resultadoObtenido;
+        Puntaje resultadoEsperado = new Puntaje(4).multiplicarseCon(new Puntaje(3));
         
         Multiplicador multiplicador = new MultiplicadorX3();
         MultipleChoice preguntaMultipleChoice = new MultipleChoice();
