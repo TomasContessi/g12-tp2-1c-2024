@@ -1,7 +1,6 @@
 package com.view.Contenedores;
 
-import com.model.juego.Juego;
-import com.view.CambiarEscenaEventHandler;
+import com.view.Eventos.CambiarEscenaEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

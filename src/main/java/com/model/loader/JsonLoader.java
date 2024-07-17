@@ -16,25 +16,20 @@ import com.model.pregunta.PreguntaFactory;
 
 public class JsonLoader {
     private int totalPreguntas;
-    private PreguntaFactory factory = new PreguntaFactory();
-    private int id;
+    private PreguntaFactory factory;
     private ArrayList<Opcion> opcionesCorrectas;
     private ArrayList<Opcion> opciones;
     private String textoRespuesta;
-    private String opcionKey;
 
     public JsonLoader(String filePath) {
-
         try (FileReader reader = new FileReader(filePath)) {
-
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonElement.getAsJsonArray();
-
             this.totalPreguntas = jsonArray.size();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+        factory = new PreguntaFactory();
     }
 
     public JsonObject leerAtributos(int ID, String filePath) {
@@ -54,17 +49,14 @@ public class JsonLoader {
 
             this.textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
 
-            this.id = jsonObject.get("ID").getAsInt();
-
             String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
 
+            String opcionKey;
             if (respuestasCorrectas.contains("A:") && respuestasCorrectas.contains("B:")) {
-
                 String[] grupos = respuestasCorrectas.split(";");
                 for (String grupo : grupos) {
                     String[] partesGrupo = grupo.split(":");
                     if (partesGrupo[0].trim().equals("A")) {
-
                         for (String s : partesGrupo[1].split(",")) {
                             opcionKey = "Opcion " + s.trim();
                             this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));

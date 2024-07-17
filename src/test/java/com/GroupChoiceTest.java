@@ -10,9 +10,6 @@ import com.model.tipo.GroupChoice;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
 public class GroupChoiceTest {
     @Test
     public void test01GroupChoiceAciertaTodas() {

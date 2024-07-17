@@ -1,11 +1,10 @@
 package com.view;
 
-import com.model.jugador.Jugador;
-import com.view.Contenedores.CambioContenedores;
-import com.view.Contenedores.ContenedorFinal;
+import com.model.juego.Juego;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import com.view.Contenedores.*;
 
 import java.util.ArrayList;
 
@@ -14,37 +13,21 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-//----------------------------------------------------------------------------------------------------------------------------------------------
-    Stage stage;
-    Scene scene;
-    Scene sceneFinal;
-    Scene escenaPreguntas;
-    Scene escenaJugadores;
 
     @Override
     public void start(Stage stage) throws Exception {
-        this.stage = stage;
-        ContenedorFinal contenedorFinal = new ContenedorFinal(stage);
-        this.sceneFinal = new Scene(contenedorFinal,500,500);
-        this.escenaPreguntas = usarContenedores("Pregunta",this.sceneFinal);
-        this.escenaJugadores = usarContenedores("Jugadores",this.escenaPreguntas);
+        stage.setTitle("JUEGO PREGUNTAS");
 
-        stage.setTitle("Juego Preguntas");
-        stage.setWidth(500);
-        stage.setHeight(500);
+        Juego juego = new Juego();
+        juego.setearPreguntas();
 
-        this.scene =usarContenedores("Inicio",escenaJugadores);
-        stage.setScene(this.scene);
+        ContenedorPregunta contenedorPregunta = new ContenedorPregunta(stage, juego);
+        Scene escenaJuego = new Scene(contenedorPregunta, 800, 500);
+
+        ContenedorBienvenida contenedorBienvenida = new ContenedorBienvenida(stage, juego, escenaJuego);
+        Scene escenaBienvenida = new Scene(contenedorBienvenida, 600, 500);
+
+        stage.setScene(escenaBienvenida);
         stage.show();
-
     }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
-    public Scene usarContenedores(String momentoJuego,Scene scene) {
-        ArrayList <Jugador> jugadores = new ArrayList<>();
-        CambioContenedores contenedores = new CambioContenedores(this.stage,scene,jugadores,momentoJuego);
-        return contenedores.pedirEscena();
-    }
-
 }

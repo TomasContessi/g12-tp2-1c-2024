@@ -1,6 +1,5 @@
-package com.view;
+package com.view.Eventos;
 
-import com.model.jugador.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

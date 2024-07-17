@@ -14,4 +14,5 @@ module com {
     exports com.model.tipo;
     exports com.view;
     exports com.view.Contenedores;
+    exports com.view.Eventos;
 }

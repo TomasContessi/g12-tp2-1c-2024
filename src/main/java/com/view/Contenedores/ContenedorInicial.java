@@ -1,6 +1,6 @@
 package com.view.Contenedores;
 
-import com.view.GuardarTextoEventHandler;
+import com.view.Eventos.GuardarTextoEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;

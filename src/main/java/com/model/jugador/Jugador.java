@@ -14,7 +14,7 @@ public class Jugador {
     //private Anulador anulador;
     private Exclusividad exclusividad;
     private int opcionElegida;
-    private ArrayList<Opcion> respuesta = new ArrayList<Opcion>();
+    private final ArrayList<Opcion> respuesta;
 
     public Jugador(String nombre){
         this.name = nombre;
@@ -25,24 +25,34 @@ public class Jugador {
         this.respuesta = new ArrayList<>();
     }
 
-    public ArrayList<Opcion> responderPregunta(){
-        return respuesta;
-    }
+//    public ArrayList<Opcion> responderPregunta(){
+//        return respuesta;
+//    }
+
     public void eliminarOpciones(){
         this.respuesta.clear();
     }
+
     public void eliminarOpcion(){
         this.respuesta.remove(opcionElegida);
     }
+
     public void agregarOpcion(Pregunta pregunta){
         this.respuesta.add(pregunta.getOpcion(opcionElegida));
     }
+
+//    public void agregarOpcion(Pregunta pregunta, int numeroOpcion) {
+//        pregunta.setearRespuestaJugador(this.respuesta, numeroOpcion);
+//    }
+
     public void elegirOpcion(int opcionElegida){
         this.opcionElegida = (opcionElegida-1);
     }
+
     public int opcionesElegidas(){
         return respuesta.size();
     }
+
     public void asignarPuntos(int puntos){
         this.puntos += puntos;
     }

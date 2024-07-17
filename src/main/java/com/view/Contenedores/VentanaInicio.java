@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.model.jugador.Jugador;
 
-import com.view.CambiarEscenaEventHandler;
+import com.view.Eventos.CambiarEscenaEventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

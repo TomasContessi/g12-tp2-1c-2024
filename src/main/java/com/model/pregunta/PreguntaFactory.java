@@ -17,25 +17,22 @@ public class PreguntaFactory{
         String temaPregunta = datosEnunciado.get("Tema").getAsString();
         String enunciadoPregunta = datosEnunciado.get("Pregunta").getAsString();
 
-        switch (tipoPregunta) {
-            case "Group Choice":
-                return new PreguntaSimple(new GroupChoice(datosEnunciado.get("Grupo A").getAsString(), datosEnunciado.get("Grupo B").getAsString()), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
-            case "Ordered choice":
-            case "Ordered Choice":
-                return new PreguntaSimple(new OrderedChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
-            case "Multiple Choice Simple":
-                return new PreguntaSimple(new MultipleChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
-            case "Multiple Choice Penalidad":
-                return new PreguntaConPenalidad(new MultipleChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
-            case "Multiple Choice Puntaje Parcial":
-                return new PreguntaParcial(new MultipleChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
-            case "Verdadero Falso":
-            case "Verdadero Falso Simple":
-                return new PreguntaSimple(new VerdaderoFalso(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
-            case "Verdadero Falso Penalidad":
-                return new PreguntaConPenalidad(new VerdaderoFalso(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
-            default:
-                throw new IllegalArgumentException("Tipo de pregunta no reconocido: " + tipoPregunta);
-        }
+        return switch (tipoPregunta) {
+            case "Group Choice" ->
+                    new PreguntaSimple(new GroupChoice(datosEnunciado.get("Grupo A").getAsString(), datosEnunciado.get("Grupo B").getAsString()), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            case "Ordered choice", "Ordered Choice" ->
+                    new PreguntaSimple(new OrderedChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            case "Multiple Choice Simple" ->
+                    new PreguntaSimple(new MultipleChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            case "Multiple Choice Penalidad" ->
+                    new PreguntaConPenalidad(new MultipleChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            case "Multiple Choice Puntaje Parcial" ->
+                    new PreguntaParcial(new MultipleChoice(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            case "Verdadero Falso", "Verdadero Falso Simple" ->
+                    new PreguntaSimple(new VerdaderoFalso(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            case "Verdadero Falso Penalidad" ->
+                    new PreguntaConPenalidad(new VerdaderoFalso(), opcionesCorrectas, enunciadoPregunta, opciones, temaPregunta);
+            default -> throw new IllegalArgumentException("Tipo de pregunta no reconocido: " + tipoPregunta);
+        };
     }
 }

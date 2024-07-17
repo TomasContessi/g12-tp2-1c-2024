@@ -2,8 +2,7 @@ package com.model.pregunta;
 
 import java.util.ArrayList;
 
-import com.model.modificador.Multiplicador;
-import com.model.modificador.MultiplicadorX1;
+import com.model.modificador.*;
 import com.model.opcion.Opcion;
 import com.model.tipo.Tipo;
 
@@ -14,8 +13,10 @@ public abstract class Pregunta {
     protected String enunciado;
     protected Multiplicador multiplicador;
     protected ArrayList<Opcion> opciones;
+    private int numeroOpcion;
 
     public Pregunta(Tipo tipo, ArrayList<Opcion> respuestaCorrecta) {
+        this.numeroOpcion = 0;
         this.tipo = tipo;
         this.respuestaCorrecta = respuestaCorrecta;
         this.multiplicador = new MultiplicadorX1();
@@ -36,6 +37,19 @@ public abstract class Pregunta {
 
     public Opcion getOpcion(int numero) {
         return opciones.get(numero);
+    }
+
+    public Opcion mostrarOpcion() {
+        Opcion opcionActual = null;
+        if(numeroOpcion < opciones.size())  {
+            opcionActual = opciones.get(numeroOpcion);
+        }
+        numeroOpcion++;
+        return opcionActual;
+    }
+
+    public void setearRespuestaJugador(ArrayList<Opcion> respuestaJugador, int numeroOpcion) {
+        respuestaJugador.add(this.opciones.get(numeroOpcion - 1));
     }
 
     public String getEnunciado() {
