@@ -1,17 +1,16 @@
-module com {
+module comTP {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
     requires transitive javafx.graphics;
 
-
-    exports com.model.juego;
-    exports com.model.jugador;
-    exports com.model.loader;
-    exports com.model.modificador;
-    exports com.model.opcion;
-    exports com.model.pregunta;
-    exports com.model.tipo;
-    exports com.view;
-    exports com.view.Contenedores;
+    exports comTP.model.juego;
+    exports comTP.model.jugador;
+    exports comTP.model.loader;
+    exports comTP.model.modificador;
+    exports comTP.model.opcion;
+    exports comTP.model.pregunta;
+    exports comTP.model.tipo;
+    exports comTP.view;
+    exports comTP.view.Contenedores;
 }
