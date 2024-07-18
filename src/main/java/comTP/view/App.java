@@ -19,10 +19,7 @@ public class App extends Application {
         Juego juego = new Juego();
         juego.setearPreguntas();
 
-        ContenedorPregunta contenedorPregunta = new ContenedorPregunta(stage, juego);
-        Scene escenaJuego = new Scene(contenedorPregunta, 800, 500);
-
-        ContenedorBienvenida contenedorBienvenida = new ContenedorBienvenida(stage, juego, escenaJuego);
+        ContenedorBienvenida contenedorBienvenida = new ContenedorBienvenida(stage, juego);
         Scene escenaBienvenida = new Scene(contenedorBienvenida, 600, 500);
 
         stage.setScene(escenaBienvenida);

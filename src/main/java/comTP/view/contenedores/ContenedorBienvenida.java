@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class ContenedorBienvenida extends VBox {
     Stage stage;
 
-    public ContenedorBienvenida(Stage stage, Juego juego, Scene escenaJuego) {
+    public ContenedorBienvenida(Stage stage, Juego juego) {
         super();
         this.stage = stage;
         this.setAlignment(Pos.CENTER);
@@ -51,7 +51,7 @@ public class ContenedorBienvenida extends VBox {
         botonEmpezarJuego.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         setMargin(botonEmpezarJuego, new Insets(50, 0, 0, 0));
         BotonEmpezarJuegoEventHandler botonEmpezarJuegoEventHandler =
-                new BotonEmpezarJuegoEventHandler(stage, escenaJuego);
+                new BotonEmpezarJuegoEventHandler(stage, juego);
         botonEmpezarJuego.setOnAction(botonEmpezarJuegoEventHandler);
 
         hbox.getChildren().addAll(etiquetaSetJugadores,

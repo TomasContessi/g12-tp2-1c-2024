@@ -9,12 +9,14 @@ import comTP.model.pregunta.*;
 public class Juego  {
     private final ArrayList<Jugador> jugadores;
     private final DiccionarioPreguntas diccionarioPreguntas;
+    int jugadorActual;
 
     public Juego() {
         this.jugadores = new ArrayList<>();
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
         JsonLoader jsonLoader = new JsonLoader(filePath);
         this.diccionarioPreguntas = new DiccionarioPreguntas(jsonLoader);
+        jugadorActual = 0;
     }
 
     public void agregarJugador(Jugador jugador){
@@ -27,6 +29,27 @@ public class Juego  {
 
     public Pregunta obtenerPregunta() {
         return diccionarioPreguntas.getPregunta();
+    }
+
+    public Jugador getJugadorActual() {
+        if(!jugadores.isEmpty()) {
+            return jugadores.get(jugadorActual);
+        }
+        return null;
+    }
+
+    public void cambiarJugador() {
+        if(jugadorActual < jugadores.size()) {
+            jugadorActual++;
+        }
+    }
+
+    public boolean ultimoJugador() {
+        return jugadorActual == (jugadores.size() - 1);
+    }
+
+    public void reiniciarJugadorActual() {
+        jugadorActual = 0;
     }
 
 //    public boolean cargarSiguientePregunta(){
