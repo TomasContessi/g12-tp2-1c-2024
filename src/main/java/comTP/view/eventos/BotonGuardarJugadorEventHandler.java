@@ -18,8 +18,7 @@ public class BotonGuardarJugadorEventHandler implements EventHandler<ActionEvent
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Jugador jugador = new Jugador(textFieldNombreJugador.getText());
-        juego.agregarJugador(jugador);
+        juego.agregarJugador(new Jugador(textFieldNombreJugador.getText()));
         textFieldNombreJugador.clear();
     }
 }

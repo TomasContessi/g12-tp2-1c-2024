@@ -29,6 +29,10 @@ public class Jugador {
         pregunta.setearRespuestaJugador(respuesta, numeroOpcion);
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
 //    public void elegirOpcion(int opcionElegida){
 //        this.opcionElegida = (opcionElegida-1);
 //    }
