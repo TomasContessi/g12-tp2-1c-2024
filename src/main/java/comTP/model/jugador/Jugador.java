@@ -33,6 +33,22 @@ public class Jugador {
         return nombre;
     }
 
+    public Respuesta getRespuesta(){
+        return this.respuesta;
+    }
+
+
+    public void asignarPuntos(Puntaje puntos){
+        this.puntaje.sumarseCon(puntos);
+    }
+
+    public Puntaje getPuntos(){
+        return this.puntaje;
+    }
+
+
+
+
 //    public void elegirOpcion(int opcionElegida){
 //        this.opcionElegida = (opcionElegida-1);
 //    }

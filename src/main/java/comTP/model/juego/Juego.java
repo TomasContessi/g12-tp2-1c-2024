@@ -2,13 +2,18 @@ package comTP.model.juego;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import comTP.model.jugador.Jugador;
 import comTP.model.loader.JsonLoader;
+import comTP.model.modificador.Puntaje;
 import comTP.model.pregunta.*;
 
 public class Juego  {
     private final ArrayList<Jugador> jugadores;
     private final DiccionarioPreguntas diccionarioPreguntas;
+    private final Map<Jugador, Puntaje> puntajeJugadores;
     int jugadorActual;
 
     public Juego() {
@@ -16,6 +21,7 @@ public class Juego  {
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
         JsonLoader jsonLoader = new JsonLoader(filePath);
         this.diccionarioPreguntas = new DiccionarioPreguntas(jsonLoader);
+        this.puntajeJugadores = new HashMap<>();
         jugadorActual = 0;
     }
 
@@ -38,11 +44,14 @@ public class Juego  {
         return null;
     }
 
-    public void cambiarJugador() {
+    public Jugador cambiarJugador() {
         if(jugadorActual < jugadores.size()) {
             jugadorActual++;
         }
+        return jugadores.get(jugadorActual);
     }
+
+
 
     public boolean ultimoJugador() {
         return jugadorActual == (jugadores.size() - 1);
@@ -51,6 +60,25 @@ public class Juego  {
     public void reiniciarJugadorActual() {
         jugadorActual = 0;
     }
+
+//    public void setearRespuestaJugador(Jugador jugador, Pregunta pregunta, int opcion){
+//        jugador.agregarOpcion(pregunta, opcion);
+//    }
+
+    public void agregarPuntaje(Jugador jugador, Puntaje puntaje){
+        this.puntajeJugadores.put(jugador, puntaje);
+    }
+
+    public Puntaje verificarRespuestaJugador(Jugador jugador, Pregunta pregunta){
+        return pregunta.verificarRespuesta(jugador.getRespuesta());
+    }
+
+    public void asignarPuntajeJugador(Jugador jugador, Puntaje puntaje){
+        jugador.asignarPuntos(puntaje);
+    }
+
+
+
 
 //    public boolean cargarSiguientePregunta(){
 //        ArrayList<String> temasRestantes;

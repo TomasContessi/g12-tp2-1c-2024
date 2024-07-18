@@ -1,6 +1,7 @@
 package comTP.view.eventos;
 
 import comTP.model.juego.Juego;
+import comTP.model.jugador.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -15,15 +16,17 @@ public class BotonFinalizarEventHandler implements EventHandler<ActionEvent> {
     List<Button> botonesOpciones;
     Juego juego;
     Label etiquetaNombreJugador;
+    Jugador jugador;
 
     public BotonFinalizarEventHandler(Stage stage, Scene escenaPuntaje,
                                       List<Button> botonesOpciones, Juego juego,
-                                      Label etiquetaNombreJugador) {
+                                      Label etiquetaNombreJugador, Jugador jugador) {
         this.stage = stage;
         this.escenaPuntaje = escenaPuntaje;
         this.botonesOpciones = botonesOpciones;
         this.juego = juego;
         this.etiquetaNombreJugador = etiquetaNombreJugador;
+        this.jugador = jugador;
     }
 
     @Override
@@ -34,8 +37,8 @@ public class BotonFinalizarEventHandler implements EventHandler<ActionEvent> {
             stage.setScene(escenaPuntaje);
         }
         else {
-            juego.cambiarJugador();
-            etiquetaNombreJugador.setText(juego.getJugadorActual().getNombre());
+            jugador = juego.cambiarJugador();
+            etiquetaNombreJugador.setText(jugador.getNombre());
         }
     }
 

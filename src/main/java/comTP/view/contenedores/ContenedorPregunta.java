@@ -43,6 +43,7 @@ public class ContenedorPregunta extends VBox {
         this.getChildren().addAll(etiqueEnunciado, etiqueNombreJugador);
 
         Opcion opcion;
+        int numeroOpcion = 1;
         botonesOpciones = new ArrayList<>();
         while((opcion = pregunta.mostrarOpcion()) != null) {
             HBox hboxOpciones = new HBox();
@@ -52,21 +53,25 @@ public class ContenedorPregunta extends VBox {
             botonOpcion.setMinSize(30, 30);
             botonOpcion.setStyle("-fx-scale-x: 0.5; -fx-scale-y: 0.5;");
             AgregarOpcionARespuestaJugadorEventHandler agregarOpcion =
-                    new AgregarOpcionARespuestaJugadorEventHandler(botonOpcion);
+                    new AgregarOpcionARespuestaJugadorEventHandler(botonOpcion, jugadorActual, pregunta, numeroOpcion);
+
             botonOpcion.setOnAction(agregarOpcion);
             Label etiquetaOpcion = new Label();
             etiquetaOpcion.setText(opcion.obtenerValor());
             setMargin(etiquetaOpcion, new Insets(100, 0, 0, 0));
             hboxOpciones.getChildren().addAll(botonOpcion, etiquetaOpcion);
             this.getChildren().add(hboxOpciones);
+            numeroOpcion++;
+
         }
 
         Button botonFinalizar = new Button();
         botonFinalizar.setText("FINALIZAR");
         BotonFinalizarEventHandler botonFinalizarEventHandler =
                 new BotonFinalizarEventHandler(this.stage,
-                        escenaPuntaje, botonesOpciones, juego, etiqueNombreJugador);
+                        escenaPuntaje, botonesOpciones, juego, etiqueNombreJugador, jugadorActual);
         botonFinalizar.setOnAction(botonFinalizarEventHandler);
         this.getChildren().add(botonFinalizar);
     }
+
 }
