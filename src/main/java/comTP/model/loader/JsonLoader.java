@@ -4,110 +4,93 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import comTP.model.opcion.Opcion;
-import comTP.model.opcion.OpcionString;
-import comTP.model.pregunta.Pregunta;
-import comTP.model.pregunta.PreguntaFactory;
+import comTP.model.opcion.*;
+import comTP.model.pregunta.*;
 
 public class JsonLoader {
+    private final String filePath;
     private int totalPreguntas;
-    private PreguntaFactory factory = new PreguntaFactory();
-    private int id;
-    private ArrayList<Opcion> opcionesCorrectas;
+    private final PreguntaFactory factory;
+    private Respuesta respuestaCorrecta;
     private ArrayList<Opcion> opciones;
     private String textoRespuesta;
-    private String opcionKey;
 
     public JsonLoader(String filePath) {
-
+        this.filePath = filePath;
+        this.factory = new PreguntaFactory();
         try (FileReader reader = new FileReader(filePath)) {
-
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonElement.getAsJsonArray();
-
             this.totalPreguntas = jsonArray.size();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public JsonObject leerAtributos(int ID, String filePath) {
-
-        opcionesCorrectas = new ArrayList<>();
+    public JsonObject leerAtributos(int id) {
+        respuestaCorrecta = new Respuesta();
         opciones = new ArrayList<>();
 
         JsonObject jsonObject = null;
 
         try(FileReader reader = new FileReader(filePath)) {
-
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonElement.getAsJsonArray();
 
-            JsonElement element = jsonArray.get(ID);
+            JsonElement element = jsonArray.get(id);
             jsonObject = element.getAsJsonObject();
 
             this.textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
 
-            this.id = jsonObject.get("ID").getAsInt();
-
             String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
-
+            String opcionKey;
             if (respuestasCorrectas.contains("A:") && respuestasCorrectas.contains("B:")) {
-
                 String[] grupos = respuestasCorrectas.split(";");
                 for (String grupo : grupos) {
                     String[] partesGrupo = grupo.split(":");
                     if (partesGrupo[0].trim().equals("A")) {
-
                         for (String s : partesGrupo[1].split(",")) {
                             opcionKey = "Opcion " + s.trim();
-                            this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+                            respuestaCorrecta.agregarOpcion(new Opcion(jsonObject.get(opcionKey).getAsString()));
                         }
                         break;
                     }
                 }
             } else {
-                // Procesar todas las respuestas como antes
                 for (String s : respuestasCorrectas.split(",")) {
                     opcionKey = "Opcion " + s.trim();
-                    this.opcionesCorrectas.add(new OpcionString(jsonObject.get(opcionKey).getAsString()));
+                    respuestaCorrecta.agregarOpcion(new Opcion(jsonObject.get(opcionKey).getAsString()));
                 }
             }
 
             Set<String> keys = jsonObject.keySet();
             for (String key : keys) {
                 if (key.startsWith("Opcion")) {
-                    this.opciones.add(new OpcionString(jsonObject.get(key).getAsString()));
+                    this.opciones.add(new Opcion(jsonObject.get(key).getAsString()));
                 }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
-            System.err.println("Error: ID no es un número entero válido.");
+            System.err.println("Error: id no es un número entero válido.");
         } catch (NullPointerException e) {
-            System.err.println("Error: Algún campo está ausente en la pregunta " + ID);
+            System.err.println("Error: Algún campo está ausente en la pregunta " + id);
         }
         return jsonObject;
     }
 
-    public Pregunta loadPregunta(int ID, String path) {
-        JsonObject datosEnunciado = this.leerAtributos(ID, path);
-        return (this.factory.crearPregunta(datosEnunciado, opcionesCorrectas, opciones));
+    public Pregunta loadPregunta(int ID) {
+        JsonObject datosEnunciado = this.leerAtributos(ID);
+        return (factory.crearPregunta(datosEnunciado, respuestaCorrecta, opciones));
     }
 
-    public void setFactory(PreguntaFactory factory) {
-        this.factory = factory;
-    }
-
-    public ArrayList<Opcion> opcionesCorrectas() {
-        return this.opcionesCorrectas;
+    public Respuesta respuestaCorrecta() {
+        return this.respuestaCorrecta;
     }
 
     public ArrayList<Opcion> opciones() {

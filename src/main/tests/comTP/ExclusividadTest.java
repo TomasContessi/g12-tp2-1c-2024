@@ -2,10 +2,7 @@ package comTP;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import comTP.model.modificador.Exclusividad;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExclusividadTest {
     @Test
@@ -15,9 +12,10 @@ public class ExclusividadTest {
         int cantidadJugadoresAciertan = 1;
         int jugadoresUsaronExclusividad = 1;
         int multiplicadorPuntosEsperados = 2;
-        int multiplicadorPuntosObtenidos = 0;
+
         //Act
-        multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+        int multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+
         //Assert
         Assertions.assertEquals(multiplicadorPuntosEsperados,multiplicadorPuntosObtenidos);
     }
@@ -29,9 +27,10 @@ public class ExclusividadTest {
         int cantidadJugadoresAciertan = 1;
         int jugadoresUsaronExclusividad = 3;
         int multiplicadorPuntosEsperados = 6;
-        int multiplicadorPuntosObtenidos = 0;
+
         //Act
-        multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+        int multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+
         //Assert
         Assertions.assertEquals(multiplicadorPuntosEsperados,multiplicadorPuntosObtenidos);
     }
@@ -43,9 +42,10 @@ public class ExclusividadTest {
         int cantidadJugadoresAciertan = 2;
         int jugadoresUsaronExclusividad = 1;
         int multiplicadorPuntosEsperados = 0;
-        int multiplicadorPuntosObtenidos = 0;
+
         //Act
-        multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+        int multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+
         //Assert
         Assertions.assertEquals(multiplicadorPuntosEsperados,multiplicadorPuntosObtenidos);
     }
@@ -57,9 +57,10 @@ public class ExclusividadTest {
         int cantidadJugadoresAciertan = 4;
         int jugadoresUsaronExclusividad = 2;
         int multiplicadorPuntosEsperados = 0;
-        int multiplicadorPuntosObtenidos = 0;
+
         //Act
-        multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+        int multiplicadorPuntosObtenidos = exclusividad.calcularExclusividad(jugadoresUsaronExclusividad,cantidadJugadoresAciertan);
+
         //Assert
         Assertions.assertEquals(multiplicadorPuntosEsperados,multiplicadorPuntosObtenidos);
     }

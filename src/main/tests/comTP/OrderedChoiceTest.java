@@ -1,131 +1,100 @@
 package comTP;
 
 import comTP.model.modificador.Puntaje;
-import comTP.model.opcion.Opcion;
-import comTP.model.opcion.OpcionString;
-import comTP.model.pregunta.PreguntaSimple;
-import comTP.model.tipo.OrderedChoice;
-import org.junit.jupiter.api.Assertions;
+import comTP.model.opcion.*;
+import comTP.model.pregunta.*;
+import comTP.model.tipo.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
 public class OrderedChoiceTest {
     @Test
-    public void test01OrderedChoiceAciertaTodas(){
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+    public void test01SeRespondeCorrectamenteTodaUnaPreguntaOrderedChoiceSimple() {
+        //Arrange
+        Puntaje puntajeEsperado = new Puntaje(1);
+        Opcion opcion1 = new Opcion("Uno");
+        Opcion opcion2 = new Opcion("Dos");
+        Opcion opcion3 = new Opcion("Tres");
+        ArrayList<Opcion> opciones = new ArrayList<>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(opcion1);
+        opcionesCorrectas.add(opcion2);
+        opcionesCorrectas.add(opcion3);
+        Respuesta respuestaCorrecta = new Respuesta(opcionesCorrectas);
+        Tipo tipoPregunta = new OrderedChoice();
+        Pregunta pregunta = new PreguntaSimple(tipoPregunta, respuestaCorrecta);
+        Respuesta respuestaJugador = new Respuesta();
+        respuestaJugador.agregarOpcion(opcion1);
+        respuestaJugador.agregarOpcion(opcion2);
+        respuestaJugador.agregarOpcion(opcion3);
 
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("tres"));
-        respuestas.add(new OpcionString("cuatro"));
+        //Act
+        Puntaje puntajeObtenido = pregunta.verificarRespuesta(respuestaJugador);
 
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("tres"));
-        respuestasCorrectas.add(new OpcionString("cuatro"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(1);
-
-        OrderedChoice tipoPregunta = new OrderedChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaOrderedChoice = new comTP.model.pregunta.PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
-
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 
     @Test
-    public void test02OrderedChoiceAciertaAlgunas(){
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+    public void test02SeRespondeConAlgunasOpcionesEnUnaUnaPreguntaOrderedChoiceSimple(){
+        //Arrange
+        Puntaje puntajeEsperado = new Puntaje(0);
+        Opcion opcion1 = new Opcion("Uno");
+        Opcion opcion2 = new Opcion("Dos");
+        Opcion opcion3 = new Opcion("Tres");
+        ArrayList<Opcion> opciones = new ArrayList<>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(opcion1);
+        opcionesCorrectas.add(opcion2);
+        opcionesCorrectas.add(opcion3);
+        Respuesta respuestaCorrecta = new Respuesta(opcionesCorrectas);
+        Tipo tipoPregunta = new OrderedChoice();
+        Pregunta pregunta = new PreguntaSimple(tipoPregunta, respuestaCorrecta);
+        Respuesta respuestaJugador = new Respuesta();
+        respuestaJugador.agregarOpcion(opcion1);
+        respuestaJugador.agregarOpcion(opcion2);
 
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("tres"));
-        respuestasCorrectas.add(new OpcionString("cuatro"));
+        //Act
+        Puntaje puntajeObtenido = pregunta.verificarRespuesta(respuestaJugador);
 
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("cuatro"));
-        respuestas.add(new OpcionString("tres"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(0);
-
-        OrderedChoice tipoPregunta = new OrderedChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaOrderedChoice = new comTP.model.pregunta.PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
-        
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 
     @Test
-    public void test03OrderedChoicePifiaTodas(){
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+    public void test03SeRespondeEnDesordenEnUnaUnaPreguntaOrderedChoiceSimple(){
+        //Arrange
+        Puntaje puntajeEsperado = new Puntaje(0);
+        Opcion opcion1 = new Opcion("Uno");
+        Opcion opcion2 = new Opcion("Dos");
+        Opcion opcion3 = new Opcion("Tres");
+        ArrayList<Opcion> opciones = new ArrayList<>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(opcion1);
+        opcionesCorrectas.add(opcion2);
+        opcionesCorrectas.add(opcion3);
+        Respuesta respuestaCorrecta = new Respuesta(opcionesCorrectas);
+        Tipo tipoPregunta = new OrderedChoice();
+        Pregunta pregunta = new PreguntaSimple(tipoPregunta, respuestaCorrecta);
+        Respuesta respuestaJugador = new Respuesta();
+        respuestaJugador.agregarOpcion(opcion1);
+        respuestaJugador.agregarOpcion(opcion3);
+        respuestaJugador.agregarOpcion(opcion2);
 
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("tres"));
-        respuestasCorrectas.add(new OpcionString("cuatro"));
+        //Act
+        Puntaje puntajeObtenido = pregunta.verificarRespuesta(respuestaJugador);
 
-        respuestas.add(new OpcionString("cuatro"));
-        respuestas.add(new OpcionString("tres"));
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(0);
-
-        OrderedChoice tipoPregunta = new OrderedChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaOrderedChoice = new comTP.model.pregunta.PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
-        
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
-    }
-
-    @Test
-    public void test04OrderedChoiceNoCompleta(){
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
-
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("tres"));
-        respuestasCorrectas.add(new OpcionString("cuatro"));
-
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(0);
-
-        OrderedChoice tipoPregunta = new OrderedChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaOrderedChoice = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaOrderedChoice.verificarRespuesta(respuestas);
-        
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 }

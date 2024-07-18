@@ -1,47 +1,88 @@
 package comTP;
 
+import java.io.File;
+import java.util.ArrayList;
+import comTP.model.loader.JsonLoader;
+import comTP.model.opcion.*;
+import comTP.model.pregunta.Pregunta;
+import comTP.model.pregunta.PreguntaSimple;
+import comTP.model.tipo.*;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
-
-import comTP.model.loader.JsonLoader;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 public class JsonLoaderTest {
-
     @Test
-    public void test01ObtenerCorrectamenteCanitdadDeOpcionesDePregunta() {
-        // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
-        int cantidadDeOpcionesEsperadas = 4;
-
-        int ID = 0; // Los índices en los arrays empiezan desde 0
+    public void test01LeeCorrectamenteElArchivoJsonYSeteaCorrectamenteElTema() {
+        //Arrange
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
+        JsonLoader jsonLoader = new JsonLoader(filePath);
+        Tipo tipo = new VerdaderoFalso();
+        Opcion opcion1 = new Opcion("Verdadero");
+        Opcion opcion2 = new Opcion("Falso");
+        ArrayList<Opcion> opciones = new ArrayList<Opcion>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        Respuesta respuestaCorrecta = new Respuesta();
+        respuestaCorrecta.agregarOpcion(opcion2);
+        String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
+        String tema = "CIENCIAS";
+        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta, enunciado, opciones, tema);
 
-        JsonLoader lector = new JsonLoader(filePath);
-        lector.leerAtributos(ID, filePath);
+        //Act
+        Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);
 
-        int cantidadDeOpcionesObtenidas = lector.opcionesCorrectas().size();
-
-        Assertions.assertEquals(cantidadDeOpcionesEsperadas, cantidadDeOpcionesObtenidas);
+        //Assert
+        assertEquals(preguntaEsperada.getTema(), preguntaObtenida.getTema());
     }
 
     @Test
-    public void test02ObtenerCorrectamenteUnaOpcionDePregunta() {
-        // El enunciado correcto para la pregunta con ID 1 basado en tu JSON de ejemplo
-        String enunciadoEsperadoOpcion = "Televisor de tubo CRT";
-        String enunciadoObtenido;
-
-        int ID = 0; // Los índices en los arrays empiezan desde 0
+    public void test02LeeCorrectamenteElArchivoJsonYSeteaCorrectamenteElEnunciado() {
+        //Arrange
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
+        JsonLoader jsonLoader = new JsonLoader(filePath);
+        Tipo tipo = new VerdaderoFalso();
+        Opcion opcion1 = new Opcion("Verdadero");
+        Opcion opcion2 = new Opcion("Falso");
+        ArrayList<Opcion> opciones = new ArrayList<Opcion>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        Respuesta respuestaCorrecta = new Respuesta();
+        respuestaCorrecta.agregarOpcion(opcion2);
+        String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
+        String tema = "CIENCIAS";
+        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta, enunciado, opciones, tema);
 
-        JsonLoader lector = new JsonLoader(filePath);
-        lector.leerAtributos(ID, filePath);
+        //Act
+        Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);
 
-        enunciadoObtenido = lector.opciones().get(0).obtenerRespuesta();
-
-        Assertions.assertEquals(enunciadoEsperadoOpcion, enunciadoObtenido);
+        //Assert
+        assertEquals(preguntaEsperada.getEnunciado(), preguntaObtenida.getEnunciado());
     }
 
+    @Test
+    public void test03LeeCorrectamenteElArchivoJsonYSeteaCorrectamenteLaRespuestaCorrecta() {
+        //Arrange
+        int cantidadDeOpcionesCorrectasEsperada = 1;
+        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
+        JsonLoader jsonLoader = new JsonLoader(filePath);
+        Tipo tipo = new VerdaderoFalso();
+        Opcion opcion1 = new Opcion("Verdadero");
+        Opcion opcion2 = new Opcion("Falso");
+        ArrayList<Opcion> opciones = new ArrayList<Opcion>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        Respuesta respuestaCorrecta = new Respuesta();
+        respuestaCorrecta.agregarOpcion(opcion2);
+        String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
+        String tema = "CIENCIAS";
+        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta, enunciado, opciones, tema);
 
+        //Act
+        Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);
+        respuestaCorrecta.corregirRespuestaUnica(preguntaObtenida.getRespuestaCorrecta());
+        int cantidadDeOpcionesCorrectasObtenida = respuestaCorrecta.cantidadDeOpcionesCorrectas();
+
+        //Assert
+        assertEquals(cantidadDeOpcionesCorrectasEsperada, cantidadDeOpcionesCorrectasObtenida);
+    }
 }

@@ -1,64 +1,53 @@
 package comTP;
 
 import comTP.model.modificador.Puntaje;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import comTP.model.modificador.MultiplicadorX1;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
 public class MultiplicadorX1Test {
-//----------------------------------------------------------------------------------------------------------------------------------------------
     @Test
-    public void test01MultiplicadorX1(){
-        // arrange
+    public void test01MultiplicadorX1() {
+        //Arrange
         Puntaje puntajeInicial = new Puntaje(0);
         Puntaje puntajeEsperado = new Puntaje(0);
         Puntaje puntajeObtenido;
-
         MultiplicadorX1 multiplicadorX1 = new MultiplicadorX1();
 
-        // act
+        //Act
         puntajeObtenido = multiplicadorX1.multiplicar(puntajeInicial);
-        //assert
-        Assertions.assertEquals(puntajeEsperado, puntajeObtenido);
+
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
+    @Test
+    public void test02MultiplicadorX1() {
+        //Arrange
+        Puntaje puntajeInicial = new Puntaje(1);
+        Puntaje puntajeEsperado = new Puntaje(1);
+        Puntaje puntajeObtenido;
+        MultiplicadorX1 multiplicadorX1 = new MultiplicadorX1();
 
-@Test
-public void test02MultiplicadorX1(){
-    // arrange
-    Puntaje puntajeInicial = new Puntaje(1);
-    Puntaje puntajeEsperado = new Puntaje(1);
-    Puntaje puntajeObtenido;
+        //Act
+        puntajeObtenido = multiplicadorX1.multiplicar(puntajeInicial);
 
-    MultiplicadorX1 multiplicadorX1 = new MultiplicadorX1();
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
+    }
 
-    // act
-    puntajeObtenido = multiplicadorX1.multiplicar(puntajeInicial);
-    //assert
-    Assertions.assertEquals(puntajeEsperado, puntajeObtenido);
-}
+    @Test
+    public void test03MultiplicadorX1(){
+        //Arrange
+        Puntaje puntajeInicial = new Puntaje(1);
+        Puntaje puntajeEsperado = new Puntaje(1);
+        Puntaje puntajeObtenido;
+        MultiplicadorX1 multiplicadorX1 = new MultiplicadorX1();
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
+        //Act
+        puntajeObtenido = multiplicadorX1.multiplicar(puntajeInicial);
 
-@Test
-public void test03MultiplicadorX1(){
-    // arrange
-    Puntaje puntajeInicial = new Puntaje(1);
-    Puntaje puntajeEsperado = new Puntaje(1);
-    Puntaje puntajeObtenido;
-
-    MultiplicadorX1 multiplicadorX1 = new MultiplicadorX1();
-
-    // act
-    puntajeObtenido = multiplicadorX1.multiplicar(puntajeInicial);
-    //assert
-    Assertions.assertEquals(puntajeEsperado, puntajeObtenido);
-}
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
+    }
 }

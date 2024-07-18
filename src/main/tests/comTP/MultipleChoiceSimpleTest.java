@@ -1,159 +1,133 @@
 package comTP;
 
 import comTP.model.modificador.Puntaje;
-import comTP.model.opcion.Opcion;
-import comTP.model.opcion.OpcionString;
-import comTP.model.pregunta.PreguntaSimple;
-import comTP.model.tipo.MultipleChoice;
-import org.junit.jupiter.api.Assertions;
+import comTP.model.opcion.*;
+import comTP.model.pregunta.*;
+import comTP.model.tipo.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
 public class MultipleChoiceSimpleTest {
     @Test
-    public void test01PreguntaMultipleChoiceSimpleAsignaPuntosCorrectamenteRespondeTodoBien() {
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+    public void test01SeRespondeCorrectamenteTodaUnaPreguntaMultipleChoiceSimple() {
+        //Arrange
+        Puntaje puntajeEsperado = new Puntaje(1);
+        Opcion opcion1 = new Opcion("Uno");
+        Opcion opcion2 = new Opcion("Dos");
+        Opcion opcion3 = new Opcion("Tres");
+        Opcion opcion4 = new Opcion("Cuatro");
+        ArrayList<Opcion> opciones = new ArrayList<>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(opcion1);
+        opcionesCorrectas.add(opcion2);
+        Respuesta respuestaCorrecta = new Respuesta(opcionesCorrectas);
+        Tipo tipoPregunta = new MultipleChoice();
+        Pregunta pregunta = new PreguntaSimple(tipoPregunta, respuestaCorrecta);
+        Respuesta respuestaJugador = new Respuesta();
+        respuestaJugador.agregarOpcion(opcion1);
+        respuestaJugador.agregarOpcion(opcion2);
 
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("tres"));
-        respuestas.add(new OpcionString("cuatro"));
+        //Act
+        Puntaje puntajeObtenido = pregunta.verificarRespuesta(respuestaJugador);
 
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("tres"));
-        respuestasCorrectas.add(new OpcionString("cuatro"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(1);
-
-        MultipleChoice tipoPregunta = new MultipleChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaMultipleChoiseSimple = new comTP.model.pregunta.PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
-        
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 
     @Test
-    public void test02PreguntaMultipleChoiceSimpleAsignaPuntosCorrectamenteRespondeTodasMal() {
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+    public void test02SeRespondeTodoMalEnUnaPreguntaMultipleChoiceSimple() {
+        //Arrange
+        Puntaje puntajeEsperado = new Puntaje(0);
+        Opcion opcion1 = new Opcion("Uno");
+        Opcion opcion2 = new Opcion("Dos");
+        Opcion opcion3 = new Opcion("Tres");
+        Opcion opcion4 = new Opcion("Cuatro");
+        ArrayList<Opcion> opciones = new ArrayList<>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(opcion1);
+        opcionesCorrectas.add(opcion2);
+        Respuesta respuestaCorrecta = new Respuesta(opcionesCorrectas);
+        Tipo tipoPregunta = new MultipleChoice();
+        Pregunta pregunta = new PreguntaSimple(tipoPregunta, respuestaCorrecta);
+        Respuesta respuestaJugador = new Respuesta();
+        respuestaJugador.agregarOpcion(opcion3);
+        respuestaJugador.agregarOpcion(opcion4);
 
-        respuestas.add(new OpcionString("fsfs"));
-        respuestas.add(new OpcionString("cdfd"));
-        respuestas.add(new OpcionString("tres"));
-        respuestas.add(new OpcionString("cuatro"));
+        //Act
+        Puntaje puntajeObtenido = pregunta.verificarRespuesta(respuestaJugador);
 
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("dsa"));
-        respuestasCorrectas.add(new OpcionString("dads"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(0);
-
-        MultipleChoice tipoPregunta = new MultipleChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaMultipleChoiseSimple = new comTP.model.pregunta.PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
-        
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 
     @Test
-    public void test03PreguntaMultipleChoiceSimpleAsignaPuntosCorrectamenteNoRespondeTodasBien() {
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+    public void test03SeRespondeErrandoAlgunaOpcionEnUnaPreguntaMultipleChoiceSimple() {
+        //Arrange
+        Puntaje puntajeEsperado = new Puntaje(0);
+        Opcion opcion1 = new Opcion("Uno");
+        Opcion opcion2 = new Opcion("Dos");
+        Opcion opcion3 = new Opcion("Tres");
+        Opcion opcion4 = new Opcion("Cuatro");
+        ArrayList<Opcion> opciones = new ArrayList<>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(opcion1);
+        opcionesCorrectas.add(opcion2);
+        Respuesta respuestaCorrecta = new Respuesta(opcionesCorrectas);
+        Tipo tipoPregunta = new MultipleChoice();
+        Pregunta pregunta = new PreguntaSimple(tipoPregunta, respuestaCorrecta);
+        Respuesta respuestaJugador = new Respuesta();
+        respuestaJugador.agregarOpcion(opcion1);
+        respuestaJugador.agregarOpcion(opcion3);
 
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("tres"));
-        respuestas.add(new OpcionString("cuatro"));
+        //Act
+        Puntaje puntajeObtenido = pregunta.verificarRespuesta(respuestaJugador);
 
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-        respuestasCorrectas.add(new OpcionString("dsa"));
-        respuestasCorrectas.add(new OpcionString("dads"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(0);
-
-        MultipleChoice tipoPregunta = new MultipleChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaMultipleChoiseSimple = new comTP.model.pregunta.PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
-        
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 
-    // @Test
-    // public void test04PreguntaMultipleChoiceAsignaPuntosCorrectamenteNoRespondeTodas() {
-    //     // arrange
-    //     ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-    //     ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
-
-    //     respuestas.add(new OpcionString("uno"));
-    //     respuestas.add(new OpcionString("dos"));
-
-    //     respuestasCorrectas.add(new OpcionString("uno"));
-    //     respuestasCorrectas.add(new OpcionString("dos"));
-    //     respuestasCorrectas.add(new OpcionString("tres"));
-    //     respuestasCorrectas.add(new OpcionString("cuatro"));
-
-    //     int resultadoObtenido;
-    //     int resultadoEsperado = 0;
-
-    //     MultipleChoice tipoPregunta = new MultipleChoice();
-    //     PreguntaSimple preguntaMultipleChoiseSimple = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-    //     // act
-    //     resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
-        
-    //     //assert
-    //     assertEquals(resultadoEsperado, resultadoObtenido);
-    // }
-
     @Test
-    public void test05PreguntaMultipleChoiceAsignaPuntosCorrectamenteRespondeOtrasAdemasDeLasCorrectas() {
-        // arrange
-        ArrayList<Opcion> respuestas = new ArrayList<Opcion>();
-        ArrayList<Opcion> respuestasCorrectas = new ArrayList<Opcion>();
+    public void test04SeRespondeConMasOpcionesQueLasCorrectasEnUnaPreguntaMultipleChoiceSimple() {
+        //Arrange
+        Puntaje puntajeEsperado = new Puntaje(0);
+        Opcion opcion1 = new Opcion("Uno");
+        Opcion opcion2 = new Opcion("Dos");
+        Opcion opcion3 = new Opcion("Tres");
+        Opcion opcion4 = new Opcion("Cuatro");
+        ArrayList<Opcion> opciones = new ArrayList<>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        ArrayList<Opcion> opcionesCorrectas = new ArrayList<>();
+        opcionesCorrectas.add(opcion1);
+        opcionesCorrectas.add(opcion2);
+        Respuesta respuestaCorrecta = new Respuesta(opcionesCorrectas);
+        Tipo tipoPregunta = new MultipleChoice();
+        Pregunta pregunta = new PreguntaSimple(tipoPregunta, respuestaCorrecta);
+        Respuesta respuestaJugador = new Respuesta();
+        respuestaJugador.agregarOpcion(opcion1);
+        respuestaJugador.agregarOpcion(opcion3);
+        respuestaJugador.agregarOpcion(opcion4);
 
-        respuestas.add(new OpcionString("uno"));
-        respuestas.add(new OpcionString("dos"));
-        respuestas.add(new OpcionString("tres"));
-        respuestas.add(new OpcionString("cuatro"));
+        //Act
+        Puntaje puntajeObtenido = pregunta.verificarRespuesta(respuestaJugador);
 
-        respuestasCorrectas.add(new OpcionString("uno"));
-        respuestasCorrectas.add(new OpcionString("dos"));
-
-        Puntaje resultadoObtenido;
-        Puntaje resultadoEsperado = new Puntaje(0);
-
-        MultipleChoice tipoPregunta = new MultipleChoice();
-        comTP.model.pregunta.PreguntaSimple preguntaMultipleChoiseSimple = new PreguntaSimple(tipoPregunta, respuestasCorrectas);
-
-        // act
-        resultadoObtenido = preguntaMultipleChoiseSimple.verificarRespuesta(respuestas);
-        
-        //assert
-        Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 }
 

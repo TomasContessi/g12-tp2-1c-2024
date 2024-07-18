@@ -12,5 +12,5 @@ module comTP {
     exports comTP.model.pregunta;
     exports comTP.model.tipo;
     exports comTP.view;
-    exports comTP.view.Contenedores;
+    exports comTP.view.contenedores;
 }
