@@ -7,7 +7,7 @@ import comTP.model.loader.JsonLoader;
 import comTP.model.pregunta.*;
 
 public class Juego  {
-    private ArrayList<Jugador> jugadores;
+    private final ArrayList<Jugador> jugadores;
     private final DiccionarioPreguntas diccionarioPreguntas;
 
     public Juego() {

@@ -4,6 +4,7 @@ import comTP.model.juego.Juego;
 import comTP.model.jugador.Jugador;
 import comTP.model.opcion.*;
 import comTP.model.pregunta.*;
+import comTP.view.eventos.AgregarOpcionARespuestaJugadorEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -30,9 +31,6 @@ public class ContenedorPregunta extends VBox {
 
         this.getChildren().addAll(etiqueEnunciado);
 
-//        Jugador jugador = juego.jugadorQueVaAResponderPregunta();
-//        juego.jugadorRespondePregunta(jugador, pregunta, 1);
-
         Opcion opcion;
         while((opcion = pregunta.mostrarOpcion()) != null) {
             HBox hboxOpciones = new HBox();
@@ -40,6 +38,9 @@ public class ContenedorPregunta extends VBox {
             Button botonOpcion = new Button();
             botonOpcion.setMinSize(30, 30);
             botonOpcion.setStyle("-fx-scale-x: 0.5; -fx-scale-y: 0.5;");
+            AgregarOpcionARespuestaJugadorEventHandler agregarOpcion =
+                    new AgregarOpcionARespuestaJugadorEventHandler(botonOpcion);
+            botonOpcion.setOnAction(agregarOpcion);
             Label etiquetaOpcion = new Label();
             etiquetaOpcion.setText(opcion.obtenerValor());
             setMargin(etiquetaOpcion, new Insets(100, 0, 0, 0));
