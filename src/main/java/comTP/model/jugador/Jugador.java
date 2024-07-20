@@ -1,7 +1,6 @@
 package comTP.model.jugador;
 
 import java.util.ArrayList;
-
 import comTP.model.modificador.*;
 import comTP.model.pregunta.*;
 import comTP.model.opcion.*;
@@ -37,9 +36,9 @@ public class Jugador {
         return this.respuesta;
     }
 
-
-    public void asignarPuntos(Puntaje puntos){
-        this.puntaje.sumarseCon(puntos);
+    public void asignarPuntos(Puntaje puntaje){
+        //this.puntaje.sumarseCon(puntos);
+        this.puntaje = this.puntaje.sumarseCon(puntaje);
     }
 
     public Puntaje getPuntos(){

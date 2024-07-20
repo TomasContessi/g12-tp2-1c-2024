@@ -33,7 +33,7 @@ public abstract class Pregunta {
     }
     
     public void setMultiplicador(Multiplicador multiplicador) {
-        this.multiplicador = multiplicador;
+        this.multiplicador = new MultiplicadorX1();
     }
 
     public Opcion mostrarOpcion() {
@@ -53,9 +53,9 @@ public abstract class Pregunta {
         return enunciado;
     }
 
-    public String getTipo(){
-        return tipo.toString();
-    }
+//    public String getTipo(){
+//        return tipo.toString();
+//    }
 
     public String getTema() {
         return tema;

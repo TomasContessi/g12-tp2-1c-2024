@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import comTP.model.jugador.Jugador;
 import comTP.model.loader.JsonLoader;
 import comTP.model.modificador.Puntaje;
@@ -13,7 +12,7 @@ import comTP.model.pregunta.*;
 public class Juego  {
     private final ArrayList<Jugador> jugadores;
     private final DiccionarioPreguntas diccionarioPreguntas;
-    private final Map<Jugador, Puntaje> puntajeJugadores;
+    private final Map<Jugador, Puntaje> jugadoresYPuntaje;
     int jugadorActual;
 
     public Juego() {
@@ -21,7 +20,7 @@ public class Juego  {
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "files" + File.separator + "preguntas.json";
         JsonLoader jsonLoader = new JsonLoader(filePath);
         this.diccionarioPreguntas = new DiccionarioPreguntas(jsonLoader);
-        this.puntajeJugadores = new HashMap<>();
+        this.jugadoresYPuntaje = new HashMap<>();
         jugadorActual = 0;
     }
 
@@ -38,47 +37,48 @@ public class Juego  {
     }
 
     public Jugador getJugadorActual() {
-        if(!jugadores.isEmpty()) {
-            return jugadores.get(jugadorActual);
-        }
-        return null;
-    }
-
-    public Jugador cambiarJugador() {
+        Jugador jugador = null;
         if(jugadorActual < jugadores.size()) {
+            jugador = jugadores.get(jugadorActual);
             jugadorActual++;
         }
-        return jugadores.get(jugadorActual);
+        return jugador;
     }
 
-
-
     public boolean ultimoJugador() {
-        return jugadorActual == (jugadores.size() - 1);
+        return jugadorActual == jugadores.size();
     }
 
     public void reiniciarJugadorActual() {
         jugadorActual = 0;
     }
 
-//    public void setearRespuestaJugador(Jugador jugador, Pregunta pregunta, int opcion){
-//        jugador.agregarOpcion(pregunta, opcion);
-//    }
-
     public void agregarPuntaje(Jugador jugador, Puntaje puntaje){
-        this.puntajeJugadores.put(jugador, puntaje);
+        this.jugadoresYPuntaje.put(jugador, puntaje);
     }
 
-    public Puntaje verificarRespuestaJugador(Jugador jugador, Pregunta pregunta){
-        return pregunta.verificarRespuesta(jugador.getRespuesta());
+    public void verificarRespuestaJugador(Jugador jugador, Pregunta pregunta) {
+        Puntaje puntaje = pregunta.verificarRespuesta(jugador.getRespuesta());
+        this.agregarPuntaje(jugador, puntaje);
     }
 
-    public void asignarPuntajeJugador(Jugador jugador, Puntaje puntaje){
-        jugador.asignarPuntos(puntaje);
+    public void asignarPuntajeJugador(){
+        for(Map.Entry<Jugador, Puntaje> entry: jugadoresYPuntaje.entrySet()) {
+            Jugador jugador = entry.getKey();
+            Puntaje puntaje = entry.getValue();
+            jugador.asignarPuntos(puntaje);
+        }
     }
 
+    public Iterable<Map.Entry<Jugador, Puntaje>> iterableJugadorPuntajes() {
+        return jugadoresYPuntaje.entrySet();
+    }
 
-
+    public void resetearRespuestasJugadores() {
+        for(Jugador jugador : jugadores) {
+            jugador.cambiarRespuesta();
+        }
+    }
 
 //    public boolean cargarSiguientePregunta(){
 //        ArrayList<String> temasRestantes;
