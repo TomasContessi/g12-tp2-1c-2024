@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+title "Multiplicador"
+
+interface Multiplicador {
+    + multiplicar(puntaje:Puntaje): Puntaje
+}
+
+class MultiplicadorX1 {
+    + multiplicar(puntaje:Puntaje): Puntaje
+}
+
+class MultiplicadorX2 {
+    + multiplicar(puntaje:Puntaje): Puntaje
+}
+
+class MultiplicadorX3 {
+    + multiplicar(puntaje:Puntaje): Puntaje
+}
+
+class Puntaje {
+    - valor:int
+    + Puntaje(puntaje:int)
+    + multiplicarseCon(otroPuntaje:Puntaje):Puntaje
+    + sumarseCon(otroPuntaje:Puntaje):Puntaje
+    + descontar(otroPuntaje:Puntaje):Puntaje
+    + menorOIgualQue(otroPuntaje:Puntaje):boolean
+    + mayorIgual(otroPuntaje:Puntaje):boolean
+    + valorNumerico():int 
+    + equals(Object o):boolean
+    + hashCode():int
+}
+
+Multiplicador <|.. MultiplicadorX1
+Multiplicador <|.. MultiplicadorX2
+Multiplicador <|.. MultiplicadorX3
+Multiplicador ..> Puntaje
+
+
+
+@enduml

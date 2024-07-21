@@ -1,0 +1,39 @@
+@startuml
+
+'https://plantuml.com/class-diagram
+
+title "Tipo Pregunta"
+
+
+interface Tipo {
+    + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
+}
+
+class VerdaderoFalso {
+    + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
+}
+
+class MultipleChoice {
+    + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
+}
+
+class OrderedChoice{
+    + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
+}
+
+class GroupChoice {
+    - grupoATitulo:String
+    - grupoBTitulo:String
+
+    + GroupChoice(grupoA:String, grupoB:String)
+    + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
+    + getTituloGrupoA():String
+    + getTituloGrupoB():String
+}
+
+Tipo <|.. GroupChoice
+Tipo <|.. VerdaderoFalso
+Tipo <|.. MultipleChoice    
+Tipo <|.. OrderedChoice
+
+@enduml

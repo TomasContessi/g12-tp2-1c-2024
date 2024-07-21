@@ -1,0 +1,46 @@
+
+@startuml
+
+'https://plantuml.com/class-diagram
+
+title "Pregunta Hijos"
+
+abstract class Pregunta {
+   - tipo: Tipo
+    - tema: String
+    - enunciado: String
+    - respuestaCorrecta: Respuesta
+    - multiplicador: Multiplicador
+    - opciones: ArrayList<Opcion>
+    - numeroOpcion: int
+
+    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta)
+    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
+    + setMultiplicador(Multiplicador multiplicador):void
+    + mostrarOpcion():Opcion
+    + setearRespuestaJugador(Respuesta respuestaJugador, int numeroOpcion):void
+    + getEnunciado():String
+    + getTipo():String
+    + getTema():String
+    + getRespuestaCorrecta():Respuesta
+    + verificarRespuesta(respuestaJugador:Respuesta):Puntaje
+}
+
+class PreguntaConPenalidad extends Pregunta{
+    + PreguntaEleccionMultiple(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
+    + verificarRespuesta(Respuesta respuestaJugador):Puntaje
+}
+
+class PreguntaParcial extends Pregunta{
+    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta)
+    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
+    + verificarRespuesta(Respuesta respuestaJugador):Puntaje
+}
+
+class PreguntaSimple extends Pregunta {
+    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta)
+    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
+    + verificarRespuesta(Respuesta respuestaJugador):Puntaje
+}
+
+@enduml
