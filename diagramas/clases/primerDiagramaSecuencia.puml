@@ -1,0 +1,56 @@
+@startuml Diagrama de Secuencia
+title Diagrama de Secuencia
+
+skinparam monochrome true
+hide footbox
+
+participant Actor
+
+participant "juego:Juego" as Juego
+participant "jsonLoader:JsonLoader" as JsonLoader
+participant "diccionarioPreguntas:DiccionarioPreguntas" as DiccionarioPreguntas
+participant "factory:PreguntasFactory" as PreguntasFactory
+participant "respuesta:Respuesta" as Respuesta
+participant "opcion:Opcion" as Opciones
+participant "nuevojugador:Jugador" as Jugador
+participant "multiplicadorx1:MultiplicadorX1" as MultiplicadorX1
+participant "multiplicadorx2:MultiplicadorX2" as MultiplicadorX2
+participant "multiplicadorx3:MultiplicadorX3" as MultiplicadorX3
+participant "pregunta:Pregunta" as Pregunta
+participant "tipo:Tipo" as Tipo
+participant "respuesta:Respuesta" as Respuesta
+
+Actor->Juego: Juego(new Juego)
+
+Juego -> JsonLoader: JsonLoader(filePath)
+
+Juego -> DiccionarioPreguntas: DiccionarioPreguntas(jsonLoader)
+
+loop crear jugadores
+
+    Actor -> Juego: agregarJugador(nuevojugador:Jugador)
+    Juego -> Jugador : Jugador(nuevoJugador)
+    Juego->Juego: add(nuevojugador)
+
+end
+
+loop  crear pregunta
+
+Actor->Juego: setearPreguntas() 
+
+    Juego -> DiccionarioPreguntas: asignarPreguntasPorTema()
+    DiccionarioPreguntas->JsonLoader:loadPregunta(i)
+
+    JsonLoader->JsonLoader: leerAtrubutus(ID:int)
+    JsonLoader->Respuesta: agregarOpcion(new Opcion)
+    Respuesta->Opcion: Opcion(valor:String)
+    Respuesta->Respuesta: add(Opcion)
+    
+    JsonLoader->factory: crearPregunta(datosEnunciado:JsonObject, respuestaCorrecta:Respuesta, opciones:ArrayList<Opcion>)
+    
+    factory->Pregunta: Pregunta (new Pregunta)
+    Pregunta-->DiccionarioPreguntas: pregunta
+
+end
+
+' DiccionarioPreguntas -> Pregunta
