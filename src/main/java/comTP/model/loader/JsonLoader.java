@@ -17,7 +17,6 @@ public class JsonLoader {
     private final PreguntaFactory factory;
     private Respuesta respuestaCorrecta;
     private ArrayList<Opcion> opciones;
-    private String textoRespuesta;
 
     public JsonLoader(String filePath) {
         this.filePath = filePath;
@@ -43,8 +42,6 @@ public class JsonLoader {
 
             JsonElement element = jsonArray.get(id);
             jsonObject = element.getAsJsonObject();
-
-            this.textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
 
             String respuestasCorrectas = jsonObject.get("Respuesta").getAsString();
             String opcionKey;

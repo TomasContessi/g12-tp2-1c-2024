@@ -30,6 +30,10 @@ public class DiccionarioPreguntas {
         return recorredor.obtenerPregunta();
     }
 
+    public boolean ultimaPregunta() {
+        return recorredor.ultimaPregunta();
+    }
+
     public Map<String, ArrayList<Pregunta>> getPreguntasGuardadas() {
         return preguntasGuardadas;
     }

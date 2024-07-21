@@ -8,14 +8,15 @@ import comTP.model.opcion.*;
 public class Jugador {
     private final String nombre;
     private Puntaje puntaje;
-    private ArrayList<Multiplicador> multiplicadores;
+    private MultiplicadorX2 multiplicadorX2;
+    private MultiplicadorX3 multiplicadorX3;
     private Exclusividad exclusividad;
     private final Respuesta respuesta;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.puntaje = new Puntaje(0);
-        this.multiplicadores = new ArrayList<>();
+        //this.multiplicadores = new ArrayList<>();
         this.exclusividad = new Exclusividad();
         this.respuesta = new Respuesta();
     }
@@ -28,6 +29,10 @@ public class Jugador {
         pregunta.setearRespuestaJugador(respuesta, numeroOpcion);
     }
 
+    public void usarMultiplicador(Pregunta pregunta, Multiplicador multiplicador) {
+        pregunta.setMultiplicador(multiplicador);
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -37,7 +42,6 @@ public class Jugador {
     }
 
     public void asignarPuntos(Puntaje puntaje){
-        //this.puntaje.sumarseCon(puntos);
         this.puntaje = this.puntaje.sumarseCon(puntaje);
     }
 

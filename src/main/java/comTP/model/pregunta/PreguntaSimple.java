@@ -10,9 +10,14 @@ public class PreguntaSimple extends Pregunta {
         super(tipo, respuestaCorrecta);
     }
 
-    public PreguntaSimple(Tipo tipo, Respuesta respuestaCorrecta, String enunciado,
-                          ArrayList<Opcion> opciones, String tema) {
-        super(tipo, respuestaCorrecta, enunciado, opciones, tema);
+    public PreguntaSimple(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, String tipoPregunta,
+                          ArrayList<Opcion> opciones, String tema, String textoRespuesta) {
+        super(tipo, respuestaCorrecta, enunciado, tipoPregunta, opciones, tema, textoRespuesta);
+    }
+
+    @Override
+    public boolean tienePenalidad() {
+        return false;
     }
 
     @Override

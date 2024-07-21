@@ -26,7 +26,9 @@ public class JsonLoaderTest {
         respuestaCorrecta.agregarOpcion(opcion2);
         String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
         String tema = "CIENCIAS";
-        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta, enunciado, opciones, tema);
+        String textoRespuesta = "En la altura, la temperatura de ebullición es menor por la mayor presión atmosférica";
+        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta,
+                enunciado, opciones, tema, textoRespuesta);
 
         //Act
         Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);
@@ -50,7 +52,9 @@ public class JsonLoaderTest {
         respuestaCorrecta.agregarOpcion(opcion2);
         String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
         String tema = "CIENCIAS";
-        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta, enunciado, opciones, tema);
+        String textoRespuesta = "En la altura, la temperatura de ebullición es menor por la mayor presión atmosférica";
+        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta,
+                enunciado, opciones, tema, textoRespuesta);
 
         //Act
         Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);
@@ -75,7 +79,9 @@ public class JsonLoaderTest {
         respuestaCorrecta.agregarOpcion(opcion2);
         String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
         String tema = "CIENCIAS";
-        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta, enunciado, opciones, tema);
+        String textoRespuesta = "En la altura, la temperatura de ebullición es menor por la mayor presión atmosférica";
+        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta,
+                enunciado, opciones, tema, textoRespuesta);
 
         //Act
         Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);

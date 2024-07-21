@@ -8,7 +8,9 @@ public class RecorridoPreguntas {
     private final Map<String, ArrayList<Pregunta>> preguntasGuardadas;
     private final Map<String, Integer> indiceActualPorClave;
     private final ArrayList<String> clavesOrdenadas;
+    private ArrayList<Pregunta> preguntas;
     private int indiceGlobal;
+    private int indiceActual;
 
     public RecorridoPreguntas(Map<String, ArrayList<Pregunta>> preguntasGuardadas) {
         this.preguntasGuardadas = preguntasGuardadas;
@@ -23,9 +25,12 @@ public class RecorridoPreguntas {
     }
 
     public Pregunta obtenerPregunta() {
+        if(clavesOrdenadas.isEmpty())
+            return null;
+
         String claveActual = clavesOrdenadas.get(indiceGlobal % clavesOrdenadas.size());
-        ArrayList<Pregunta> preguntas = preguntasGuardadas.get(claveActual);
-        int indiceActual = indiceActualPorClave.get(claveActual);
+        preguntas = preguntasGuardadas.get(claveActual);
+        indiceActual = indiceActualPorClave.get(claveActual);
 
         if(indiceActual < preguntas.size()) {
             Pregunta pregunta = preguntas.get(indiceActual);
@@ -37,5 +42,9 @@ public class RecorridoPreguntas {
             clavesOrdenadas.remove(claveActual);
             return obtenerPregunta();
         }
+    }
+
+    public boolean ultimaPregunta() {
+        return (indiceActual == preguntas.size() - 1 && clavesOrdenadas.size() == 1);
     }
 }

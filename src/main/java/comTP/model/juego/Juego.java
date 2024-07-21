@@ -80,6 +80,10 @@ public class Juego  {
         }
     }
 
+    public boolean ultimaPregunta() {
+        return diccionarioPreguntas.ultimaPregunta();
+    }
+
 //    public boolean cargarSiguientePregunta(){
 //        ArrayList<String> temasRestantes;
 //        ArrayList<String> temasPosibles;
