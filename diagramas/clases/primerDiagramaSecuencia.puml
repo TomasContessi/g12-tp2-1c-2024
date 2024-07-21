@@ -10,7 +10,8 @@ participant "juego:Juego" as Juego
 participant "jsonLoader:JsonLoader" as JsonLoader
 participant "diccionarioPreguntas:DiccionarioPreguntas" as DiccionarioPreguntas
 participant "factory:PreguntasFactory" as PreguntasFactory
-participant "respuesta:Respuesta" as Respuesta
+participant "recorredor:RecorridoPreguntas" as RecorridoPreguntas
+participant "respuestaCorrecta:Respuesta" as Respuesta
 participant "opcion:Opcion" as Opciones
 participant "nuevojugador:Jugador" as Jugador
 participant "multiplicadorx1:MultiplicadorX1" as MultiplicadorX1
@@ -26,6 +27,8 @@ Juego -> JsonLoader: JsonLoader(filePath)
 
 Juego -> DiccionarioPreguntas: DiccionarioPreguntas(jsonLoader)
 
+DiccionarioPreguntas->DiccionarioPreguntas: preguntasGuardadas: new HashMap<>();
+
 loop crear jugadores
 
     Actor -> Juego: agregarJugador(nuevojugador:Jugador)
@@ -34,23 +37,114 @@ loop crear jugadores
 
 end
 
-loop  crear pregunta
 
 Actor->Juego: setearPreguntas() 
 
     Juego -> DiccionarioPreguntas: asignarPreguntasPorTema()
-    DiccionarioPreguntas->JsonLoader:loadPregunta(i)
+'     DiccionarioPreguntas->JsonLoader:loadPregunta(i)
 
-    JsonLoader->JsonLoader: leerAtrubutus(ID:int)
-    JsonLoader->Respuesta: agregarOpcion(new Opcion)
-    Respuesta->Opcion: Opcion(valor:String)
-    Respuesta->Respuesta: add(Opcion)
-    
-    JsonLoader->factory: crearPregunta(datosEnunciado:JsonObject, respuestaCorrecta:Respuesta, opciones:ArrayList<Opcion>)
-    
-    factory->Pregunta: Pregunta (new Pregunta)
-    Pregunta-->DiccionarioPreguntas: pregunta
 
+' loop  para cadaPregunta
+
+'     JsonLoader->JsonLoader: leerAtrubutus(ID:int)
+
+
+'     loop para cada respuesta correcta
+
+'     JsonLoader->Respuesta: agregarOpcion(new Opcion)
+'     Respuesta->Opcion: Opcion(valor:String)
+'     Respuesta->Respuesta: add(Opcion)
+
+'     end
+
+'     loop para cada opcion
+
+'     JsonLoader->Opcion: Opcion(valor:String)
+'     JsonLoader->JsonLoader: add(opcion)
+
+'     end
+    
+'     JsonLoader->factory: crearPregunta(datosEnunciado:JsonObject, respuestaCorrecta, opciones)
+    
+'     factory->Pregunta: Pregunta (new Pregunta)
+'     Pregunta-->DiccionarioPreguntas: pregunta
+
+' end
+
+
+participant Cliente
+participant JsonLoader
+participant FileReader
+participant JsonParser
+
+loop  para cadaPregunta
+
+DiccionarioPreguntas->JsonLoader: loadPregunta(ID)
+alt FileReader y JsonParser leen el archivo
+    JsonLoader->FileReader: new FileReader(filePath)
+    FileReader-->JsonLoader: reader
+    JsonLoader->JsonParser: JsonParser.parseReader(reader)
+    JsonParser-->JsonLoader: jsonElement (JsonArray)
+    JsonLoader->JsonArray: jsonElement.getAsJsonArray()
 end
+JsonLoader->JsonLoader: leerAtributos(ID)
+alt Inicialización de atributos
+    JsonLoader->Respuesta: new Respuesta()
+    JsonLoader->JsonLoader: opciones = new ArrayList<Opcion>()
+end
+alt Lectura de atributos del JSON
+    JsonLoader->FileReader: new FileReader(filePath)
+    FileReader-->JsonLoader: reader
+    JsonLoader->JsonParser: JsonParser.parseReader(reader)
+    JsonParser-->JsonLoader: jsonElement (JsonArray)
+    JsonLoader->JsonArray: jsonArray.get(id)
+    JsonArray-->JsonLoader: element
+    JsonLoader->JsonObject: element.getAsJsonObject()
+end
+alt Manejo de respuestas correctas
+    alt Respuestas múltiples
+        JsonLoader->JsonObject: get("Respuesta").getAsString()
+        JsonObject-->JsonLoader: respuestasCorrectas
+        loop Para cada grupo de respuestas
+            JsonLoader->Respuesta: agregarOpcion(new Opcion(jsonObject.get(opcionKey).getAsString()))
+            Respuesta->Opcion: new Opcion(valor:String)
+            Opcion-->Respuesta: opcion
+            Respuesta->Respuesta: add(opcion)
+        end
+    else Respuesta única
+        loop Para cada respuesta
+            JsonLoader->Respuesta: agregarOpcion(new Opcion(jsonObject.get(opcionKey).getAsString()))
+            Respuesta->Opcion: new Opcion(valor:String)
+            Opcion-->Respuesta: opcion
+            Respuesta->Respuesta: add(opcion)
+        end
+    end
+end
+alt Manejo de opciones
+    loop Para cada opción
+        JsonLoader->Opcion: new Opcion(jsonObject.get(key).getAsString())
+        Opcion-->JsonLoader: opcion
+        JsonLoader->JsonLoader: add(opcion)
+    end
+end
+JsonLoader->PreguntaFactory: crearPregunta(datosEnunciado: JsonObject, respuestaCorrecta, opciones)
+PreguntaFactory->Pregunta: new Pregunta()
+Pregunta-->JsonLoader: pregunta
+JsonLoader-->DiccionarioPreguntas: pregunta
+
+DiccionarioPreguntas -> Pregunta: getTema():string
+Pregunta --> DiccionarioPreguntas: temaPregunta
+
+DiccionarioPreguntas->DiccionarioPreguntas: putIfAbsent(temaPregunta, new ArrayList<>())
+DiccionarioPreguntas->DiccionarioPreguntas: get(temaPregunta).add(pregunta)
+end
+
+DiccionarioPreguntas->RecorridoPreguntas: new RecorridoPreguntas(preguntasGuardadas))
+
+RecorridoPreguntas-> RecorridoPreguntas: indiceActualPorClave = new HashMap<>();
+RecorridoPreguntas-> RecorridoPreguntas: clavesOrdenadas = new ArrayList<>();
+
+RecorridoPreguntas->RecorridoPreguntas : add(clave)
+RecorridoPreguntas->RecorridoPreguntas : put(clave, 0)
 
 ' DiccionarioPreguntas -> Pregunta
