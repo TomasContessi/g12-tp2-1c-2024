@@ -1,45 +1,43 @@
-
 @startuml
 
-'https://plantuml.com/class-diagram
-
-title "Pregunta Hijos"
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
 
 abstract class Pregunta {
-   - tipo: Tipo
-    - tema: String
-    - enunciado: String
-    - respuestaCorrecta: Respuesta
-    - multiplicador: Multiplicador
-    - opciones: ArrayList<Opcion>
-    - numeroOpcion: int
-
-    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta)
-    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
-    + setMultiplicador(Multiplicador multiplicador):void
+    - tipo:Tipo
+    - tema:String
+    - tipoPregunta:String
+    - enunciado:String
+    - textoRespuesta:String
+    - respuestaCorrecta:Respuesta
+    - numeroOpcion:int
+    + Pregunta(tipo:Tipo, respuestaCorrecta:Respuesta)
+    + Pregunta(tipo:Tipo, respuestaCorrecta:Respuesta, enunciado:String, tipoPregunta:String, opciones:ArrayList<Opcion>, tema:String, textoRespuesta:String)
+    + setMultiplicador(Multiplicador multiplicador)
     + mostrarOpcion():Opcion
-    + setearRespuestaJugador(Respuesta respuestaJugador, int numeroOpcion):void
+    + setearRespuestaJugador(respuestaJugador:Respuesta, numeroOpcion:int)
     + getEnunciado():String
-    + getTipo():String
     + getTema():String
+    + getTipoPregunta():String
+    + getTextoRespuesta():String
     + getRespuestaCorrecta():Respuesta
+    + tienePenalidad():boolean
     + verificarRespuesta(respuestaJugador:Respuesta):Puntaje
 }
 
 class PreguntaConPenalidad extends Pregunta{
-    + PreguntaEleccionMultiple(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
+    + tienePenalidad():boolean
     + verificarRespuesta(Respuesta respuestaJugador):Puntaje
 }
 
 class PreguntaParcial extends Pregunta{
-    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta)
-    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
+    + tienePenalidad():boolean
     + verificarRespuesta(Respuesta respuestaJugador):Puntaje
 }
 
 class PreguntaSimple extends Pregunta {
-    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta)
-    + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
+    + tienePenalidad():boolean
     + verificarRespuesta(Respuesta respuestaJugador):Puntaje
 }
 

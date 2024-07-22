@@ -81,8 +81,8 @@ public class JsonLoader {
         return jsonObject;
     }
 
-    public Pregunta loadPregunta(int ID) {
-        JsonObject datosEnunciado = this.leerAtributos(ID);
+    public Pregunta loadPregunta(int id) {
+        JsonObject datosEnunciado = this.leerAtributos(id);
         return (factory.crearPregunta(datosEnunciado, respuestaCorrecta, opciones));
     }
 

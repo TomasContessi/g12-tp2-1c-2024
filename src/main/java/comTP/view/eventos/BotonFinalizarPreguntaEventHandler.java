@@ -44,13 +44,17 @@ public class BotonFinalizarPreguntaEventHandler implements EventHandler<ActionEv
     public void handle(ActionEvent actionEvent) {
         juego.verificarRespuestaJugador(jugadorActual, pregunta);
         if(juego.ultimoJugador()) {
-            ContenedorPuntajes contenedorPuntajes = new ContenedorPuntajes(stage, juego, pregunta);
-            Scene escenaPuntajes = new Scene(contenedorPuntajes, 650, 500);
-            stage.setScene(escenaPuntajes);
+            this.cargarEscenaPuntaje();
         }
         else {
             reiniciarPregunta();
         }
+    }
+
+    private void cargarEscenaPuntaje() {
+        ContenedorPuntajes contenedorPuntajes = new ContenedorPuntajes(stage, juego, pregunta);
+        Scene escenaPuntajes = new Scene(contenedorPuntajes, 650, 500);
+        stage.setScene(escenaPuntajes);
     }
 
     private void reiniciarPregunta() {

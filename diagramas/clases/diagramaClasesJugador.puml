@@ -1,24 +1,23 @@
-
 @startuml
 
-
-'https://plantuml.com/class-diagram
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
 
 class Jugador {
     - nombre:String
-    - exclusividad:Exclusividad
     + Jugador(nombre:String)
-    + cambiarRespuesta():void
-    +usarMultiplicador(pregunta:Pregunta, multiplicador:Multiplicador)
-    + agregarOpcion(pregunta:Pregunta, numeroOpcion:int):void
+    + cambiarRespuesta()
+    + agregarOpcion(pregunta:Pregunta, numeroOpcion:int)
+    + usarMultiplicador(pregunta:Pregunta, multiplicador:Multiplicador)
     + getNombre():String
     + getRespuesta():Respuesta
-    + asignarPuntos(puntos:Puntaje):void
+    + asignarPuntos(puntos:Puntaje)
     + getPuntos():Puntaje
 }
 
-interface Multiplicador {
-    + multiplicar(puntaje:Puntaje): Puntaje
+class Multiplicador {
+    + multiplicar(puntaje:Puntaje):Puntaje
 }
 
 class Puntaje {
@@ -26,31 +25,27 @@ class Puntaje {
     + Puntaje(puntaje:int)
     + multiplicarseCon(otroPuntaje:Puntaje):Puntaje
     + sumarseCon(otroPuntaje:Puntaje):Puntaje
-    + descontar(otroPuntaje:Puntaje):Puntaje
-    + menorOIgualQue(otroPuntaje:Puntaje):boolean
-    + mayorIgual(otroPuntaje:Puntaje):boolean
-    + valorNumerico():int 
+    + valorNumerico():int
     + equals(Object o):boolean
     + hashCode():int
 }
 
 class Respuesta {
-        - opciones: ArrayList<Opcion>
-        - cantidadDeOpcionesCorrectas: int
-        - cantidadDeOpcionesIncorrectas: int
+    - opciones: ArrayList<Opcion>
+    - cantidadDeOpcionesCorrectas:int
+    - cantidadDeOpcionesIncorrectas:int
+    + Respuesta(opciones:ArrayList<Opcion>)
+    + agregarOpcion(opcion:Opcion)
+    + eliminarOpciones()
+    - otraRespuestaTieneMayorCantidadDeOpciones(otraRespuesta:Respuesta):boolean
+    + corregirRespuestaUnica(otraRespuesta:Respuesta):boolean
+    + corregirRespuestaSinImportarElOrden(otraRespuesta:Respuesta):boolean
+    + corregirImportandoElOrden(otraRespuesta:Respuesta):boolean
+    + cantidadDeOpcionesCorrectas():int
+    + cantidadDeOpcionesIncorrectas():int
+}
 
-        + Respuesta()
-        + Respuesta(opciones: ArrayList<Opcion>)
-        + agregarOpcion(opcion: Opcion): void
-        + eliminarOpciones(): void
-        - otraRespuestaTieneMayorCantidadDeOpciones(otraRespuesta: Respuesta): boolean
-        + corregirRespuestaUnica(otraRespuesta: Respuesta): boolean
-        + corregirRespuestaSinImportarElOrden(otraRespuesta: Respuesta): boolean
-        + corregirImportandoElOrden(otraRespuesta: Respuesta): boolean
-        + cantidadDeOpcionesCorrectas(): int
-        + cantidadDeOpcionesIncorrectas(): int
-    }
-
+Multiplicador <<Interface>>
 Jugador *-- "1..*" Multiplicador
 Jugador o-- Puntaje
 Jugador o-- Respuesta

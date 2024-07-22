@@ -7,5 +7,5 @@ public class MultipleChoice implements Tipo {
     public boolean respondidoCorrectamente(Respuesta respuestaCorrecta,
                                            Respuesta respuestaJugador) {
         return respuestaCorrecta.corregirRespuestaSinImportarElOrden(respuestaJugador);
-    } 
+    }
 }

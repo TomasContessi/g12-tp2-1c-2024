@@ -3,7 +3,7 @@ package comTP.model.opcion;
 import java.util.Objects;
 
 public class Opcion {
-    String valor;
+    private final String valor;
 
     public Opcion(String valor){
         this.valor = valor;

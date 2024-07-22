@@ -18,7 +18,7 @@ public class BotonFinalizarJuegoEventHandler implements EventHandler<ActionEvent
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        ContenedorFinal contenedorFinal = new ContenedorFinal(stage, juego);
+        ContenedorFinal contenedorFinal = new ContenedorFinal(juego);
         Scene escenaFinal = new Scene(contenedorFinal, 600, 500);
         stage.setScene(escenaFinal);
     }

@@ -7,5 +7,5 @@ public class OrderedChoice implements Tipo {
     public boolean respondidoCorrectamente(Respuesta respuestaCorrecta,
                                            Respuesta respuestaJugador) {
         return respuestaCorrecta.corregirImportandoElOrden(respuestaJugador);
-    } 
+    }
 }

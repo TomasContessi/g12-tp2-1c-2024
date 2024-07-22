@@ -1,110 +1,103 @@
 @startuml
-'https://plantuml.com/class-diagram
 
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
 
 class JsonLoader {
     - filePath:String
     - totalPreguntas:int
     - respuestaCorrecta:Respuesta
     - textoRespuesta:String
-
     + JsonLoader(filePath:String)
     + leerAtributos(id:int):JsonObject
-    + loadPregunta(ID:int):Pregunta
+    + loadPregunta(id:int):Pregunta
     + respuestaCorrecta():Respuesta
     + opciones():ArrayList<Opcion>
     + totalPreguntas():int
 }
 
-
 class DiccionarioPreguntas {
-    + DiccionarioPreguntas(jsonLoader:JsonLoader)
-    + asignarPreguntasPorTema():void
+    + asignarPreguntasPorTema(jsonLoader:JsonLoader)
     + getPregunta():Pregunta
-    + getPreguntasGuardadas():Map<String, ArrayList<Pregunta>>
+    + ultimaPregunta():boolean
 }
 
 class PreguntaFactory {
-
     + crearPregunta(datosEnunciado:JsonObject, respuestaCorrecta:Respuesta, opciones:ArrayList<Opcion>):Pregunta
 }
 
-
-
-class RecorridoPreguntas {
+class RecorredorPreguntas {
     - indiceActualPorClave:Map<String, Integer>
     - clavesOrdenadas:ArrayList<String>
     - indiceGlobal:int
-
-    + RecorridoPreguntas(preguntasGuardadas:Map<String, ArrayList<Pregunta>>)
+    - indiceActual:int
+    + RecorredorPreguntas(preguntasGuardadas:Map<String, ArrayList<Pregunta>>)
     + obtenerPregunta():Pregunta
+    + ultimaPregunta():boolean
 }
 
 class Jugador {
     - nombre:String
-    - puntaje:Puntaje
-    - multiplicadores:ArrayList<Multiplicador>
-    - exclusividad:Exclusividad
     - respuesta:Respuesta
-
     + Jugador(nombre:String)
-    + cambiarRespuesta():void
-    + agregarOpcion(pregunta:Pregunta, numeroOpcion:int):void
+    + cambiarRespuesta()
+    + agregarOpcion(pregunta:Pregunta, numeroOpcion:int)
+    + usarMultiplicador(pregunta:Pregunta, multiplicador:Multiplicador)
     + getNombre():String
     + getRespuesta():Respuesta
-    + asignarPuntos(puntos:Puntaje):void
+    + asignarPuntos(puntos:Puntaje)
     + getPuntos():Puntaje
 }
 
 class Juego {
     - jugadorActual: int
-
-    + Juego()
-    + agregarJugador(jugador: Jugador): void
-    + setearPreguntas(): void
-    + obtenerPregunta(): Pregunta
-    + getJugadorActual(): Jugador
-    + ultimoJugador(): boolean
-    + reiniciarJugadorActual(): void
-    + agregarPuntaje(jugador: Jugador, puntaje: Puntaje): void
-    + verificarRespuestaJugador(jugador: Jugador, pregunta: Pregunta): void
-    + asignarPuntajeJugador(): void
-    + iterableJugadorPuntajes(): Iterable<Map.Entry<Jugador, Puntaje>>
-    + resetearRespuestasJugadores(): void
-    + ultimaPregunta(): boolean
+    + agregarJugador(jugador: Jugador)
+    + listaJugadoresVacia():boolean
+    + verificarArrayJugadores()
+    + setearPreguntas()
+    + obtenerPregunta():Pregunta
+    + getJugadorActual():Jugador
+    + ultimoJugador():boolean
+    + reiniciarJugadorActual()
+    + agregarPuntaje(jugador:Jugador, puntaje:Puntaje)
+    + verificarRespuestaJugador(jugador:Jugador, pregunta:Pregunta)
+    + asignarPuntajeJugadores()
+    + iterableJugadorPuntajes():Iterable<Map.Entry<Jugador, Puntaje>
+    + resetearRespuestasJugadores()
+    + ultimaPregunta():boolean
 }
-
 
 class Puntaje {
     - valor:int
     + Puntaje(puntaje:int)
     + multiplicarseCon(otroPuntaje:Puntaje):Puntaje
     + sumarseCon(otroPuntaje:Puntaje):Puntaje
-    + descontar(otroPuntaje:Puntaje):Puntaje
-    + menorOIgualQue(otroPuntaje:Puntaje):boolean
-    + mayorIgual(otroPuntaje:Puntaje):boolean
     + valorNumerico():int 
     + equals(Object o):boolean
     + hashCode():int
 }
 
 abstract class Pregunta {
-    - tipo: Tipo
-    - tema: String
-    - enunciado: String
-    - respuestaCorrecta: Respuesta
-    - multiplicador: Multiplicador
-    - numeroOpcion: int
-
-    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta)
-    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
-    + setMultiplicador(Multiplicador multiplicador):void
+    - tipo:Tipo
+    - tema:String
+    - tipoPregunta:String
+    - enunciado:String
+    - respuestaCorrecta:Respuesta
+    - multiplicador:Multiplicador
+    - textoRespuesta:String
+    - numeroOpcion:int
+    + Pregunta(tipo:Tipo, respuestaCorrecta:Respuesta)
+    + Pregunta(tipo:Tipo, respuestaCorrecta:Respuesta, enunciado:String, tipoPregunta:String, opciones:ArrayList<Opcion>, tema:String, textoRespuesta:String)
+    + setMultiplicador(Multiplicador multiplicador)
     + mostrarOpcion():Opcion
-    + setearRespuestaJugador(Respuesta respuestaJugador, int numeroOpcion):void
+    + setearRespuestaJugador(respuestaJugador:Respuesta, numeroOpcion:int)
     + getEnunciado():String
-    + getTipo():String
     + getTema():String
+    + getTipoPregunta():String
+    + getTextoRespuesta():String
     + getRespuestaCorrecta():Respuesta
+    + tienePenalidad():boolean
     + verificarRespuesta(respuestaJugador:Respuesta):Puntaje
 }
 
@@ -116,24 +109,23 @@ class Opcion {
     + obtenerValor():String
 }
 
-DiccionarioPreguntas *--  JsonLoader
+DiccionarioPreguntas ..>  JsonLoader
 
 JsonLoader *-- PreguntaFactory
-DiccionarioPreguntas *-- RecorridoPreguntas
+DiccionarioPreguntas *-left- RecorredorPreguntas
 
-Juego o-- "1..*" Jugador
-Juego --> DiccionarioPreguntas
+Juego o-right- "1..*" Jugador
+Juego -left-> DiccionarioPreguntas
 Juego o-- "1..*" Puntaje
-DiccionarioPreguntas o-- "1..*" Pregunta
-RecorridoPreguntas o-- "1..*" Pregunta
-PreguntaFactory ..> Pregunta
+DiccionarioPreguntas o-down- "1..*" Pregunta
+RecorredorPreguntas o-down- "1..*" Pregunta
+PreguntaFactory .down.> Pregunta
 
-JsonLoader o-- "1..*" Opcion
-Jugador --> Puntaje
-Pregunta ..> Puntaje
-Jugador ..> Pregunta
-Pregunta o-- "*" Opcion
+JsonLoader o-left- "1..*" Opcion
+Jugador -up-> Puntaje
+Pregunta .right.> Puntaje
+Jugador .down.> Pregunta
+Pregunta o-left- "*" Opcion
 Juego *-- JsonLoader
-
 
 @enduml

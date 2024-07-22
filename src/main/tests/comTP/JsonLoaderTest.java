@@ -19,16 +19,17 @@ public class JsonLoaderTest {
         Tipo tipo = new VerdaderoFalso();
         Opcion opcion1 = new Opcion("Verdadero");
         Opcion opcion2 = new Opcion("Falso");
-        ArrayList<Opcion> opciones = new ArrayList<Opcion>();
+        ArrayList<Opcion> opciones = new ArrayList<>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         Respuesta respuestaCorrecta = new Respuesta();
         respuestaCorrecta.agregarOpcion(opcion2);
         String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
+        String tipoPregunta = "Verdadero Falso";
         String tema = "CIENCIAS";
         String textoRespuesta = "En la altura, la temperatura de ebullición es menor por la mayor presión atmosférica";
         Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta,
-                enunciado, opciones, tema, textoRespuesta);
+                enunciado, tipoPregunta, opciones, tema, textoRespuesta);
 
         //Act
         Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);
@@ -45,16 +46,17 @@ public class JsonLoaderTest {
         Tipo tipo = new VerdaderoFalso();
         Opcion opcion1 = new Opcion("Verdadero");
         Opcion opcion2 = new Opcion("Falso");
-        ArrayList<Opcion> opciones = new ArrayList<Opcion>();
+        ArrayList<Opcion> opciones = new ArrayList<>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         Respuesta respuestaCorrecta = new Respuesta();
         respuestaCorrecta.agregarOpcion(opcion2);
         String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
+        String tipoPregunta = "Verdadero Falso";
         String tema = "CIENCIAS";
         String textoRespuesta = "En la altura, la temperatura de ebullición es menor por la mayor presión atmosférica";
         Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta,
-                enunciado, opciones, tema, textoRespuesta);
+                enunciado, tipoPregunta, opciones, tema, textoRespuesta);
 
         //Act
         Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);
@@ -72,16 +74,8 @@ public class JsonLoaderTest {
         Tipo tipo = new VerdaderoFalso();
         Opcion opcion1 = new Opcion("Verdadero");
         Opcion opcion2 = new Opcion("Falso");
-        ArrayList<Opcion> opciones = new ArrayList<Opcion>();
-        opciones.add(opcion1);
-        opciones.add(opcion2);
         Respuesta respuestaCorrecta = new Respuesta();
         respuestaCorrecta.agregarOpcion(opcion2);
-        String enunciado = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados";
-        String tema = "CIENCIAS";
-        String textoRespuesta = "En la altura, la temperatura de ebullición es menor por la mayor presión atmosférica";
-        Pregunta preguntaEsperada = new PreguntaSimple(tipo, respuestaCorrecta,
-                enunciado, opciones, tema, textoRespuesta);
 
         //Act
         Pregunta preguntaObtenida = jsonLoader.loadPregunta(2);

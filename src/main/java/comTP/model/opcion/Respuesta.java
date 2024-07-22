@@ -52,7 +52,7 @@ public class Respuesta {
         this.cantidadDeOpcionesIncorrectas = diferentes.size();
 
         if(otraRespuestaTieneMayorCantidadDeOpciones(otraRespuesta) ||
-                cantidadDeOpcionesIncorrectas != 0) {
+                cantidadDeOpcionesIncorrectas != 0 || otraRespuesta.opciones.isEmpty()) {
             return false;
         }
         else {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecorridoPreguntas {
+public class RecorredorPreguntas {
     private final Map<String, ArrayList<Pregunta>> preguntasGuardadas;
     private final Map<String, Integer> indiceActualPorClave;
     private final ArrayList<String> clavesOrdenadas;
@@ -12,7 +12,7 @@ public class RecorridoPreguntas {
     private int indiceGlobal;
     private int indiceActual;
 
-    public RecorridoPreguntas(Map<String, ArrayList<Pregunta>> preguntasGuardadas) {
+    public RecorredorPreguntas(Map<String, ArrayList<Pregunta>> preguntasGuardadas) {
         this.preguntasGuardadas = preguntasGuardadas;
         this.indiceActualPorClave = new HashMap<>();
         this.clavesOrdenadas = new ArrayList<>();

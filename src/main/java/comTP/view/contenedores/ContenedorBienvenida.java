@@ -14,23 +14,30 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class ContenedorBienvenida extends VBox {
-    Stage stage;
-
     public ContenedorBienvenida(Stage stage, Juego juego) {
-        super();
-        this.stage = stage;
+        this.configuracionVBox();
+        this.mostrarTitulo();
+        this.configuracionJugadores(juego);
+        this.empezarJuego(stage, juego);
+    }
+
+    private void configuracionVBox() {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(20));
+    }
 
-        HBox hbox = new HBox();
-        hbox.setAlignment(Pos.CENTER);
-        hbox.setSpacing(10);
-
+    private void mostrarTitulo() {
         Label etiquetaTitulo = new Label();
         etiquetaTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 15));
         etiquetaTitulo.setText("BIENVENIDOS AL JUEGO DE PREGUNTAS");
-        setMargin(etiquetaTitulo, new Insets(-50, 0, 0, 0));
+        this.getChildren().add(etiquetaTitulo);
+    }
+
+    private void configuracionJugadores(Juego juego) {
+        HBox configuracionJugadorHBox = new HBox();
+        configuracionJugadorHBox.setAlignment(Pos.CENTER);
+        configuracionJugadorHBox.setSpacing(10);
 
         Label etiquetaSetJugadores = new Label();
         etiquetaSetJugadores.setFont(Font.font("Arial", FontWeight.BOLD, 12));
@@ -41,21 +48,29 @@ public class ContenedorBienvenida extends VBox {
 
         Button botonGuardarJugador = new Button();
         botonGuardarJugador.setText("Guardar");
+        botonGuardarJugador.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         BotonGuardarJugadorEventHandler botonGuardarJugadorEvenHandler =
                 new BotonGuardarJugadorEventHandler(juego, textFieldIngresoJugadores);
         botonGuardarJugador.setOnAction(botonGuardarJugadorEvenHandler);
 
+        configuracionJugadorHBox.getChildren().addAll(etiquetaSetJugadores, textFieldIngresoJugadores,
+                botonGuardarJugador);
+
+        this.getChildren().add(configuracionJugadorHBox);
+    }
+
+    private void empezarJuego(Stage stage, Juego juego) {
+        Label etiquetaJugadoresVacio = new Label();
+        etiquetaJugadoresVacio.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        etiquetaJugadoresVacio.setText("");
+
         Button botonEmpezarJuego = new Button();
         botonEmpezarJuego.setText("EMPEZAR JUEGO");
         botonEmpezarJuego.setFont(Font.font("Arial", FontWeight.BOLD, 12));
-        setMargin(botonEmpezarJuego, new Insets(50, 0, 0, 0));
         BotonEmpezarJuegoEventHandler botonEmpezarJuegoEventHandler =
-                new BotonEmpezarJuegoEventHandler(stage, juego);
+                new BotonEmpezarJuegoEventHandler(stage, juego, etiquetaJugadoresVacio);
         botonEmpezarJuego.setOnAction(botonEmpezarJuegoEventHandler);
 
-        hbox.getChildren().addAll(etiquetaSetJugadores,
-                textFieldIngresoJugadores, botonGuardarJugador);
-
-        this.getChildren().addAll(etiquetaTitulo, hbox, botonEmpezarJuego);
+        this.getChildren().addAll(botonEmpezarJuego, etiquetaJugadoresVacio);
     }
 }

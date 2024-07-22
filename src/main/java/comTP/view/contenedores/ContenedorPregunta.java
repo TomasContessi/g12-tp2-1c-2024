@@ -23,28 +23,44 @@ public class ContenedorPregunta extends VBox {
     Stage stage;
     Map<Button, AgregarOpcionARespuestaJugadorEventHandler> botonesOpcionesYEvento;
     List<Button> botonesOpcion;
+    ArrayList<Button> botonesMultiplicadores;
 
     public ContenedorPregunta(Stage stage, Juego juego) {
-        super();
         this.stage = stage;
+        this.configurarVBox();
+        Pregunta pregunta = juego.obtenerPregunta();
+        this.mostrarEnunciadoPregunta(pregunta);
+        juego.reiniciarJugadorActual();
+        Jugador jugadorActual = juego.getJugadorActual();
+        Label etiquetaJugador = this.mostrarJugadorActual(jugadorActual);
+        this.mostrarOpciones(pregunta);
+        this.agregarOpcionesARespuestaJugadorActual(jugadorActual);
+        this.mostrarBotonesMultiplicadores(jugadorActual, pregunta);
+        this.finalizarOCancelarPregunta(juego, jugadorActual, pregunta, etiquetaJugador);
+    }
+
+    private void configurarVBox() {
         this.setSpacing(20);
         this.setPadding(new Insets(20));
+    }
 
-        Pregunta pregunta = juego.obtenerPregunta();
+    private void mostrarEnunciadoPregunta(Pregunta pregunta) {
         Label etiquetaEnunciado = new Label();
         etiquetaEnunciado.setWrapText(true);
         etiquetaEnunciado.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         etiquetaEnunciado.setText("PREGUNTA " + pregunta.getTipoPregunta().toUpperCase() + ": " + pregunta.getEnunciado());
         this.getChildren().add(etiquetaEnunciado);
+    }
 
-        juego.reiniciarJugadorActual();
-        Jugador jugadorActual = juego.getJugadorActual();
+    private Label mostrarJugadorActual(Jugador jugadorActual) {
         Label etiquetaJugador = new Label();
-        etiquetaJugador.setWrapText(true);
         etiquetaJugador.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         etiquetaJugador.setText("JUGADOR: " + jugadorActual.getNombre().toUpperCase());
         this.getChildren().add(etiquetaJugador);
+        return etiquetaJugador;
+    }
 
+    private void mostrarOpciones(Pregunta pregunta) {
         Opcion opcion;
         int numeroOpcion = 1;
         botonesOpcionesYEvento = new HashMap<>();
@@ -66,7 +82,9 @@ public class ContenedorPregunta extends VBox {
             this.getChildren().add(hboxOpciones);
             numeroOpcion++;
         }
+    }
 
+    private void agregarOpcionesARespuestaJugadorActual(Jugador jugadorActual) {
         for(Map.Entry<Button, AgregarOpcionARespuestaJugadorEventHandler> entry :
                 botonesOpcionesYEvento.entrySet()) {
             Button boton = entry.getKey();
@@ -74,7 +92,9 @@ public class ContenedorPregunta extends VBox {
             agregarOpcion.jugadorActual(jugadorActual);
             boton.setOnAction(agregarOpcion);
         }
+    }
 
+    private void mostrarBotonesMultiplicadores(Jugador jugadorActual, Pregunta pregunta) {
         Button botonMultiplicadorX2 = new Button();
         botonMultiplicadorX2.setText("MULTIPLICADOR X2");
         botonMultiplicadorX2.setFont(Font.font("Arial", FontWeight.BOLD, 12));
@@ -89,10 +109,22 @@ public class ContenedorPregunta extends VBox {
                 new BotonMultiplicadorX3EventHandler(jugadorActual, pregunta, botonMultiplicadorX3);
         botonMultiplicadorX3.setOnAction(multiplicarX3EventHandler);
 
-        ArrayList<Button> botonesMultiplicadores = new ArrayList<>();
+        botonesMultiplicadores = new ArrayList<>();
         botonesMultiplicadores.add(botonMultiplicadorX2);
         botonesMultiplicadores.add(botonMultiplicadorX3);
 
+        HBox hboxBotonesMultiplicadores = new HBox();
+        hboxBotonesMultiplicadores.setAlignment(Pos.CENTER_LEFT);
+        hboxBotonesMultiplicadores.setSpacing(10);
+
+        if(pregunta.tienePenalidad()) {
+            hboxBotonesMultiplicadores.getChildren().addAll(botonMultiplicadorX2, botonMultiplicadorX3);
+        }
+        this.getChildren().add(hboxBotonesMultiplicadores);
+    }
+
+    private void finalizarOCancelarPregunta(Juego juego, Jugador jugadorActual, Pregunta pregunta,
+                                               Label etiquetaJugador) {
         Button botonCancelarRespuesta = new Button();
         botonCancelarRespuesta.setText("CANCELAR RESPUESTA");
         botonCancelarRespuesta.setFont(Font.font("Arial", FontWeight.BOLD, 12));
@@ -105,19 +137,11 @@ public class ContenedorPregunta extends VBox {
         botonFinalizar.setText("FINALIZAR PREGUNTA");
         botonFinalizar.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         BotonFinalizarPreguntaEventHandler botonFinalizarEventHandler =
-                new BotonFinalizarPreguntaEventHandler(this.stage, botonesOpcionesYEvento,
-                        juego, jugadorActual, pregunta, botonesMultiplicadores,
+                new BotonFinalizarPreguntaEventHandler(this.stage, this.botonesOpcionesYEvento,
+                        juego, jugadorActual, pregunta, this.botonesMultiplicadores,
                         etiquetaJugador, botonCancelarRespuestaEventHandler);
         botonFinalizar.setOnAction(botonFinalizarEventHandler);
 
-        HBox hboxBotones = new HBox();
-        hboxBotones.setAlignment(Pos.CENTER_LEFT);
-        hboxBotones.setSpacing(10);
-
-        if(pregunta.tienePenalidad()) {
-            hboxBotones.getChildren().addAll(botonMultiplicadorX2, botonMultiplicadorX3);
-        }
-
-        this.getChildren().addAll(hboxBotones, botonFinalizar, botonCancelarRespuesta);
+        this.getChildren().addAll(botonFinalizar, botonCancelarRespuesta);
     }
 }

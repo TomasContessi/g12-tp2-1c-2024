@@ -1,11 +1,12 @@
 @startuml
 
-'https://plantuml.com/class-diagram
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
 
 title "Tipo Pregunta"
 
-
-interface Tipo {
+class Tipo {
     + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
 }
 
@@ -30,6 +31,8 @@ class GroupChoice {
     + getTituloGrupoA():String
     + getTituloGrupoB():String
 }
+
+Tipo <<Interface>>
 
 Tipo <|.. GroupChoice
 Tipo <|.. VerdaderoFalso

@@ -1,43 +1,34 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-title "Pregunta clases que interactua"
-
-
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
 
 abstract class Pregunta {
     - tema:String
+    - tipoPregunta:String
     - enunciado:String
+    - textoRespuesta:String
     - numeroOpcion:int
-
-    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta)
-    + Pregunta(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
-    + setMultiplicador(Multiplicador multiplicador):void
+    + Pregunta(tipo:Tipo, respuestaCorrecta:Respuesta)
+    + Pregunta(tipo:Tipo, respuestaCorrecta:Respuesta, enunciado:String, tipoPregunta:String, opciones:ArrayList<Opcion>, tema:String, textoRespuesta:String)
+    + setMultiplicador(Multiplicador multiplicador)
     + mostrarOpcion():Opcion
-    + setearRespuestaJugador(Respuesta respuestaJugador, int numeroOpcion):void
+    + setearRespuestaJugador(respuestaJugador:Respuesta, numeroOpcion:int)
     + getEnunciado():String
-    + getTipo():String
     + getTema():String
+    + getTipoPregunta():String
+    + getTextoRespuesta():String
     + getRespuestaCorrecta():Respuesta
+    + tienePenalidad():boolean
     + verificarRespuesta(respuestaJugador:Respuesta):Puntaje
 }
 
-' class PreguntaConPenalidad extends Pregunta{
-'     + PreguntaEleccionMultiple(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
-'     + verificarRespuesta(Respuesta respuestaJugador):Puntaje
-' }
-
-' class PreguntaParcial extends Pregunta{
-'     + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta)
-'     + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
-'     + verificarRespuesta(Respuesta respuestaJugador):Puntaje
-' }
-
-' class PreguntaSimple extends Pregunta {
-'     + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta)
-'     + PreguntaParcial(Tipo tipo, Respuesta respuestaCorrecta, String enunciado, ArrayList<Opcion> opciones, String tema)
-'     + verificarRespuesta(Respuesta respuestaJugador):Puntaje
-' }
+together {
+    class Puntaje
+    class Respuesta
+    class Tipo
+}
 
 class Opcion {
     - valor:String
@@ -47,16 +38,12 @@ class Opcion {
     + obtenerValor():String
 }
 
-
 class Puntaje {
     - valor:int
     + Puntaje(puntaje:int)
     + multiplicarseCon(otroPuntaje:Puntaje):Puntaje
     + sumarseCon(otroPuntaje:Puntaje):Puntaje
-    + descontar(otroPuntaje:Puntaje):Puntaje
-    + menorOIgualQue(otroPuntaje:Puntaje):boolean
-    + mayorIgual(otroPuntaje:Puntaje):boolean
-    + valorNumerico():int 
+    + valorNumerico():int
     + equals(Object o):boolean
     + hashCode():int
 }
@@ -64,11 +51,9 @@ class Puntaje {
 class Respuesta {
     - cantidadDeOpcionesCorrectas:int
     - cantidadDeOpcionesIncorrectas:int
-
-    + Respuesta()
     + Respuesta(opciones:ArrayList<Opcion>)
-    + agregarOpcion(opcion:Opcion):void
-    + eliminarOpciones():void
+    + agregarOpcion(opcion:Opcion)
+    + eliminarOpciones()
     - otraRespuestaTieneMayorCantidadDeOpciones(otraRespuesta:Respuesta):boolean
     + corregirRespuestaUnica(otraRespuesta:Respuesta):boolean
     + corregirRespuestaSinImportarElOrden(otraRespuesta:Respuesta):boolean
@@ -77,50 +62,22 @@ class Respuesta {
     + cantidadDeOpcionesIncorrectas():int
 }
 
-
-
-interface Tipo {
+class Tipo {
     + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
 }
 
-' class VerdaderoFalso {
-'     + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
-' }
-
-' class MultipleChoice {
-'     + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
-' }
-
-' class OrderedChoice{
-'     + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
-' }
-
-' class GroupChoice {
-'     - grupoATitulo:String
-'     - grupoBTitulo:String
-
-'     + GroupChoice(grupoA:String, grupoB:String)
-'     + respondidoCorrectamente(respuestaCorrecta:Respuesta, respuestaJugador:Respuesta):boolean
-'     + getTituloGrupoA():String
-'     + getTituloGrupoB():String
-' }
-
-' Tipo <|.. GroupChoice
-' Tipo <|.. VerdaderoFalso
-' Tipo <|.. MultipleChoice    
-' Tipo <|.. OrderedChoice
-
-
-interface Multiplicador {
-    + multiplicar(puntaje:Puntaje): Puntaje
+class Multiplicador {
+    + multiplicar(puntaje:Puntaje):Puntaje
 }
 
+Tipo <<Interface>>
+Multiplicador <<Interface>>
 Pregunta o-- "*" Opcion
-Respuesta o-- "*" Opcion
+Respuesta o-left- "*" Opcion
 Pregunta --> Respuesta
-Pregunta ..> Puntaje
-Pregunta --> Multiplicador
+Pregunta .left.> Puntaje
+Pregunta -right-> Multiplicador
 Pregunta *-- Tipo
-Tipo ..> Respuesta
+Tipo .left.> Respuesta
 
 @enduml

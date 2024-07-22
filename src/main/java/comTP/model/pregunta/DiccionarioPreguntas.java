@@ -3,27 +3,24 @@ package comTP.model.pregunta;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import comTP.model.loader.JsonLoader;
 
 public class DiccionarioPreguntas {
     Map<String, ArrayList<Pregunta>> preguntasGuardadas;
-    RecorridoPreguntas recorredor;
-    JsonLoader jsonLoader;
+    RecorredorPreguntas recorredor;
 
-    public DiccionarioPreguntas(JsonLoader jsonLoader) {
+    public DiccionarioPreguntas() {
         this.preguntasGuardadas = new HashMap<>();
-        this.jsonLoader = jsonLoader;
     }
 
-    public void asignarPreguntasPorTema() {
+    public void asignarPreguntasPorTema(JsonLoader jsonLoader) {
         for (int i = 0; i < jsonLoader.totalPreguntas(); i++) {
             Pregunta pregunta = jsonLoader.loadPregunta(i);
             String temaPregunta = pregunta.getTema();
             preguntasGuardadas.putIfAbsent(temaPregunta, new ArrayList<>());
             preguntasGuardadas.get(temaPregunta).add(pregunta);
         }
-        recorredor = new RecorridoPreguntas(preguntasGuardadas);
+        recorredor = new RecorredorPreguntas(preguntasGuardadas);
     }
 
     public Pregunta getPregunta() {
@@ -32,10 +29,6 @@ public class DiccionarioPreguntas {
 
     public boolean ultimaPregunta() {
         return recorredor.ultimaPregunta();
-    }
-
-    public Map<String, ArrayList<Pregunta>> getPreguntasGuardadas() {
-        return preguntasGuardadas;
     }
 }
 
