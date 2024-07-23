@@ -4,10 +4,8 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo 12
 
-* **Integrante 1** - [integrante1](https://github.com/TomasContessi)
-* **Integrante 2** - [integrante2](https://github.com/FiFrozono)
-* **Integrante 3** - [integrante3](https://github.com/Gonza2508)
-* **Integrante 4** - [integrante4](https://github.com/JoaniPran)
+* **Integrante 1** - [Luis Laos Pinto](https://github.com/Gonza2508)
+* **Integrante 2** - [Joani Alejandro Pranteda](https://github.com/JoaniPran)
 
 Corrector: Pablo Suárez
  

@@ -10,6 +10,7 @@ participant "jsonObject:JsonObject" as jsonObject
 participant "factory:PreguntasFactory" as factory
 participant "recorredor:RecorredorPreguntas" as recorredor
 
+
 create loader
 actor -> loader: JsonLoader(filePath)
 create factory

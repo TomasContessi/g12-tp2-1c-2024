@@ -1,0 +1,68 @@
+@startuml
+
+skinparam monochrome true
+hide footbox
+
+participant "Test" as actor
+participant "juego:Juego" as Juego
+participant "pregunta:Pregunta" as Pregunta
+participant "jugador1:Jugador" as Jugador1
+participant "jugador2:Jugador" as Jugador2
+
+
+
+create Juego
+actor->Juego: Juego()
+
+
+create Jugador1
+actor->Jugador1: Jugador("Juan")
+
+create Jugador2
+actor->Jugador2: Jugador("Jorge")
+
+
+actor->Juego: agregarJugador(jugador1)
+activate Juego
+actor->Juego: agregarJugador(jugador2)
+
+actor->Juego: setearPregunta()
+
+actor->Juego: obtenerPregunta()
+create Pregunta 
+Juego->Pregunta: create
+
+
+actor<--Juego: pregunta
+actor->Juego: getJugadorActual()
+actor<--Juego: jugador1
+actor->Jugador1: agregarOpcion(pregunta, 2)
+activate Jugador1
+actor->Jugador1: agregarOpcion(pregunta, 5)
+deactivate Jugador1
+actor->Juego: verificarRespuestaJugador(jugador1, pregunta)
+Juego->Pregunta: verificarRespuesta(jugador1.getRespuesta())
+activate Pregunta
+Pregunta-->Juego: Puntaje(1)
+deactivate Pregunta
+Juego->Juego: agregarPuntaje(jugador1, Puntaje(1))
+
+actor<--Juego: pregunta
+actor->Juego: getJugadorActual()
+actor<--Juego: jugador2
+actor->Jugador2: agregarOpcion(pregunta, 1)
+activate Jugador2
+actor->Jugador2: agregarOpcion(pregunta, 3)
+deactivate Jugador2
+actor->Juego: verificarRespuestaJugador(jugador2, pregunta)
+Juego->Pregunta: verificarRespuesta(jugador2.getRespuesta())
+activate Pregunta
+Pregunta-->Juego: Puntaje(0)
+deactivate Pregunta
+Juego->Juego: agregarPuntaje(jugador2, Puntaje(0))
+
+actor->Juego: resetearRespuestaJugadores()
+actor->Juego: asignarPuntajeJugadores()
+Juego->Jugador1: asignarPuntos(Puntaje(1)) 
+Juego->Jugador2: asignarPuntos(Puntaje(0)) 
+
