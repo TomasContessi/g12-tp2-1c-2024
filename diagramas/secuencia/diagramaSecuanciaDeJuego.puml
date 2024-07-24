@@ -47,7 +47,6 @@ Pregunta-->Juego: Puntaje(1)
 deactivate Pregunta
 Juego->Juego: agregarPuntaje(jugador1, Puntaje(1))
 
-actor<--Juego: pregunta
 actor->Juego: getJugadorActual()
 actor<--Juego: jugador2
 actor->Jugador2: agregarOpcion(pregunta, 1)

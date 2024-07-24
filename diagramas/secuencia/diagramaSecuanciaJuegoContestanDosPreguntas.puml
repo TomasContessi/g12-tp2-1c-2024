@@ -1,0 +1,120 @@
+@startuml
+
+skinparam monochrome true
+hide footbox
+
+participant "Test" as actor
+participant "juego:Juego" as Juego
+participant "pregunta1:Pregunta" as Pregunta1
+participant "pregunta2:Pregunta" as Pregunta2
+participant "jugador1:Jugador" as Jugador1
+participant "jugador2:Jugador" as Jugador2
+
+
+
+create Juego
+actor->Juego: Juego()
+
+
+create Jugador1
+actor->Jugador1: Jugador("Juan")
+
+create Jugador2
+actor->Jugador2: Jugador("Jorge")
+
+
+actor->Juego: agregarJugador(jugador1)
+activate Juego
+actor->Juego: agregarJugador(jugador2)
+
+actor->Juego: setearPregunta()
+
+actor->Juego: obtenerPregunta()
+create Pregunta1 
+Juego->Pregunta1: create
+
+
+actor<--Juego: pregunta
+actor->Juego: getJugadorActual()
+actor<--Juego: jugador1
+actor->Jugador1: agregarOpcion(pregunta, 2)
+activate Jugador1
+actor->Jugador1: agregarOpcion(pregunta, 5)
+deactivate Jugador1
+actor->Juego: verificarRespuestaJugador(jugador1, pregunta)
+Juego->Pregunta1: verificarRespuesta(jugador1.getRespuesta())
+activate Pregunta1
+Pregunta1-->Juego: Puntaje(1)
+deactivate Pregunta1
+Juego->Juego: agregarPuntaje(jugador1, Puntaje(1))
+
+actor->Juego: getJugadorActual()
+actor<--Juego: jugador2
+actor->Jugador2: agregarOpcion(pregunta, 2)
+activate Jugador2
+actor->Jugador2: agregarOpcion(pregunta, 5)
+deactivate Jugador2
+actor->Juego: verificarRespuestaJugador(jugador2, pregunta)
+Juego->Pregunta1: verificarRespuesta(jugador2.getRespuesta())
+activate Pregunta1
+Pregunta1-->Juego: Puntaje(1)
+deactivate Pregunta1
+Juego->Juego: agregarPuntaje(jugador2, Puntaje(1))
+
+actor->Juego: resetearRespuestaJugadores()
+actor->Juego: asignarPuntajeJugadores()
+Juego->Jugador1: asignarPuntos(Puntaje(1)) 
+Juego->Jugador2: asignarPuntos(Puntaje(1)) 
+
+
+
+actor->Juego: obtenerPregunta()
+create Pregunta2 
+Juego->Pregunta2: create
+actor<--Juego: pregunta2
+actor->Juego: reiniciarJugadorActual()
+actor->Juego: getJugadorActual()
+actor<--Juego: jugador1
+actor->Jugador1: agregarOpcion(pregunta2, 3)
+activate Jugador1
+actor->Jugador1: agregarOpcion(pregunta2, 4)
+deactivate Jugador1
+actor->Juego: verificarRespuestaJugador(jugador1, pregunta2)
+Juego->Pregunta1: verificarRespuesta(jugador1.getRespuesta())
+activate Pregunta1
+Pregunta1-->Juego: Puntaje(2)
+deactivate Pregunta1
+Juego->Juego: agregarPuntaje(jugador1, Puntaje(2))
+
+actor->Juego: getJugadorActual()
+actor<--Juego: jugador2
+actor->Jugador2: agregarOpcion(pregunta2, 3)
+activate Jugador2
+actor->Jugador2: agregarOpcion(pregunta2, 4)
+deactivate Jugador2
+actor->Juego: verificarRespuestaJugador(jugador2, pregunta2)
+Juego->Pregunta1: verificarRespuesta(jugador2.getRespuesta())
+activate Pregunta1
+Pregunta1-->Juego: Puntaje(2)
+deactivate Pregunta1
+Juego->Juego: agregarPuntaje(jugador2, Puntaje(2))
+
+actor->Juego: resetearRespuestaJugadores()
+actor->Juego: asignarPuntajeJugadores()
+Juego->Jugador1: asignarPuntos(Puntaje(2)) 
+Juego->Jugador2: asignarPuntos(Puntaje(2)) 
+
+actor->Juego: reiniciarJugadorActual()
+
+actor->Juego: getJugadorActual()
+Juego->Jugador1: jugadorActual.getPuntos()
+activate Jugador1
+Jugador1-->actor: Puntos(3)
+deactivate Jugador1
+
+actor->Juego: getJugadorActual()
+Juego->Jugador2: jugadorActual.getPuntos()
+activate Jugador2
+Jugador2-->actor: Puntos(3)
+deactivate Jugador2
+

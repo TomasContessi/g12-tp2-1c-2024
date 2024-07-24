@@ -3,6 +3,7 @@ package comTP;
 import comTP.model.juego.Juego;
 import comTP.model.juego.ListaJugadoresVaciaException;
 import comTP.model.jugador.Jugador;
+import comTP.model.modificador.MultiplicadorX3;
 import comTP.model.modificador.Puntaje;
 import comTP.model.pregunta.Pregunta;
 import org.junit.jupiter.api.Test;
@@ -141,7 +142,121 @@ public class JuegoTest {
     }
 
     @Test
-    public void test07NoSePuedeJugarConListaDeJugadoresVacia() {
+    public void test07DosJugadoresContestanDosPreguntasCorrectamente() {
+        //Arrange
+        Juego juego = new Juego();
+        Puntaje puntajeEsperado1 = new Puntaje(3);
+        Puntaje puntajeEsperado2 = new Puntaje(3);
+
+        //Act
+        juego.agregarJugador(new Jugador("Juan"));
+        juego.agregarJugador(new Jugador("Jorge"));
+        juego.setearPreguntas();
+        Jugador jugadorActual = juego.getJugadorActual();
+        Pregunta pregunta;
+
+        pregunta = juego.obtenerPregunta();
+        jugadorActual.agregarOpcion(pregunta , 2);
+        jugadorActual.agregarOpcion(pregunta , 5);
+        juego.verificarRespuestaJugador(jugadorActual, pregunta);
+
+        jugadorActual = juego.getJugadorActual();
+        jugadorActual.agregarOpcion(pregunta , 2);
+        jugadorActual.agregarOpcion(pregunta , 5);
+        juego.verificarRespuestaJugador(jugadorActual, pregunta);
+
+        juego.resetearRespuestasJugadores();
+        juego.asignarPuntajeJugadores();
+
+        pregunta = juego.obtenerPregunta();
+        juego.reiniciarJugadorActual();
+        jugadorActual = juego.getJugadorActual();
+        jugadorActual.agregarOpcion(pregunta , 3);
+        jugadorActual.agregarOpcion(pregunta , 4);
+        juego.verificarRespuestaJugador(jugadorActual, pregunta);
+
+        jugadorActual = juego.getJugadorActual();
+        jugadorActual.agregarOpcion(pregunta , 3);
+        jugadorActual.agregarOpcion(pregunta , 4);
+        juego.verificarRespuestaJugador(jugadorActual, pregunta);
+
+        juego.resetearRespuestasJugadores();
+        juego.asignarPuntajeJugadores();
+
+        juego.reiniciarJugadorActual();
+        jugadorActual = juego.getJugadorActual();
+        Puntaje puntajeObtenido1 = jugadorActual.getPuntos();
+        jugadorActual = juego.getJugadorActual();
+        Puntaje puntajeObtenido2 = jugadorActual.getPuntos();
+
+        //Assert
+        assertEquals(puntajeEsperado1, puntajeObtenido1);
+        assertEquals(puntajeEsperado2, puntajeObtenido2);
+    }
+
+    @Test
+    public void test08UnJugadorContestaCambiaSuRespuesta() {
+        //Arrange
+        Juego juego = new Juego();
+        Puntaje puntajeEsperado = new Puntaje(1);
+
+        //Act
+        juego.agregarJugador(new Jugador("Juan"));
+        juego.setearPreguntas();
+        Jugador jugadorActual = juego.getJugadorActual();
+        Pregunta pregunta;
+
+        pregunta = juego.obtenerPregunta();
+        jugadorActual.agregarOpcion(pregunta , 3);
+        jugadorActual.agregarOpcion(pregunta , 4);
+        jugadorActual.agregarOpcion(pregunta , 5);
+        jugadorActual.cambiarRespuesta();
+        jugadorActual.agregarOpcion(pregunta , 2);
+        jugadorActual.agregarOpcion(pregunta , 5);
+        juego.verificarRespuestaJugador(jugadorActual, pregunta);
+        juego.resetearRespuestasJugadores();
+        juego.asignarPuntajeJugadores();
+
+
+        Puntaje puntajeObtido = jugadorActual.getPuntos();
+
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtido);
+    }
+
+    @Test
+    public void test08UnJugadorUsaElMultiplicador() {
+        //Arrange
+        Juego juego = new Juego();
+        Puntaje puntajeEsperado = new Puntaje(6);
+
+        //Act
+        juego.agregarJugador(new Jugador("Juan"));
+        juego.setearPreguntas();
+        Jugador jugadorActual = juego.getJugadorActual();
+        Pregunta pregunta;
+
+        juego.obtenerPregunta();
+        pregunta = juego.obtenerPregunta();
+
+        jugadorActual.agregarOpcion(pregunta , 3);
+        jugadorActual.agregarOpcion(pregunta , 4);
+        jugadorActual.usarMultiplicador(pregunta, new MultiplicadorX3());
+
+
+        juego.verificarRespuestaJugador(jugadorActual, pregunta);
+        juego.resetearRespuestasJugadores();
+        juego.asignarPuntajeJugadores();
+
+
+        Puntaje puntajeObtido = jugadorActual.getPuntos();
+
+        //Assert
+        assertEquals(puntajeEsperado, puntajeObtido);
+    }
+
+    @Test
+    public void test010NoSePuedeJugarConListaDeJugadoresVacia() {
         //Arrange
         Juego juego = new Juego();
 
